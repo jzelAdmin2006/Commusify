@@ -1,0 +1,31 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  mavenCentral()
+}
+
+ext {
+  // https://search.maven.org/search?q=g:org.junit.jupiter%20AND%20a:junit-jupiter
+  junitVersion = '5.8.2'
+  // https://search.maven.org/search?q=g:org.assertj%20AND%20a:assertj-core
+  assertjVersion = '3.22.0'
+}
+
+dependencies {
+  testImplementation "org.assertj:assertj-core:${assertjVersion}"
+  testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+  testRuntimeOnly    "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(11)
+  }
+}
+
+wrapper {
+  gradleVersion = '7.3.3'
+  // distributionUrl = 'https://repo.bison-group.com/artifactory/gradlew-distro/gradle-7.3.3-bin.zip'
+}
