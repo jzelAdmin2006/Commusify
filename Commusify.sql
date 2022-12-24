@@ -231,3 +231,14 @@
 		INSERT INTO GENRE(Designation) OUTPUT inserted.ID VALUES (@Designation)
 	END
 	GO
+
+	CREATE PROCEDURE SP_CREATE_USER
+		@UserName VARCHAR(MAX),
+		@PasswordHash INT,
+		@
+	AS
+	BEGIN
+		SET NOCOUNT ON;
+		INSERT INTO GENRE(Designation) OUTPUT inserted.ID VALUES (@Designation)
+	END
+	GO
