@@ -7,8 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.junit.jupiter.api.Test;
-
 public class TrackTest {
   private static byte[] sampleAudio = getSampleAudio();
 
@@ -47,11 +45,5 @@ public class TrackTest {
       e.printStackTrace();
       return null;
     }
-  }
-
-  @Deprecated // unimplemented
-  @Test
-  void newTrackWithAudio_getAudio_isCorrect() {
-    // Track track = new Track("", sampleAudio, new Genre("House"));
   }
 }
