@@ -1,10 +1,17 @@
 package tech.bison.trainee2021;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Objects;
+
 public class User {
 
   private final int id;
-  private int passwordHash;
   private String userName;
+  private int passwordHash;
   private String firstName;
   private String lastName;
   private String email;
@@ -18,8 +25,47 @@ public class User {
     this.email = email;
   }
 
+  public User(int id) {
+    this.id = id;
+    find(id);
+  }
+
+  private void find(int id) {
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_USER(?)}");
+      callableStatement.setInt(1, id);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      userName = result.getString("UserName");
+      passwordHash = result.getInt("PasswordHash");
+      firstName = result.getString("FirstName");
+      lastName = result.getString("LastName");
+      email = result.getString("Email");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   private int create(String userName, String firstName, String lastName, String email) {
-    return 0;
+    int id = 0;
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_USER(?)}");
+      callableStatement.setString(1, userName);
+      callableStatement.setInt(2, passwordHash);
+      callableStatement.setString(3, firstName);
+      callableStatement.setString(4, lastName);
+      callableStatement.setString(5, email);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      id = result.getInt("ID");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return id;
   }
 
   public String getUserName() {
@@ -32,6 +78,25 @@ public class User {
 
   public String getFirstName() {
     return firstName;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(email, firstName, id, lastName, passwordHash, userName);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    User other = (User) obj;
+    return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
+        && Objects.equals(lastName, other.lastName) && passwordHash == other.passwordHash
+        && Objects.equals(userName, other.userName);
   }
 
   public String getLastName() {

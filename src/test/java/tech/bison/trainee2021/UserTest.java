@@ -2,6 +2,7 @@ package tech.bison.trainee2021;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
@@ -93,5 +94,23 @@ public class UserTest {
     String result = user.getEmail();
 
     assertThat(result).isEqualTo("jzel2006@admin.ch2");
+  }
+
+  @Disabled
+  @Test
+  void newUser_userWithSameID_isEqual() {
+    User user = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel", "Admin", "jzel2006@admin.ch");
+    User userWithSameID = new User(user.getId());
+
+    assertThat(user).isEqualTo(userWithSameID);
+  }
+
+  @Disabled
+  @Test
+  void newDifferentUser_userWithSameID_isEqual() {
+    User user = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel2", "Admin", "jzel2006@admin.ch");
+    User userWithSameID = new User(user.getId());
+
+    assertThat(user).isEqualTo(userWithSameID);
   }
 }

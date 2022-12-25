@@ -110,7 +110,8 @@
 		FirstName VARCHAR(MAX) NOT NULL,
 		LastName VARCHAR(MAX) NOT NULL,
 		Email VARCHAR(MAX) NOT NULL,
-		PRIMARY KEY(ID)
+		PRIMARY KEY(ID),
+		CONSTRAINT EmailFormat CHECK(Email LIKE '%___@___%.__%')
 	);
 
 	CREATE TABLE ARTIST (
@@ -235,10 +236,21 @@
 	CREATE PROCEDURE SP_CREATE_USER
 		@UserName VARCHAR(MAX),
 		@PasswordHash INT,
-		@
+		@FirstName VARCHAR(MAX),
+		@LastName VARCHAR(MAX),
+		@Email VARCHAR(MAX)
 	AS
 	BEGIN
 		SET NOCOUNT ON;
-		INSERT INTO GENRE(Designation) OUTPUT inserted.ID VALUES (@Designation)
+		INSERT INTO [USER](UserName, PasswordHash, FirstName, LastName, Email) OUTPUT inserted.ID VALUES (@UserName, @PasswordHash, @FirstName, @LastName, @Email)
+	END
+	GO
+
+	CREATE PROCEDURE SP_FIND_USER
+		@ID VARCHAR(MAX)
+	AS
+	BEGIN
+		SET NOCOUNT ON;
+		SELECT * FROM [USER] WHERE ID = @ID
 	END
 	GO
