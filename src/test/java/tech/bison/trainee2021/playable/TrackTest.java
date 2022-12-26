@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import tech.bison.trainee2021.Genre;
+import tech.bison.trainee2021.playable.Track;
 
 public class TrackTest {
   private static byte[] realSampleAudio;
