@@ -2,7 +2,6 @@ package tech.bison.trainee2021;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
@@ -96,21 +95,31 @@ public class UserTest {
     assertThat(result).isEqualTo("jzel2006@admin.ch2");
   }
 
-  @Disabled
   @Test
   void newUser_userWithSameID_isEqual() {
     User user = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel", "Admin", "jzel2006@admin.ch");
     User userWithSameID = new User(user.getId());
 
     assertThat(user).isEqualTo(userWithSameID);
+    assertThat(user.getId()).isEqualTo(userWithSameID.getId());
+    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName());
+    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash());
+    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName());
+    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName());
+    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail());
   }
 
-  @Disabled
   @Test
   void newDifferentUser_userWithSameID_isEqual() {
     User user = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel2", "Admin", "jzel2006@admin.ch");
     User userWithSameID = new User(user.getId());
 
     assertThat(user).isEqualTo(userWithSameID);
+    assertThat(user.getId()).isEqualTo(userWithSameID.getId());
+    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName());
+    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash());
+    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName());
+    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName());
+    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail());
   }
 }

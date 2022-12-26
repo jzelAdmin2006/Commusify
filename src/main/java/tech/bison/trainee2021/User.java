@@ -52,7 +52,7 @@ public class User {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_USER(?)}");
+      CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_USER(?, ?, ?, ?, ?)}");
       callableStatement.setString(1, userName);
       callableStatement.setInt(2, passwordHash);
       callableStatement.setString(3, firstName);
