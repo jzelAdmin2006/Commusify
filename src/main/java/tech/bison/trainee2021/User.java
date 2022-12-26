@@ -17,8 +17,8 @@ public class User {
   private String email;
 
   public User(String userName, String password, String firstName, String lastName, String email) {
-    this.passwordHash = password.hashCode();
-    id = create(userName, firstName, lastName, email);
+    passwordHash = password.hashCode();
+    id = create(userName, passwordHash, firstName, lastName, email);
     this.userName = userName;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -48,7 +48,7 @@ public class User {
     }
   }
 
-  private int create(String userName, String firstName, String lastName, String email) {
+  private int create(String userName, int passwordHash, String firstName, String lastName, String email) {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);

@@ -16,19 +16,18 @@ public class Artist {
   private String name;
 
   public Artist(List<User> members, String name) {
-    id = create(name);
-    addMembers(members);
+    id = create(name, members);
     this.name = name;
   }
 
-  private void addMembers(List<User> members) {
+  private void addMembers(int id, List<User> members) {
     this.members.addAll(members);
     for (User member : members) {
-      addMember(member);
+      addMember(id, member);
     }
   }
 
-  private int create(String name) {
+  private int create(String name, List<User> members) {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
@@ -41,10 +40,11 @@ public class Artist {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    addMembers(id, members);
     return id;
   }
 
-  private void addMember(User member) {
+  private void addMember(int id, User member) {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_ARTIST_MEMBER(?, ?)}");
