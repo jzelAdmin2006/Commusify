@@ -102,11 +102,11 @@ public class UserTest {
 
     assertThat(user).isEqualTo(userWithSameID);
     assertThat(user.getId()).isEqualTo(userWithSameID.getId());
-    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName());
-    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash());
-    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName());
-    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName());
-    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail());
+    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName()).isEqualTo("jzelAdmin2006");
+    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash()).isEqualTo(1847223363);
+    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName()).isEqualTo("Jzel");
+    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName()).isEqualTo("Admin");
+    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail()).isEqualTo("jzel2006@admin.ch");
   }
 
   @Test
@@ -116,10 +116,10 @@ public class UserTest {
 
     assertThat(user).isEqualTo(userWithSameID);
     assertThat(user.getId()).isEqualTo(userWithSameID.getId());
-    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName());
-    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash());
-    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName());
-    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName());
-    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail());
+    assertThat(user.getUserName()).isEqualTo(userWithSameID.getUserName()).isEqualTo("jzelAdmin2006");
+    assertThat(user.getPasswordHash()).isEqualTo(userWithSameID.getPasswordHash()).isEqualTo(1847223363);
+    assertThat(user.getFirstName()).isEqualTo(userWithSameID.getFirstName()).isEqualTo("Jzel2");
+    assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName()).isEqualTo("Admin");
+    assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail()).isEqualTo("jzel2006@admin.ch");
   }
 }

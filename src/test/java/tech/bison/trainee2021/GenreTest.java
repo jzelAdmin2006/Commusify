@@ -30,7 +30,7 @@ public class GenreTest {
 
     assertThat(genre).isEqualTo(genreWithSameID);
     assertThat(genre.getId()).isEqualTo(genreWithSameID.getId());
-    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation());
+    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation()).isEqualTo("asdf");
   }
 
   @Test
@@ -40,6 +40,6 @@ public class GenreTest {
 
     assertThat(genre).isEqualTo(genreWithSameID);
     assertThat(genre.getId()).isEqualTo(genreWithSameID.getId());
-    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation());
+    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation()).isEqualTo("qwert");
   }
 }
