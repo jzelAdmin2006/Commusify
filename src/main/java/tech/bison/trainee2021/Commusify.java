@@ -13,7 +13,7 @@ public class Commusify {
 
   }
 
-  static void reset() {
+  public static void reset() {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       Statement statement = connection.createStatement();
