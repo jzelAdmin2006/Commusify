@@ -1,9 +1,12 @@
-package tech.bison.trainee2021;
+package tech.bison.trainee2021.structure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.structure.User;
 
 public class UserTest {
   @BeforeEach
