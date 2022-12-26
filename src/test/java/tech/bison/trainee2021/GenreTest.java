@@ -29,6 +29,8 @@ public class GenreTest {
     Genre genreWithSameID = new Genre(genre.getId());
 
     assertThat(genre).isEqualTo(genreWithSameID);
+    assertThat(genre.getId()).isEqualTo(genreWithSameID.getId());
+    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation());
   }
 
   @Test
@@ -37,5 +39,7 @@ public class GenreTest {
     Genre genreWithSameID = new Genre(genre.getId());
 
     assertThat(genre).isEqualTo(genreWithSameID);
+    assertThat(genre.getId()).isEqualTo(genreWithSameID.getId());
+    assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation());
   }
 }
