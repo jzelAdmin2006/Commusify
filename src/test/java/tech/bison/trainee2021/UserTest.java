@@ -2,9 +2,15 @@ package tech.bison.trainee2021;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
+  @BeforeEach
+  void resetDatabase() {
+    Commusify.reset();
+  }
+
   @Test
   void newUser_getUserName_isCorrect() {
     User user = new User("jzelAdmin2006", "TopsecretPassword12345", "Jzel", "Admin", "jzel2006@admin.ch");
