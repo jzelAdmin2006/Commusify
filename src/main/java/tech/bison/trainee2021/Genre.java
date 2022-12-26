@@ -43,7 +43,7 @@ public class Genre {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_GENRE(?)}");
-      callableStatement.setString(1, designation);
+      callableStatement.setString("Designation", designation);
       ResultSet result = callableStatement.executeQuery();
 
       result.next();
@@ -58,7 +58,7 @@ public class Genre {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_GENRE(?)}");
-      callableStatement.setInt(1, id);
+      callableStatement.setInt("ID", id);
       ResultSet result = callableStatement.executeQuery();
 
       result.next();

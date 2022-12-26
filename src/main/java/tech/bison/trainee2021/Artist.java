@@ -32,7 +32,7 @@ public class Artist {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_ARTIST(?)}");
-      callableStatement.setString(1, name);
+      callableStatement.setString("Name", name);
       ResultSet result = callableStatement.executeQuery();
 
       result.next();
@@ -48,8 +48,8 @@ public class Artist {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_ARTIST_MEMBER(?, ?)}");
-      callableStatement.setInt(1, id);
-      callableStatement.setInt(2, member.getId());
+      callableStatement.setInt("ArtistID", id);
+      callableStatement.setInt("MemberUserID", member.getId());
       callableStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -82,7 +82,7 @@ public class Artist {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_ARTIST(?)}");
-      callableStatement.setInt(1, id);
+      callableStatement.setInt("ID", id);
       ResultSet result = callableStatement.executeQuery();
 
       result.next();
