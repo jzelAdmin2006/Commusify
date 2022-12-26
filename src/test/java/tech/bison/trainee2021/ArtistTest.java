@@ -73,7 +73,7 @@ public class ArtistTest {
     Artist artistWithSameId = new Artist(artist.getId());
 
     assertThat(artist).isEqualTo(artistWithSameId);
-    assertThat(artist.getMembers()).containsAll(artistWithSameId.getMembers()).containsExactly(member);
+    assertThat(artist.getMembers()).containsExactlyElementsOf(artistWithSameId.getMembers()).containsExactly(member);
     assertThat(artist.getName()).isEqualTo(artistWithSameId.getName()).isEqualTo("jzelAdmin2006Artist");
   }
 
@@ -88,7 +88,8 @@ public class ArtistTest {
     Artist artistWithSameId = new Artist(artist.getId());
 
     assertThat(artist).isEqualTo(artistWithSameId);
-    assertThat(artist.getMembers()).containsAll(artistWithSameId.getMembers()).containsExactly(member1, member2);
+    assertThat(artist.getMembers()).containsExactlyElementsOf(artistWithSameId.getMembers())
+        .containsExactly(member1, member2);
     assertThat(artist.getName()).isEqualTo(artistWithSameId.getName()).isEqualTo("jzelAdmin2006Artist");
   }
 }
