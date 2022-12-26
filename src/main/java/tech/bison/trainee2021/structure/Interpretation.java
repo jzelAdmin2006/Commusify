@@ -1,4 +1,4 @@
-package tech.bison.trainee2021;
+package tech.bison.trainee2021.structure;
 
 import java.util.List;
 

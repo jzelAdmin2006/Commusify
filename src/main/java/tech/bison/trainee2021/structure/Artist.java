@@ -1,4 +1,4 @@
-package tech.bison.trainee2021;
+package tech.bison.trainee2021.structure;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import tech.bison.trainee2021.Commusify;
 
 public class Artist {
 

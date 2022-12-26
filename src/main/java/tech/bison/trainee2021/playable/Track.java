@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
-import tech.bison.trainee2021.Genre;
+import tech.bison.trainee2021.structure.Genre;
 
 public class Track {
   private final int id;

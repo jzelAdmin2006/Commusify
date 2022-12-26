@@ -1,7 +1,7 @@
 package tech.bison.trainee2021.playable.specialTrack;
 
-import tech.bison.trainee2021.Genre;
 import tech.bison.trainee2021.playable.Track;
+import tech.bison.trainee2021.structure.Genre;
 
 public class Remix extends Track {
 
