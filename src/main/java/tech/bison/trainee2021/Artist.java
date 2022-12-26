@@ -21,7 +21,6 @@ public class Artist {
   }
 
   private void addMembers(int id, List<User> members) {
-    this.members.addAll(members);
     for (User member : members) {
       addMember(id, member);
     }
@@ -45,6 +44,7 @@ public class Artist {
   }
 
   private void addMember(int id, User member) {
+    members.add(member);
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_ARTIST_MEMBER(?, ?)}");

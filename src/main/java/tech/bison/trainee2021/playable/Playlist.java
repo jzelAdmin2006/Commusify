@@ -57,17 +57,21 @@ public class Playlist {
   }
 
   private void addTracks(int id, List<Track> tracks) {
-    this.tracks.addAll(tracks);
     for (Track track : tracks) {
-      try {
-        Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-        CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYLIST_TRACK(?, ?)}");
-        callableStatement.setInt("PlaylistID", id);
-        callableStatement.setInt("TrackID", track.getId());
-        callableStatement.execute();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
+      addTrack(id, track);
+    }
+  }
+
+  private void addTrack(int id, Track track) {
+    tracks.add(track);
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYLIST_TRACK(?, ?)}");
+      callableStatement.setInt("PlaylistID", id);
+      callableStatement.setInt("TrackID", track.getId());
+      callableStatement.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
