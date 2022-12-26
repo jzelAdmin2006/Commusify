@@ -13,12 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import tech.bison.trainee2021.Genre;
-import tech.bison.trainee2021.playable.Track;
 
 public class TrackTest {
   private static byte[] realSampleAudio;
-  private static byte[] sampleAudio1 = { 1, 2, 3 };
-  private static byte[] sampleAudio2 = { 1, 2, 4 };
+  public static byte[] sampleAudio1 = { 1, 2, 3 };
+  public static byte[] sampleAudio2 = { 1, 2, 4 };
 
   @BeforeAll
   static void getSampleAudio() {
