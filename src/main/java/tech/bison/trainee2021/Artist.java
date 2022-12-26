@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Artist {
 
   private final int id;
-  private List<User> members = new ArrayList<>();
+  private final List<User> members = new ArrayList<>();
   private String name;
 
   public Artist(List<User> members, String name) {
