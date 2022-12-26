@@ -122,4 +122,15 @@ public class UserTest {
     assertThat(user.getLastName()).isEqualTo(userWithSameID.getLastName()).isEqualTo("Admin");
     assertThat(user.getEmail()).isEqualTo(userWithSameID.getEmail()).isEqualTo("jzel2006@admin.ch");
   }
+
+  @Test
+  void twoDifferentUsers_getIds_areUnique() {
+    User user1 = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel2", "Admin", "jzel2006@admin.ch");
+    User user2 = new User("jzelAdmin2006_2", "TopsecretPassword123456", "Jzel2", "Admin", "jzel2006@admin.ch");
+
+    int resultId1 = user1.getId();
+    int resultId2 = user2.getId();
+
+    assertThat(resultId1).isNotEqualTo(resultId2);
+  }
 }

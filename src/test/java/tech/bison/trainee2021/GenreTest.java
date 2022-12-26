@@ -42,4 +42,15 @@ public class GenreTest {
     assertThat(genre.getId()).isEqualTo(genreWithSameID.getId());
     assertThat(genre.getDesignation()).isEqualTo(genreWithSameID.getDesignation()).isEqualTo("qwert");
   }
+
+  @Test
+  void twoDifferentGenres_getIds_areUnique() {
+    Genre genre1 = new Genre("Bigroom House");
+    Genre genre2 = new Genre("Progressive House");
+
+    int resultId1 = genre1.getId();
+    int resultId2 = genre2.getId();
+
+    assertThat(resultId1).isNotEqualTo(resultId2);
+  }
 }
