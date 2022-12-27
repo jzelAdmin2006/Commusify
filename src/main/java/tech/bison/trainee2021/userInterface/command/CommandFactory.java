@@ -6,10 +6,12 @@ public class CommandFactory {
     CREATE_GENRE,
     NOT_FOUND;
 
+    private static final String CREATE_GENRE_SPELLING = "/createGenre";
+
     private String spelling() {
       switch (this) {
         case CREATE_GENRE:
-          return "/createGenre";
+          return CREATE_GENRE_SPELLING;
         case NOT_FOUND:
           // should never happen
           throw new UnsupportedOperationException("The not found command has no spelling.");
