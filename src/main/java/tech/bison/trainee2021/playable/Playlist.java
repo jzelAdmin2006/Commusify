@@ -56,7 +56,7 @@ public class Playlist {
     return id;
   }
 
-  private void addTracks(int id, List<Track> tracks) {
+  protected void addTracks(int id, List<Track> tracks) {
     for (Track track : tracks) {
       addTrack(id, track);
     }
