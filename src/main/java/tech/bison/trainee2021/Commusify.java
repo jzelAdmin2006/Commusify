@@ -9,6 +9,8 @@ import java.sql.Statement;
 public class Commusify {
   public static final String DATABASE = "jdbc:sqlserver://localhost:1433;databaseName=Commusify;username=JDBCAdmin;password=12345;encrypt=true;trustServerCertificate=true;";
 
+  public static final int INVALID_ID = 0;
+
   public static void main(String[] args) throws IOException {
 
   }

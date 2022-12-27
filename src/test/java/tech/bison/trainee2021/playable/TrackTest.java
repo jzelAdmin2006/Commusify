@@ -240,4 +240,16 @@ public class TrackTest {
     assertThatThrownBy(() -> result.removeAll(interpreter)).isInstanceOf(UnsupportedOperationException.class);
     assertThatThrownBy(() -> result.set(0, interpreterArtist)).isInstanceOf(UnsupportedOperationException.class);
   }
+
+  @Test
+  void tryOutStuff() {
+    Genre genre = new Genre("GenreXYZ");
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    Track track = new Track("TrackTitleXYZ", realSampleAudio, genre, interpreter);
+
+    track.download();
+  }
 }
