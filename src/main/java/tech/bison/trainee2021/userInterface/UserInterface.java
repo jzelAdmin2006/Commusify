@@ -9,7 +9,7 @@ import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 
 public class UserInterface {
   private static final String COMMAND_DELIMITER = " ";
-  private static final String EXIT = "/exit";
+  public static final String EXIT = "/exit";
   private boolean isRunning;
 
   public UserInterface() {
