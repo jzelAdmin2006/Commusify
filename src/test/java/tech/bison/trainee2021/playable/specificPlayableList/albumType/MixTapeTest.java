@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.playable.TrackTest;
 import tech.bison.trainee2021.structure.Artist;
@@ -24,7 +25,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithTitle_getTitle_isTheSame() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -39,7 +44,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithDifferentTitle_getTitle_isTheSame() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -54,14 +63,18 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithTrack_getTracks_containsTrack() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     MixTape mixTape = new MixTape("TitleXYZ2", tracks, interpreters, "DescriptionXYZ");
 
-    List<Track> result = mixTape.getTracks();
+    List<Playable> result = mixTape.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -69,15 +82,19 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithTracks_getTracks_containsTracks() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
-    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
+    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     MixTape mixTape = new MixTape("TitleXYZ2", tracks, interpreters, "DescriptionXYZ");
 
-    List<Track> result = mixTape.getTracks();
+    List<Playable> result = mixTape.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -85,7 +102,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithInterpreter_getInterpreters_containsInterpreter() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -100,7 +121,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithInterpreters_getInterpreters_containsInterpreters() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -116,7 +141,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithDescription_getDescription_isTheSame() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -131,7 +160,11 @@ public class MixTapeTest {
   @Test
   void newMixTapeWithDifferentDescription_getDescription_isTheSame() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -146,7 +179,11 @@ public class MixTapeTest {
   @Test
   void newMixTape_mixTapeWithSameId_isEqual() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -160,7 +197,7 @@ public class MixTapeTest {
     assertThat(mixTape.getInterpreters()).containsExactlyInAnyOrderElementsOf(mixTapeWithSameId.getInterpreters())
         .containsExactlyElementsOf(interpreters);
     assertThat(mixTape.getTitle()).isEqualTo(mixTapeWithSameId.getTitle()).isEqualTo("TitleXYZ2");
-    assertThat(mixTape.getTracks()).containsExactlyElementsOf(mixTapeWithSameId.getTracks())
+    assertThat(mixTape.getPlayables()).containsExactlyElementsOf(mixTapeWithSameId.getPlayables())
         .containsExactlyElementsOf(tracks);
     assertThat(mixTape.getDescription()).isEqualTo(mixTapeWithSameId.getDescription()).isEqualTo("DescriptionXYZ");
   }
@@ -168,9 +205,13 @@ public class MixTapeTest {
   @Test
   void newDifferentMixTape_mixTapeWithSameId_isEqual() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
-    artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
+    artistMembers.add(new User("userNameXY2Z", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     MixTape mixTape = new MixTape("TitleXYZ2", tracks, interpreters, "DescriptionXYZ2");
@@ -182,7 +223,7 @@ public class MixTapeTest {
     assertThat(mixTape.getInterpreters()).containsExactlyInAnyOrderElementsOf(mixTapeWithSameId.getInterpreters())
         .containsExactlyElementsOf(interpreters);
     assertThat(mixTape.getTitle()).isEqualTo(mixTapeWithSameId.getTitle()).isEqualTo("TitleXYZ2");
-    assertThat(mixTape.getTracks()).containsExactlyElementsOf(mixTapeWithSameId.getTracks())
+    assertThat(mixTape.getPlayables()).containsExactlyElementsOf(mixTapeWithSameId.getPlayables())
         .containsExactlyElementsOf(tracks);
     assertThat(mixTape.getDescription()).isEqualTo(mixTapeWithSameId.getDescription()).isEqualTo("DescriptionXYZ2");
   }

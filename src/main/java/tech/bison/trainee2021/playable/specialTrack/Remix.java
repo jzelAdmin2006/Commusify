@@ -1,15 +1,19 @@
 package tech.bison.trainee2021.playable.specialTrack;
 
+import java.util.Collections;
+import java.util.List;
+
 import tech.bison.trainee2021.playable.Track;
+import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 
-public class Remix extends Track {
+public class Remix extends Mashup {
 
-  public Remix(String title, byte[] audio, Genre genre) {
-    super(title, audio, genre);
-    // TODO Auto-generated constructor stub
+  public Remix(String title, byte[] audio, Genre genre, List<Artist> remixers, Track originalTrack) {
+    super(title, audio, genre, remixers, Collections.singletonList(originalTrack));
   }
 
-  // TODO use super.create and add extra table for remixes with foreign key referencing the track
-  // table
+  public Remix(int id) {
+    super(id);
+  }
 }

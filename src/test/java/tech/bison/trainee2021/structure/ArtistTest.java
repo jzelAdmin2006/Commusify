@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.structure;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,5 +94,22 @@ public class ArtistTest {
     assertThat(artist.getMembers()).containsExactlyElementsOf(artistWithSameId.getMembers())
         .containsExactly(member1, member2);
     assertThat(artist.getName()).isEqualTo(artistWithSameId.getName()).isEqualTo("jzelAdmin2006Artist");
+  }
+
+  @Test
+  void newArtist_getMembers_cannotBeModified() {
+    User member = new User("jzelAdmin2006", "TopsecretPassword123456", "Jzel2", "Admin", "jzel2006@admin.ch");
+    List<User> members = new ArrayList<>();
+    members.add(member);
+    Artist artist = new Artist(members, "jzelAdmin2006Artist");
+
+    List<User> result = artist.getMembers();
+
+    assertThatThrownBy(() -> result.add(member)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.addAll(members)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.clear()).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.remove(0)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.removeAll(members)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.set(0, member)).isInstanceOf(UnsupportedOperationException.class);
   }
 }

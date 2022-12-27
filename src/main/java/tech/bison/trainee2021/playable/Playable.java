@@ -1,12 +1,9 @@
 package tech.bison.trainee2021.playable;
 
 public interface Playable {
-  // TODO add implementation for this for all classes in this package
+  public int getId();
+
   public void play();
-
-  public void pause();
-
-  public void stop();
 
   public void playNext();
 
@@ -15,4 +12,8 @@ public interface Playable {
   public void shuffle(boolean shuffleIsOn);
 
   public void repeat(boolean repeatIsOn);
+
+  public void download();
+
+  public boolean isTrack();
 }
