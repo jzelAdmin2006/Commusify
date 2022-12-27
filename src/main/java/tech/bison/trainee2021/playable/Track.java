@@ -1,5 +1,10 @@
 package tech.bison.trainee2021.playable;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,12 +20,26 @@ import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 
-public class Track {
+public class Track implements Playable {
+  private static final String MP3_EXTENTION = "mp3";
+  private static final String AIFF_EXTENTION = "aiff";
+  private static final String AIFF_FIRST_FOUR_BYTES = "70798277";
+  private static final String OGG_EXTENTION = "ogg";
+  private static final String OGG_FIRST_FOUR_BYTES = "7910310383";
+  private static final String AAC_EXTENTION = "aac";
+  private static final String AAC_FIRST_FOUR_BYTES = "-1-1580-128";
+  private static final String M4A_EXTENTNION = "m4a";
+  private static final String M4A_FIRST_FOUR_BYTES = "00028";
+  private static final String WAV_EXTENTION = "wav";
+  private static final String WAV_FIRST_FOUR_BYTES = "82737070";
+  private static final String FLAC_EXTENTION = "flac";
+  private static final String FLAC_FIRST_FOUR_BYTES = "102769767";
   private final int id;
   private String title;
   private byte[] audio;
   private Genre genre;
   private final List<Artist> interpreters = new ArrayList<>();
+  private boolean repeatIsOn;
 
   public Track(int id) {
     this.id = id;
@@ -135,5 +154,92 @@ public class Track {
 
   public List<Artist> getInterpreters() {
     return Collections.unmodifiableList(interpreters);
+  }
+
+  @Override
+  public void play() {
+    try {
+      String filePath = System.getProperty("java.io.tmpdir") + getFileName();
+      saveTo(filePath);
+      File file = new File(filePath);
+      Desktop.getDesktop().open(file);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private String getFileName() {
+    return String.format("/%s%s.%s", getClass().getSimpleName(), id, detectFormat(audio));
+  }
+
+  public void saveTo(String filePath) throws FileNotFoundException, IOException {
+    FileOutputStream fileOutputStream;
+    fileOutputStream = new FileOutputStream(filePath);
+    fileOutputStream.write(audio);
+    fileOutputStream.close();
+  }
+
+  private static String detectFormat(byte[] audio) {
+    try {
+      String firstFourBytes = "";
+      for (int i = 0; i < 4; i++) {
+        firstFourBytes += audio[i];
+      }
+      switch (firstFourBytes) {
+        case FLAC_FIRST_FOUR_BYTES:
+          return FLAC_EXTENTION;
+        case WAV_FIRST_FOUR_BYTES:
+          return WAV_EXTENTION;
+        case M4A_FIRST_FOUR_BYTES:
+          return M4A_EXTENTNION;
+        case AAC_FIRST_FOUR_BYTES:
+          return AAC_EXTENTION;
+        case OGG_FIRST_FOUR_BYTES:
+          return OGG_EXTENTION;
+        case AIFF_FIRST_FOUR_BYTES:
+          return AIFF_EXTENTION;
+        default:
+          return MP3_EXTENTION;
+      }
+    } catch (IndexOutOfBoundsException e) {
+      return MP3_EXTENTION;
+    }
+  }
+
+  @Override
+  public void playNext() {
+    if (repeatIsOn) {
+      play();
+    } else {
+      throw new UnsupportedOperationException("You can't play the next track on a single track that's not repeating.");
+    }
+  }
+
+  @Override
+  public void playPrevious() {
+    play();
+  }
+
+  @Override
+  public void shuffle(boolean shuffleIsOn) {
+    throw new UnsupportedOperationException("You can't shuffle a single track.");
+  }
+
+  @Override
+  public void repeat(boolean repeatIsOn) {
+    this.repeatIsOn = repeatIsOn;
+  }
+
+  @Override
+  public void download() {
+    try {
+      saveTo(System.getProperty("user.home") + "/Downloads" + getFileName());
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
