@@ -1,6 +1,8 @@
 package tech.bison.trainee2021.playable;
 
 public interface Playable {
+  public int getId();
+
   public void play();
 
   public void playNext();

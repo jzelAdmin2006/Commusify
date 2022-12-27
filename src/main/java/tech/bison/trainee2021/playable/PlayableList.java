@@ -15,12 +15,12 @@ import tech.bison.trainee2021.Commusify;
 public class PlayableList {
 
   private String title;
-  private final List<Track> tracks = new ArrayList<>();
+  private final List<Playable> playables = new ArrayList<>();
   private final int id;
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, tracks);
+    return Objects.hash(id, title, playables);
   }
 
   @Override
@@ -32,15 +32,15 @@ public class PlayableList {
     if (getClass() != obj.getClass())
       return false;
     PlayableList other = (PlayableList) obj;
-    return id == other.id && Objects.equals(title, other.title) && Objects.equals(tracks, other.tracks);
+    return id == other.id && Objects.equals(title, other.title) && Objects.equals(playables, other.playables);
   }
 
-  public PlayableList(String title, List<Track> tracks) {
-    this.id = create(title, tracks);
+  public PlayableList(String title, List<Playable> playables) {
+    this.id = create(title, playables);
     this.title = title;
   }
 
-  private int create(String title, List<Track> tracks) {
+  private int create(String title, List<Playable> playables) {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
@@ -53,23 +53,24 @@ public class PlayableList {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    addTracks(id, tracks);
+    addPlayables(id, playables);
     return id;
   }
 
-  protected void addTracks(int id, List<Track> tracks) {
-    for (Track track : tracks) {
-      addTrack(id, track);
+  protected void addPlayables(int id, List<Playable> playables) {
+    for (Playable playable : playables) {
+      addPlayable(id, playable);
     }
   }
 
-  private void addTrack(int id, Track track) {
-    tracks.add(track);
+  private void addPlayable(int id, Playable playable) {
+    playables.add(playable);
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYABLE_LIST_PLAYABLE(?, ?)}");
+      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYABLE_LIST_PLAYABLE(?, ?, ?)}");
       callableStatement.setInt("PlayableListID", id);
-      callableStatement.setInt("TrackID", track.getId());
+      callableStatement.setInt("PlayableID", playable.getId());
+      callableStatement.setBoolean("IsTrack", playable.getClass().isAssignableFrom(Track.class));
       callableStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -91,7 +92,7 @@ public class PlayableList {
       result.next();
       title = result.getString("Title");
       do {
-        tracks.add(new Track(result.getInt("FK_TrackID")));
+        playables.add(new Track(result.getInt("FK_TrackID")));
       } while (result.next());
     } catch (SQLException e) {
       e.printStackTrace();
@@ -102,8 +103,8 @@ public class PlayableList {
     return title;
   }
 
-  public List<Track> getTracks() {
-    return Collections.unmodifiableList(tracks);
+  public List<Playable> getPlayables() {
+    return Collections.unmodifiableList(playables);
   }
 
   public int getId() {

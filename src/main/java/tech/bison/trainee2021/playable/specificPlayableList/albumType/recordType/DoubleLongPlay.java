@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType.recordType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType;
 
 import java.util.List;
 

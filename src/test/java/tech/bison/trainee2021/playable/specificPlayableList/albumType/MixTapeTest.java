@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.playable.TrackTest;
 import tech.bison.trainee2021.structure.Artist;
@@ -73,7 +74,7 @@ public class MixTapeTest {
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     MixTape mixTape = new MixTape("TitleXYZ2", tracks, interpreters, "DescriptionXYZ");
 
-    List<Track> result = mixTape.getTracks();
+    List<Playable> result = mixTape.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -93,7 +94,7 @@ public class MixTapeTest {
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     MixTape mixTape = new MixTape("TitleXYZ2", tracks, interpreters, "DescriptionXYZ");
 
-    List<Track> result = mixTape.getTracks();
+    List<Playable> result = mixTape.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -196,7 +197,7 @@ public class MixTapeTest {
     assertThat(mixTape.getInterpreters()).containsExactlyInAnyOrderElementsOf(mixTapeWithSameId.getInterpreters())
         .containsExactlyElementsOf(interpreters);
     assertThat(mixTape.getTitle()).isEqualTo(mixTapeWithSameId.getTitle()).isEqualTo("TitleXYZ2");
-    assertThat(mixTape.getTracks()).containsExactlyElementsOf(mixTapeWithSameId.getTracks())
+    assertThat(mixTape.getPlayables()).containsExactlyElementsOf(mixTapeWithSameId.getPlayables())
         .containsExactlyElementsOf(tracks);
     assertThat(mixTape.getDescription()).isEqualTo(mixTapeWithSameId.getDescription()).isEqualTo("DescriptionXYZ");
   }
@@ -222,7 +223,7 @@ public class MixTapeTest {
     assertThat(mixTape.getInterpreters()).containsExactlyInAnyOrderElementsOf(mixTapeWithSameId.getInterpreters())
         .containsExactlyElementsOf(interpreters);
     assertThat(mixTape.getTitle()).isEqualTo(mixTapeWithSameId.getTitle()).isEqualTo("TitleXYZ2");
-    assertThat(mixTape.getTracks()).containsExactlyElementsOf(mixTapeWithSameId.getTracks())
+    assertThat(mixTape.getPlayables()).containsExactlyElementsOf(mixTapeWithSameId.getPlayables())
         .containsExactlyElementsOf(tracks);
     assertThat(mixTape.getDescription()).isEqualTo(mixTapeWithSameId.getDescription()).isEqualTo("DescriptionXYZ2");
   }

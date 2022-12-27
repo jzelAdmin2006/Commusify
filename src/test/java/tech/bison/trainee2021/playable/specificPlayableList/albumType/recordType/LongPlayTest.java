@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType.recordType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.playable.TrackTest;
 import tech.bison.trainee2021.structure.Artist;
@@ -37,7 +38,7 @@ public class LongPlayTest {
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     LongPlay longPlay = new LongPlay("TitleXYZ2", tracks, interpreters);
 
-    List<Track> result = longPlay.getTracks();
+    List<Playable> result = longPlay.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -58,7 +59,7 @@ public class LongPlayTest {
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
     LongPlay longPlay = new LongPlay("TitleXYZ2", tracks, interpreters);
 
-    List<Track> result = longPlay.getTracks();
+    List<Playable> result = longPlay.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }

@@ -1,9 +1,9 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType.recordType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType;
 
 import java.util.List;
 
 import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.playable.specialPlaylist.albumType.Record;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.Record;
 import tech.bison.trainee2021.structure.Artist;
 
 public class Single extends Record {

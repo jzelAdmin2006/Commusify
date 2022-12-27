@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist.albumType;
+package tech.bison.trainee2021.playable.specificPlayableList.albumType;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.playable.specialPlaylist.Album;
+import tech.bison.trainee2021.playable.specificPlayableList.Album;
 import tech.bison.trainee2021.structure.Artist;
 
 public class MixTape extends Album {

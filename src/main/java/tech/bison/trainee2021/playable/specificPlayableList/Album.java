@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist;
+package tech.bison.trainee2021.playable.specificPlayableList;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -10,11 +10,10 @@ import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.Commusify;
-import tech.bison.trainee2021.playable.PlayableList;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
 
-public abstract class Album extends PlayableList {
+public abstract class Album extends Playlist {
 
   protected enum AlbumType {
     MIX_TAPE,

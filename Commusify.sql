@@ -352,11 +352,15 @@
 
 	CREATE PROCEDURE SP_ADD_PLAYABLE_LIST_PLAYABLE
 		@PlayableListID INT,
-		@TrackID INT
+		@PlayableID INT,
+		@IsTrack BIT
 	AS
 	BEGIN
 		SET NOCOUNT ON;
-		INSERT INTO PLAYABLE_LIST_PLAYABLE(FK_PlayableListID, FK_TrackID) VALUES (@PlayableListID, @TrackID)
+		IF @IsTrack = 1
+			INSERT INTO PLAYABLE_LIST_PLAYABLE(FK_PlayableListID, FK_TrackID) VALUES (@PlayableListID, @PlayableID)
+		ELSE
+			INSERT INTO PLAYABLE_LIST_PLAYABLE(FK_PlayableListID, FK_ContainedPlayableListID) VALUES (@PlayableListID, @PlayableID)
 	END
 	GO
 

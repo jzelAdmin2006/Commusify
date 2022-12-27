@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.playable.specialPlaylist;
+package tech.bison.trainee2021.playable.specificPlayableList;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.playable.TrackTest;
-import tech.bison.trainee2021.playable.specialPlaylist.albumType.MixTape;
+import tech.bison.trainee2021.playable.specificPlayableList.Album;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.MixTape;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.structure.User;
