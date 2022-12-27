@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -121,8 +122,11 @@ public class Track {
     return title;
   }
 
+  /**
+   * @return copy of the audio data
+   */
   public byte[] getAudio() {
-    return audio;
+    return Arrays.copyOf(audio, audio.length);
   }
 
   public Genre getGenre() {
@@ -130,6 +134,6 @@ public class Track {
   }
 
   public List<Artist> getInterpreters() {
-    return interpreters;
+    return Collections.unmodifiableList(interpreters);
   }
 }

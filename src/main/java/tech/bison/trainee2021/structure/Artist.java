@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,7 +99,7 @@ public class Artist {
   }
 
   public List<User> getMembers() {
-    return members;
+    return Collections.unmodifiableList(members);
   }
 
   public String getName() {

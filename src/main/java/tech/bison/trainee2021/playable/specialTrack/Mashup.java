@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.Commusify;
@@ -62,6 +63,6 @@ public class Mashup extends Track {
   }
 
   public List<Track> getOriginalTracks() {
-    return originalTracks;
+    return Collections.unmodifiableList(originalTracks);
   }
 }

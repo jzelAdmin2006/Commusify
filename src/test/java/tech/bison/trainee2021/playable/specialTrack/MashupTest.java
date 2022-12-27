@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.playable.specialTrack;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,5 +90,27 @@ public class MashupTest {
     assertThat(mashup).isEqualTo(mashupWithSameId);
     assertThat(mashup.getOriginalTracks()).containsExactlyElementsOf(mashupWithSameId.getOriginalTracks())
         .containsExactlyElementsOf(originalTracks);
+  }
+
+  @Test
+  void newMashup_getOriginalTracks_cannotBeModified() {
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    List<Track> originalTracks = new ArrayList<>();
+    Track track = new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter);
+    originalTracks.add(track);
+    Mashup mashup = new Mashup("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter,
+        originalTracks);
+
+    List<Track> result = mashup.getOriginalTracks();
+
+    assertThatThrownBy(() -> result.add(track)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.addAll(originalTracks)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.clear()).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.remove(0)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.removeAll(originalTracks)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.set(0, track)).isInstanceOf(UnsupportedOperationException.class);
   }
 }

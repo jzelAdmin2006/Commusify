@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.playable;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -192,5 +193,51 @@ public class TrackTest {
     int resultId2 = track2.getId();
 
     assertThat(resultId1).isNotEqualTo(resultId2);
+  }
+
+  @Test
+  void newTrackWithAudio_modifyAudioAndGetAgain_staysTheSame() {
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    Track track = new Track("TrackTitleXYZ", sampleAudio1, new Genre("GenreXYZ"), interpreter);
+
+    track.getAudio()[1] = 100;
+    byte[] result = track.getAudio();
+
+    assertThat(result).isEqualTo(sampleAudio1);
+  }
+
+  @Test
+  void newTrackWithInterpreter_getInterpreter_isTheSame() {
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    Track track = new Track("TrackTitleXYZ", sampleAudio1, new Genre("GenreXYZ"), interpreter);
+
+    List<Artist> result = track.getInterpreters();
+
+    assertThat(result).isEqualTo(interpreter);
+  }
+
+  @Test
+  void newTrack_getInterpreters_cannotBeModified() {
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    Artist interpreterArtist = new Artist(members, "ArtistNameXYZ");
+    interpreter.add(interpreterArtist);
+    Track track = new Track("TrackTitleXYZ", sampleAudio1, new Genre("GenreXYZ"), interpreter);
+
+    List<Artist> result = track.getInterpreters();
+
+    assertThatThrownBy(() -> result.add(interpreterArtist)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.addAll(interpreter)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.clear()).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.remove(0)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.removeAll(interpreter)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> result.set(0, interpreterArtist)).isInstanceOf(UnsupportedOperationException.class);
   }
 }

@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.playable;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,5 +135,26 @@ public class PlaylistTest {
     int resultId2 = playlist2.getId();
 
     assertThat(resultId1).isNotEqualTo(resultId2);
+  }
+
+  @Test
+  void newPlaylist_getTracks_cannotBeModified() {
+    List<Track> inputTracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    Track inputTrack = new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter);
+    inputTracks.add(inputTrack);
+    Playlist playlist = new Playlist("TitleXYZ", inputTracks);
+
+    List<Track> tracks = playlist.getTracks();
+
+    assertThatThrownBy(() -> tracks.add(inputTrack)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> tracks.addAll(inputTracks)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> tracks.clear()).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> tracks.remove(0)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> tracks.removeAll(tracks)).isInstanceOf(UnsupportedOperationException.class);
+    assertThatThrownBy(() -> tracks.set(0, inputTrack)).isInstanceOf(UnsupportedOperationException.class);
   }
 }

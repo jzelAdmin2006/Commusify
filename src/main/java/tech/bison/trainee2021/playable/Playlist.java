@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -102,7 +103,7 @@ public class Playlist {
   }
 
   public List<Track> getTracks() {
-    return tracks;
+    return Collections.unmodifiableList(tracks);
   }
 
   public int getId() {

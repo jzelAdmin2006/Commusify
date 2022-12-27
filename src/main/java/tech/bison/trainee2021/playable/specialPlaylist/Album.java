@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.Commusify;
@@ -108,6 +109,6 @@ public abstract class Album extends Playlist {
   }
 
   public List<Artist> getInterpreters() {
-    return interpreters;
+    return Collections.unmodifiableList(interpreters);
   }
 }
