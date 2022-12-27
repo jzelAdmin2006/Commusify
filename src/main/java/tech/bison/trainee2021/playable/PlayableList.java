@@ -12,7 +12,11 @@ import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
 
-public class Playlist {
+public class PlayableList {
+
+  private String title;
+  private final List<Track> tracks = new ArrayList<>();
+  private final int id;
 
   @Override
   public int hashCode() {
@@ -27,15 +31,11 @@ public class Playlist {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Playlist other = (Playlist) obj;
+    PlayableList other = (PlayableList) obj;
     return id == other.id && Objects.equals(title, other.title) && Objects.equals(tracks, other.tracks);
   }
 
-  private String title;
-  private final List<Track> tracks = new ArrayList<>();
-  private final int id;
-
-  public Playlist(String title, List<Track> tracks) {
+  public PlayableList(String title, List<Track> tracks) {
     this.id = create(title, tracks);
     this.title = title;
   }
@@ -44,7 +44,7 @@ public class Playlist {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_PLAYLIST(?)}");
+      CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_PLAYABLE_LIST(?)}");
       callableStatement.setString("Title", title);
       ResultSet result = callableStatement.executeQuery();
 
@@ -67,8 +67,8 @@ public class Playlist {
     tracks.add(track);
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYLIST_TRACK(?, ?)}");
-      callableStatement.setInt("PlaylistID", id);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYABLE_LIST_PLAYABLE(?, ?)}");
+      callableStatement.setInt("PlayableListID", id);
       callableStatement.setInt("TrackID", track.getId());
       callableStatement.execute();
     } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class Playlist {
     }
   }
 
-  public Playlist(int id) {
+  public PlayableList(int id) {
     this.id = id;
     find(id);
   }
@@ -84,7 +84,7 @@ public class Playlist {
   private void find(int id) {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_PLAYLIST(?)}");
+      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_PLAYABLE_LIST(?)}");
       callableStatement.setInt("ID", id);
       ResultSet result = callableStatement.executeQuery();
 

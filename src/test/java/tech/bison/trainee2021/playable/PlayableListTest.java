@@ -14,59 +14,59 @@ import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.structure.User;
 
-public class PlaylistTest {
+public class PlayableListTest {
   @BeforeEach
   void resetDatabase() {
     Commusify.reset();
   }
 
   @Test
-  void newPlaylistWithTitle_getTitle_isTheSame() {
+  void newPlayableListWithTitle_getTitle_isTheSame() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
 
-    String result = playlist.getTitle();
+    String result = playableList.getTitle();
 
     assertThat(result).isEqualTo("TitleXYZ");
   }
 
   @Test
-  void newPlaylistWithDifferentTitle_getTitle_isTheSame() {
+  void newPlayableListWithDifferentTitle_getTitle_isTheSame() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ2", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ2", tracks);
 
-    String result = playlist.getTitle();
+    String result = playableList.getTitle();
 
     assertThat(result).isEqualTo("TitleXYZ2");
   }
 
   @Test
-  void newPlaylistWithTrack_getTracks_containsTrack() {
+  void newPlayableListWithTrack_getTracks_containsTrack() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
 
-    List<Track> result = playlist.getTracks();
+    List<Track> result = playableList.getTracks();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
 
   @Test
-  void newPlaylistWithTracks_getTracks_containsTracks() {
+  void newPlayableListWithTracks_getTracks_containsTracks() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
@@ -74,32 +74,33 @@ public class PlaylistTest {
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
     tracks.add(new Track("TitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
 
-    List<Track> result = playlist.getTracks();
+    List<Track> result = playableList.getTracks();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
 
   @Test
-  void newPlaylist_playlistWithSameId_isEqual() {
+  void newPlayableList_playableListWithSameId_isEqual() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
 
-    Playlist playlistWithSameId = new Playlist(playlist.getId());
+    PlayableList playableListWithSameId = new PlayableList(playableList.getId());
 
-    assertThat(playlist).isEqualTo(playlistWithSameId);
-    assertThat(playlist.getTitle()).isEqualTo(playlistWithSameId.getTitle()).isEqualTo("TitleXYZ");
-    assertThat(playlist.getTracks()).isEqualTo(playlistWithSameId.getTracks()).containsExactlyElementsOf(tracks);
+    assertThat(playableList).isEqualTo(playableListWithSameId);
+    assertThat(playableList.getTitle()).isEqualTo(playableListWithSameId.getTitle()).isEqualTo("TitleXYZ");
+    assertThat(playableList.getTracks()).isEqualTo(playableListWithSameId.getTracks())
+        .containsExactlyElementsOf(tracks);
   }
 
   @Test
-  void newDifferentPlaylist_playlistWithSameId_isEqual() {
+  void newDifferentPlayableList_playableListWithSameId_isEqual() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
@@ -107,17 +108,18 @@ public class PlaylistTest {
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
     tracks.add(new Track("Tit2leXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ2"), interpreter));
-    Playlist playlist = new Playlist("TitleXYZ2", tracks);
+    PlayableList playableList = new PlayableList("TitleXYZ2", tracks);
 
-    Playlist playlistWithSameId = new Playlist(playlist.getId());
+    PlayableList playableListWithSameId = new PlayableList(playableList.getId());
 
-    assertThat(playlist).isEqualTo(playlistWithSameId);
-    assertThat(playlist.getTitle()).isEqualTo(playlistWithSameId.getTitle()).isEqualTo("TitleXYZ2");
-    assertThat(playlist.getTracks()).isEqualTo(playlistWithSameId.getTracks()).containsExactlyElementsOf(tracks);
+    assertThat(playableList).isEqualTo(playableListWithSameId);
+    assertThat(playableList.getTitle()).isEqualTo(playableListWithSameId.getTitle()).isEqualTo("TitleXYZ2");
+    assertThat(playableList.getTracks()).isEqualTo(playableListWithSameId.getTracks())
+        .containsExactlyElementsOf(tracks);
   }
 
   @Test
-  void twoDifferentPlaylists_getIds_areUnique() {
+  void twoDifferentPlayableLists_getIds_areUnique() {
     List<Track> tracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
@@ -125,20 +127,20 @@ public class PlaylistTest {
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
     tracks.add(new Track("Tit2leXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ2"), interpreter));
-    Playlist playlist1 = new Playlist("TitleXYZ2", tracks);
+    PlayableList playableList1 = new PlayableList("TitleXYZ2", tracks);
 
     List<Track> tracks2 = new ArrayList<>();
     tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
-    Playlist playlist2 = new Playlist("TitleXYZ", tracks2);
+    PlayableList playableList2 = new PlayableList("TitleXYZ", tracks2);
 
-    int resultId1 = playlist1.getId();
-    int resultId2 = playlist2.getId();
+    int resultId1 = playableList1.getId();
+    int resultId2 = playableList2.getId();
 
     assertThat(resultId1).isNotEqualTo(resultId2);
   }
 
   @Test
-  void newPlaylist_getTracks_cannotBeModified() {
+  void newPlayableList_getTracks_cannotBeModified() {
     List<Track> inputTracks = new ArrayList<>();
     List<User> members = new ArrayList<>();
     members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
@@ -146,9 +148,9 @@ public class PlaylistTest {
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     Track inputTrack = new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter);
     inputTracks.add(inputTrack);
-    Playlist playlist = new Playlist("TitleXYZ", inputTracks);
+    PlayableList playableList = new PlayableList("TitleXYZ", inputTracks);
 
-    List<Track> tracks = playlist.getTracks();
+    List<Track> tracks = playableList.getTracks();
 
     assertThatThrownBy(() -> tracks.add(inputTrack)).isInstanceOf(UnsupportedOperationException.class);
     assertThatThrownBy(() -> tracks.addAll(inputTracks)).isInstanceOf(UnsupportedOperationException.class);

@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.Commusify;
-import tech.bison.trainee2021.playable.Playlist;
+import tech.bison.trainee2021.playable.PlayableList;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
 
-public abstract class Album extends Playlist {
+public abstract class Album extends PlayableList {
 
   protected enum AlbumType {
     MIX_TAPE,
@@ -81,7 +81,7 @@ public abstract class Album extends Playlist {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
       CallableStatement callableStatement = connection.prepareCall("{call SP_CREATE_ALBUM(?, ?)}");
       callableStatement.setInt("Type", AlbumType.code(type()));
-      callableStatement.setInt("PlaylistID", super.getId());
+      callableStatement.setInt("PlayableListID", super.getId());
       callableStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
