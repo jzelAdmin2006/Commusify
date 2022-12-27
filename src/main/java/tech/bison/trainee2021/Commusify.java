@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Commusify {
-  public static final String DATABASE = "jdbc:sqlserver://localhost:1433;databaseName=Commusify;username=JDBCAdmin;password=12345;encrypt=true;trustServerCertificate=true;";
+  public static final String DATABASE = "jdbc:sqlserver://SQL5063.site4now.net:1433;username=db_a91f81_commusify_admin;password=825ACAAA44DDD24143C3";
 
   public static final int INVALID_ID = 0;
 
