@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -158,5 +159,63 @@ public class PlayableListTest {
     assertThatThrownBy(() -> tracks.remove(0)).isInstanceOf(UnsupportedOperationException.class);
     assertThatThrownBy(() -> tracks.removeAll(tracks)).isInstanceOf(UnsupportedOperationException.class);
     assertThatThrownBy(() -> tracks.set(0, inputTrack)).isInstanceOf(UnsupportedOperationException.class);
+  }
+
+  @Test
+  void newPlayableListWithPlayableList_getPlayables_containslayableList() {
+    List<Playable> tracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
+    List<Playable> playableLists = Collections.singletonList(playableList);
+    PlayableList playableList2 = new PlayableList("TitleXYZ2", playableLists);
+
+    List<Playable> result = playableList2.getPlayables();
+
+    assertThat(result).containsExactlyElementsOf(playableLists);
+  }
+
+  @Test
+  void newPlayableListWithPlayableLists_getPlayables_containslayableLists() {
+    List<Playable> tracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
+    PlayableList playableList2 = new PlayableList("TitleXYZ2", tracks);
+    List<Playable> playableLists = new ArrayList<>();
+    playableLists.add(playableList);
+    playableLists.add(playableList2);
+    PlayableList playableList3 = new PlayableList("TitleXYZ2", playableLists);
+
+    List<Playable> result = playableList3.getPlayables();
+
+    assertThat(result).containsExactlyElementsOf(playableLists);
+  }
+
+  @Test
+  void newPlayableListWithPlayableListsAndTracks_playableListWithSameId_isEqual() {
+    List<Playable> tracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter));
+    PlayableList playableList = new PlayableList("TitleXYZ", tracks);
+    PlayableList playableList2 = new PlayableList("TitleXYZ2", tracks);
+    List<Playable> playables = new ArrayList<>();
+    playables.add(playableList);
+    playables.add(playableList2);
+    playables.add(new Track("TitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXY2Z"), interpreter));
+    PlayableList playableList3 = new PlayableList("TitleXYZ2", playables);
+
+    PlayableList result = new PlayableList(playableList3.getId());
+
+    assertThat(result).isEqualTo(playableList3);
   }
 }

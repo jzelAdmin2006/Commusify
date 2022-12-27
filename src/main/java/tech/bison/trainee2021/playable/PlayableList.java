@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
 
-public class PlayableList {
+public class PlayableList implements Playable {
 
   private String title;
   private final List<Playable> playables = new ArrayList<>();
@@ -92,7 +92,15 @@ public class PlayableList {
       result.next();
       title = result.getString("Title");
       do {
-        playables.add(new Track(result.getInt("FK_TrackID")));
+        if (result.getInt("FK_TrackID") == Commusify.INVALID_ID) {
+          playables.add(new PlayableList(result.getInt("FK_ContainedPlayableListID")));
+        } else if (result.getInt("FK_ContainedPlayableListID") == Commusify.INVALID_ID) {
+          playables.add(new Track(result.getInt("FK_TrackID")));
+        } else {
+          throw new SQLException(String.format(
+              "The playableListPlayable with the ID %s could not be found. This might be because of data corruption.",
+              result.getInt("PlayableListPlayableID")));
+        }
       } while (result.next());
     } catch (SQLException e) {
       e.printStackTrace();
@@ -107,7 +115,49 @@ public class PlayableList {
     return Collections.unmodifiableList(playables);
   }
 
+  @Override
   public int getId() {
     return id;
+  }
+
+  @Override
+  public void play() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void playNext() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void playPrevious() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void shuffle(boolean shuffleIsOn) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void repeat(boolean repeatIsOn) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void download() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public boolean isTrack() {
+    return false;
   }
 }

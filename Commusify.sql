@@ -369,8 +369,15 @@
 	AS
 	BEGIN
 		SET NOCOUNT ON;
-		SELECT * FROM PLAYABLE_LIST P
-		JOIN PLAYABLE_LIST_PLAYABLE ON FK_PlayableListID = P.ID
+		SELECT 
+			P.ID,
+			Title,
+			PLP.ID AS 'PlayableListPlayableID',
+			FK_TrackID,
+			FK_ContainedPlayableListID,
+			FK_PlayableListID
+		FROM PLAYABLE_LIST P
+		JOIN PLAYABLE_LIST_PLAYABLE PLP ON FK_PlayableListID = P.ID
 		WHERE P.ID = @ID
 	END
 	GO
