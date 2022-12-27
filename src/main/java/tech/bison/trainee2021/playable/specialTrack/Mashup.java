@@ -2,13 +2,19 @@ package tech.bison.trainee2021.playable.specialTrack;
 
 import java.util.List;
 
+import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 
-public class Mashup extends Remix {
+public class Mashup extends Track {
 
   public Mashup(String title, byte[] audio, Genre genre, List<Artist> interpreters) {
     super(title, audio, genre, interpreters);
+    // TODO Auto-generated constructor stub
+  }
+
+  public Mashup(int id) {
+    super(id);
     // TODO Auto-generated constructor stub
   }
 
