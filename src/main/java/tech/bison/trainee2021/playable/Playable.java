@@ -10,4 +10,6 @@ public interface Playable {
   public void shuffle(boolean shuffleIsOn);
 
   public void repeat(boolean repeatIsOn);
+
+  public void download();
 }
