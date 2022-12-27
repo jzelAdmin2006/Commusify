@@ -1,11 +1,8 @@
 package tech.bison.trainee2021.userInterface.command;
 
-public class CommandNotFound implements Command {
+public class CommandNotFound extends SingleMessage {
 
-  private static final String message = "This command wasn't found.";
-
-  @Override
-  public String execute(String[] arguments) {
-    return message;
+  public CommandNotFound(String commandSpelling) {
+    super(String.format("The command with the spelling \"%s\" wasn't found.", commandSpelling));
   }
 }

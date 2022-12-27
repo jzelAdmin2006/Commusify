@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
+import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 
 public class UserInterface {
+  private static final String COMMAND_DELIMITER = " ";
   private static final String EXIT = "/exit";
   private boolean isRunning;
 
@@ -15,10 +17,11 @@ public class UserInterface {
   }
 
   public void run() {
+    String input = KnownCommand.WELCOME.spelling();
     try (Scanner scanner = new Scanner(System.in)) {
       while (isRunning) {
-        String input = scanner.nextLine();
         System.out.println(generateOutput(input));
+        input = scanner.nextLine();
       }
     }
   }
@@ -27,7 +30,7 @@ public class UserInterface {
     if (input.equals(EXIT)) {
       return exit();
     }
-    String[] splitInput = input.split(" ");
+    String[] splitInput = input.split(COMMAND_DELIMITER);
     String command = splitInput[0];
     String[] commandArguments = new String[splitInput.length - 1];
     if (splitInput.length > 1) {

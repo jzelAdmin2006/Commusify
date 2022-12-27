@@ -4,21 +4,25 @@ public class CommandFactory {
 
   public enum KnownCommand {
     CREATE_GENRE,
+    WELCOME,
     NO_ENTRY,
     NOT_FOUND;
 
+    private static final String NOT_FOUND_SPELLING_MESSAGE = "If your command is invalid, the message will tell you.";
     private static final String CREATE_GENRE_SPELLING = "/createGenre";
+    private static final String WELCOME_SPELLING = "/welcome";
     private static final String NO_ENTRY_SPELLING = "";
 
-    private String spelling() {
+    public String spelling() {
       switch (this) {
         case CREATE_GENRE:
           return CREATE_GENRE_SPELLING;
+        case WELCOME:
+          return WELCOME_SPELLING;
         case NO_ENTRY:
           return NO_ENTRY_SPELLING;
         case NOT_FOUND:
-          // should never happen
-          throw new UnsupportedOperationException("The not found command has no spelling.");
+          return NOT_FOUND_SPELLING_MESSAGE;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -42,9 +46,11 @@ public class CommandFactory {
       case CREATE_GENRE:
         return new CreateGenre();
       case NOT_FOUND:
-        return new CommandNotFound();
+        return new CommandNotFound(command);
       case NO_ENTRY:
         return new NoEntry();
+      case WELCOME:
+        return new Welcome();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", command));
