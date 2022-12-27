@@ -11,7 +11,7 @@ public interface Playable {
 
   public void shuffle(boolean shuffleIsOn);
 
-  public void repeat(boolean repeatIsOn);
+  public void loop(boolean loopIsOn);
 
   public void download();
 

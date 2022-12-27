@@ -214,7 +214,7 @@ public class Track implements Playable {
     if (repeatIsOn) {
       play();
     } else {
-      throw new UnsupportedOperationException("You can't play the next track on a single track that's not repeating.");
+      throw new UnsupportedOperationException("You can't play the next track on a single track that's not looping.");
     }
   }
 
@@ -225,12 +225,14 @@ public class Track implements Playable {
 
   @Override
   public void shuffle(boolean shuffleIsOn) {
-    throw new UnsupportedOperationException("You can't shuffle a single track.");
+    if (shuffleIsOn) {
+      throw new UnsupportedOperationException("You can't shuffle a single track.");
+    }
   }
 
   @Override
-  public void repeat(boolean repeatIsOn) {
-    this.repeatIsOn = repeatIsOn;
+  public void loop(boolean loopIsOn) {
+    this.repeatIsOn = loopIsOn;
   }
 
   @Override
