@@ -14,4 +14,6 @@ public interface Playable {
   public void repeat(boolean repeatIsOn);
 
   public void download();
+
+  public boolean isTrack();
 }
