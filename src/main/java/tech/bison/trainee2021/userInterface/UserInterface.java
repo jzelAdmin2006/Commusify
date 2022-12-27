@@ -32,12 +32,17 @@ public class UserInterface {
     }
     String[] splitInput = input.split(COMMAND_DELIMITER);
     String command = splitInput[0];
+    String[] commandArguments = extractCommandArguments(splitInput);
+    Command commandExecutor = CommandFactory.create(command);
+    return commandExecutor.execute(commandArguments);
+  }
+
+  public String[] extractCommandArguments(String[] splitInput) {
     String[] commandArguments = new String[splitInput.length - 1];
     if (splitInput.length > 1) {
       commandArguments = Arrays.copyOfRange(splitInput, 1, splitInput.length - 1);
     }
-    Command commandExecutor = CommandFactory.create(command);
-    return commandExecutor.execute(commandArguments);
+    return commandArguments;
   }
 
   public String exit() {
