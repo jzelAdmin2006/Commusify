@@ -5,10 +5,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
 
 public class Track {
@@ -16,20 +19,21 @@ public class Track {
   private String title;
   private byte[] audio;
   private Genre genre;
+  private final List<Artist> interpreters = new ArrayList<>();
 
   public Track(int id) {
     this.id = id;
     find(id);
   }
 
-  public Track(String title, byte[] audio, Genre genre) {
-    this.id = create(title, audio, genre);
+  public Track(String title, byte[] audio, Genre genre, List<Artist> interpreters) {
+    this.id = create(title, audio, genre, interpreters);
     this.title = title;
     this.audio = audio;
     this.genre = genre;
   }
 
-  private int create(String title, byte[] audio, Genre genre) {
+  private int create(String title, byte[] audio, Genre genre, List<Artist> interpreters) {
     int id = 0;
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
@@ -44,7 +48,27 @@ public class Track {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    addInterpreters(id, interpreters);
     return id;
+  }
+
+  private void addInterpreters(int id, List<Artist> interpreters) {
+    for (Artist interpreter : interpreters) {
+      addInterpreter(id, interpreter);
+    }
+  }
+
+  private void addInterpreter(int id, Artist interpreter) {
+    interpreters.add(interpreter);
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_INTERPRETER(?, ?)}");
+      callableStatement.setInt("TrackID", id);
+      callableStatement.setInt("InterpreterArtistID", interpreter.getId());
+      callableStatement.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   private void find(int id) {
@@ -58,6 +82,10 @@ public class Track {
       title = result.getString("Title");
       audio = result.getBytes("Audio");
       genre = new Genre(result.getInt("FK_GenreID"));
+
+      do {
+        interpreters.add(new Artist(result.getInt("FK_ArtistID")));
+      } while (result.next());
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -99,5 +127,9 @@ public class Track {
 
   public Genre getGenre() {
     return genre;
+  }
+
+  public List<Artist> getInterpreters() {
+    return interpreters;
   }
 }
