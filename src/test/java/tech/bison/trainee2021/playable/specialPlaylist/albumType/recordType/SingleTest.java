@@ -25,7 +25,11 @@ public class SingleTest {
   @Test
   void newSingle_addTrack_containsTrack() {
     List<Track> track = new ArrayList<>();
-    track.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ12345", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    track.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
@@ -45,8 +49,12 @@ public class SingleTest {
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
 
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
-    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ12345", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
+    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2"), interpreter));
 
     assertThatThrownBy(() -> new Single("TitleXYZ2", tracks, interpreters)).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Records of type Single can't contain more than 1 track(s).");
@@ -55,7 +63,11 @@ public class SingleTest {
   @Test
   void newSingle_mixSingleWithSameId_isEqual() {
     List<Track> tracks = new ArrayList<>();
-    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ")));
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ12345", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
     List<User> artistMembers = new ArrayList<>();
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
