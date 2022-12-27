@@ -243,4 +243,9 @@ public class Track implements Playable {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public boolean isTrack() {
+    return true;
+  }
 }

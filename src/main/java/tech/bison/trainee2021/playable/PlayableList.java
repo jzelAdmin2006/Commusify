@@ -70,7 +70,7 @@ public class PlayableList {
       CallableStatement callableStatement = connection.prepareCall("{call SP_ADD_PLAYABLE_LIST_PLAYABLE(?, ?, ?)}");
       callableStatement.setInt("PlayableListID", id);
       callableStatement.setInt("PlayableID", playable.getId());
-      callableStatement.setBoolean("IsTrack", playable.getClass().isAssignableFrom(Track.class));
+      callableStatement.setBoolean("IsTrack", playable.isTrack());
       callableStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -110,5 +110,4 @@ public class PlayableList {
   public int getId() {
     return id;
   }
-
 }
