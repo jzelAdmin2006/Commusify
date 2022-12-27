@@ -1,5 +1,6 @@
 package tech.bison.trainee2021.userInterface;
 
+import java.rmi.UnexpectedException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -20,8 +21,15 @@ public class UserInterface {
     String input = KnownCommand.WELCOME.spelling();
     try (Scanner scanner = new Scanner(System.in)) {
       while (isRunning) {
-        System.out.println(generateOutput(input));
-        input = scanner.nextLine();
+        try {
+          System.out.println(generateOutput(input));
+          input = scanner.nextLine();
+        } catch (Exception e) {
+          Exception unexpectedException = new UnexpectedException("An unexpected exception occured.");
+          unexpectedException.printStackTrace();
+          e.printStackTrace();
+          input = KnownCommand.NO_ENTRY.spelling();
+        }
       }
     }
   }
