@@ -48,7 +48,7 @@ public class UserInterface {
   public String[] extractCommandArguments(String[] splitInput) {
     String[] commandArguments = new String[splitInput.length - 1];
     if (splitInput.length > 1) {
-      commandArguments = Arrays.copyOfRange(splitInput, 1, splitInput.length - 1);
+      commandArguments = Arrays.copyOfRange(splitInput, 1, splitInput.length);
     }
     return commandArguments;
   }
