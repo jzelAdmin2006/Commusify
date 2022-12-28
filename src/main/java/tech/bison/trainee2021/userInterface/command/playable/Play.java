@@ -20,7 +20,7 @@ public class Play extends ExactArgumentAmountExpectation {
       if (isFirstSpelling) {
         isFirstSpelling = false;
       } else {
-        spellings += "/ ";
+        spellings += " / ";
       }
       spellings += knownPlayable.spelling();
     }
