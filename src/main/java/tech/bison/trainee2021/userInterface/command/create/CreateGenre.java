@@ -24,9 +24,4 @@ public class CreateGenre extends ExactArgumentAmountExpectation {
   public String getArgumentDescription() {
     return "";
   }
-
-  @Override
-  public boolean loginIsRequired() {
-    return true;
-  }
 }

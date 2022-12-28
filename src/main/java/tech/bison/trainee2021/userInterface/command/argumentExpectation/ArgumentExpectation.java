@@ -20,4 +20,9 @@ public abstract class ArgumentExpectation implements Command {
   protected abstract boolean isValid(List<String> arguments);
 
   protected abstract String proceed(List<String> arguments);
+
+  @Override
+  public boolean loginIsRequired() {
+    return true;
+  }
 }

@@ -7,5 +7,5 @@ public interface Command {
 
   String getArgumentDescription();
 
-  boolean loginIsRequired();
+  public boolean loginIsRequired();
 }

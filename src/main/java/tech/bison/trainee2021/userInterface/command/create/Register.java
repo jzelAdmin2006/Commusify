@@ -42,9 +42,4 @@ public class Register extends ExactArgumentAmountExpectation {
       return false;
     return pat.matcher(email).matches();
   }
-
-  @Override
-  public boolean loginIsRequired() {
-    return false;
-  }
 }
