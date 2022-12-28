@@ -33,6 +33,31 @@ public class User {
     find(id);
   }
 
+  public User(String userName) {
+    this.userName = userName;
+    id = find(userName);
+  }
+
+  private int find(String userName) {
+    int id = 0;
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_USER_BY_USERNAME(?)}");
+      callableStatement.setString("UserName", userName);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      id = result.getInt("ID");
+      passwordHash = result.getInt("PasswordHash");
+      firstName = result.getString("FirstName");
+      lastName = result.getString("LastName");
+      email = result.getString("Email");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return id;
+  }
+
   private void find(int id) {
     try {
       Connection connection = DriverManager.getConnection(Commusify.DATABASE);
@@ -125,5 +150,20 @@ public class User {
 
   public boolean isLoggedIn() {
     return isLoggedIn;
+  }
+
+  public static boolean userNameExists(String userName) {
+    boolean exists = false;
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_USER_BY_USERNAME(?)}");
+      callableStatement.setString("UserName", userName);
+      ResultSet result = callableStatement.executeQuery();
+
+      exists = result.next();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return exists;
   }
 }
