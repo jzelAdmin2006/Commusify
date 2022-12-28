@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command;
 import java.util.List;
 
 import tech.bison.trainee2021.structure.User;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Login extends ExactArgumentAmountExpectation {
 

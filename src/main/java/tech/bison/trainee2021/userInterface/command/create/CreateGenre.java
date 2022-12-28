@@ -3,7 +3,7 @@ package tech.bison.trainee2021.userInterface.command.create;
 import java.util.List;
 
 import tech.bison.trainee2021.structure.Genre;
-import tech.bison.trainee2021.userInterface.command.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class CreateGenre extends ExactArgumentAmountExpectation {
 

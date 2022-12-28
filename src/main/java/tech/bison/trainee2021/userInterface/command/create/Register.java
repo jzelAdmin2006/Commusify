@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Register extends ExactArgumentAmountExpectation {
 
