@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.Register;
+import tech.bison.trainee2021.userInterface.command.create.SignArtist;
 import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
 import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;

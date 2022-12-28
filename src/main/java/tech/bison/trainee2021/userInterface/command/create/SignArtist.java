@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.userInterface.command;
+package tech.bison.trainee2021.userInterface.command.create;
 
 import java.util.ArrayList;
 import java.util.List;
