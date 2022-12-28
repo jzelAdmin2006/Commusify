@@ -2,6 +2,8 @@ package tech.bison.trainee2021.userInterface.command.singleMessage;
 
 import java.util.List;
 
+import tech.bison.trainee2021.userInterface.command.ShowAllCommands;
+
 public class Welcome extends SingleMessage {
 
   public Welcome() {

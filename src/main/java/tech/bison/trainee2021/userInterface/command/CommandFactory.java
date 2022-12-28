@@ -7,7 +7,6 @@ import tech.bison.trainee2021.userInterface.command.create.SignArtist;
 import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
 import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;
-import tech.bison.trainee2021.userInterface.command.singleMessage.ShowAllCommands;
 import tech.bison.trainee2021.userInterface.command.singleMessage.Welcome;
 
 public class CommandFactory {

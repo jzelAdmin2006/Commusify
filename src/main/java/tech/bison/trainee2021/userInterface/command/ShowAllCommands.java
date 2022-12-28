@@ -1,10 +1,8 @@
-package tech.bison.trainee2021.userInterface.command.singleMessage;
+package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.Command;
-import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 
 public class ShowAllCommands implements Command {
