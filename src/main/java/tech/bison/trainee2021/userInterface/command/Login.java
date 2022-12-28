@@ -31,4 +31,9 @@ public class Login extends ExactArgumentAmountExpectation {
       return String.format("User with username %s doesn't exist.", userName);
     }
   }
+
+  @Override
+  public boolean loginIsRequired() {
+    return false;
+  }
 }

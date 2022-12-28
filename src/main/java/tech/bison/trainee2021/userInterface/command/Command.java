@@ -6,4 +6,6 @@ public interface Command {
   String execute(List<String> arguments);
 
   String getArgumentDescription();
+
+  boolean loginIsRequired();
 }

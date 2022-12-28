@@ -38,4 +38,9 @@ public class ShowAllCommands implements Command {
   public String execute(List<String> arguments) {
     return getCommandSpellings();
   }
+
+  @Override
+  public boolean loginIsRequired() {
+    return false;
+  }
 }

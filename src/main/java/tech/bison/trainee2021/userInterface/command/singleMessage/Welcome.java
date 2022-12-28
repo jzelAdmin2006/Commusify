@@ -23,4 +23,9 @@ public class Welcome extends SingleMessage {
   public String getArgumentDescription() {
     return "";
   }
+
+  @Override
+  public boolean loginIsRequired() {
+    return false;
+  }
 }

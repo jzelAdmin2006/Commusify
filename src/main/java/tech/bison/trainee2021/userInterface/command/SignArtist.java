@@ -43,4 +43,9 @@ public class SignArtist extends MinimumArgumentAmountExpectation {
       return message;
     }
   }
+
+  @Override
+  public boolean loginIsRequired() {
+    return true;
+  }
 }

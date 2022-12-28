@@ -1,5 +1,6 @@
 package tech.bison.trainee2021.userInterface.command;
 
+import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.search.Search;
@@ -67,8 +68,16 @@ public class CommandFactory {
     }
   }
 
-  public static Command create(String command) {
+  public static Command create(String spelling) {
+    Command command = getCommand(spelling);
+    if (command.loginIsRequired() && !UserInterface.getCurrentUser().isLoggedIn()) {
+      return new MissingAuthentification();
+    } else {
+      return command;
+    }
+  }
 
+  public static Command getCommand(String command) {
     KnownCommand knownCommand = KnownCommand.translate(command);
     switch (knownCommand) {
       case CREATE_GENRE:
