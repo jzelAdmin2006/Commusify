@@ -168,7 +168,11 @@ public class User {
   }
 
   public boolean isArtistMember(Artist artist) {
-    // TODO Auto-generated method stub
+    for (User member : artist.getMembers()) {
+      if (this.equals(member)) {
+        return true;
+      }
+    }
     return false;
   }
 }

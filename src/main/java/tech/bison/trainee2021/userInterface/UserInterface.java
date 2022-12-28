@@ -11,6 +11,7 @@ import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
+import tech.bison.trainee2021.userInterface.command.MissingAuthentification;
 
 public class UserInterface {
   private static final String COMMAND_ARGUMENT_DELIMITER = " ";
@@ -62,7 +63,11 @@ public class UserInterface {
       commandArguments.addAll(splitInput.subList(1, splitInput.size()));
     }
     Command commandExecutor = CommandFactory.create(command);
-    return commandExecutor.execute(commandArguments);
+    if (commandExecutor.loginIsRequired() && !getCurrentUser().isLoggedIn()) {
+      return new MissingAuthentification(command).execute(commandArguments);
+    } else {
+      return commandExecutor.execute(commandArguments);
+    }
   }
 
   public String exit() {

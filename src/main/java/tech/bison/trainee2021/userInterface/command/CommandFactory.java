@@ -1,7 +1,7 @@
 package tech.bison.trainee2021.userInterface.command;
 
-import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
+import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
 import tech.bison.trainee2021.userInterface.command.search.Search;
@@ -12,13 +12,14 @@ import tech.bison.trainee2021.userInterface.command.singleMessage.Welcome;
 public class CommandFactory {
 
   public enum KnownCommand {
-    CREATE_GENRE,
     WELCOME,
-    SEARCH,
+    SHOW_ALL_COMMANDS,
     REGISTER,
     LOGIN,
+    SEARCH,
+    CREATE_TRACK,
+    CREATE_GENRE,
     SIGN_ARTIST,
-    SHOW_ALL_COMMANDS,
     NO_ENTRY,
     NOT_FOUND;
 
@@ -29,6 +30,7 @@ public class CommandFactory {
     private static final String SHOW_ALL_COMMANDS_SPELLING = "/showAllCommands";
     private static final String REGISTER_SPELLING = "/register";
     private static final String LOGIN_SPELLING = "/login";
+    private static final String CREATE_TRACK_SPELLING = "/createTrack";
     private static final String SIGN_ARTIST_SPELLING = "/signArtist";
     private static final String NO_ENTRY_SPELLING = "";
 
@@ -52,6 +54,8 @@ public class CommandFactory {
           return LOGIN_SPELLING;
         case SIGN_ARTIST:
           return SIGN_ARTIST_SPELLING;
+        case CREATE_TRACK:
+          return CREATE_TRACK_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -69,21 +73,12 @@ public class CommandFactory {
   }
 
   public static Command create(String spelling) {
-    Command command = getCommand(spelling);
-    if (command.loginIsRequired() && !UserInterface.getCurrentUser().isLoggedIn()) {
-      return new MissingAuthentification();
-    } else {
-      return command;
-    }
-  }
-
-  public static Command getCommand(String command) {
-    KnownCommand knownCommand = KnownCommand.translate(command);
+    KnownCommand knownCommand = KnownCommand.translate(spelling);
     switch (knownCommand) {
       case CREATE_GENRE:
         return new CreateGenre();
       case NOT_FOUND:
-        return new CommandNotFound(command);
+        return new CommandNotFound(spelling);
       case NO_ENTRY:
         return new NoEntry();
       case WELCOME:
@@ -98,8 +93,10 @@ public class CommandFactory {
         return new Login();
       case SIGN_ARTIST:
         return new SignArtist();
+      case CREATE_TRACK:
+        return new CreateTrack();
     }
     // should never happen
-    throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", command));
+    throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));
   }
 }

@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command;
 import java.util.List;
 
 import tech.bison.trainee2021.structure.User;
+import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Login extends ExactArgumentAmountExpectation {
@@ -23,6 +24,7 @@ public class Login extends ExactArgumentAmountExpectation {
     if (User.userNameExists(userName)) {
       User user = new User(userName);
       if (user.login(arguments.get(1))) {
+        UserInterface.setCurrentUser(user);
         return "You are now logged in.";
       } else {
         return "This is the wrong password.";

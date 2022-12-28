@@ -110,8 +110,18 @@ public class Artist {
     return id;
   }
 
-  public static boolean idExists(int parseInt) {
-    // TODO Auto-generated method stub
-    return false;
+  public static boolean idExists(int id) {
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_ARTIST_ID_EXISTS(?)}");
+      callableStatement.setInt("ID", id);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      return result.getBoolean("ID_EXISTS");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 }
