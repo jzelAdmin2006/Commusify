@@ -2,7 +2,7 @@ package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
-public class SingleMessage implements Command {
+public abstract class SingleMessage implements Command {
 
   private final String message;
 
