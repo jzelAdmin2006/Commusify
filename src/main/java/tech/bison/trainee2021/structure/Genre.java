@@ -97,4 +97,9 @@ public class Genre implements Searchable {
       return new Genre(id);
     }
   }
+
+  public static boolean idExists(int parseInt) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }

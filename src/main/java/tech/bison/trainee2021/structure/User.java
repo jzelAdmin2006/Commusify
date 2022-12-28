@@ -166,4 +166,9 @@ public class User {
     }
     return exists;
   }
+
+  public boolean isArtistMember(Artist artist) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }

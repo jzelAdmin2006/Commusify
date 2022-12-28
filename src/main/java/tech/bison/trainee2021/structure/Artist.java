@@ -109,4 +109,9 @@ public class Artist {
   public int getId() {
     return id;
   }
+
+  public static boolean idExists(int parseInt) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }
