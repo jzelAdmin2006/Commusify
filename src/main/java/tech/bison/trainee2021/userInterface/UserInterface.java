@@ -1,7 +1,6 @@
 package tech.bison.trainee2021.userInterface;
 
 import java.rmi.UnexpectedException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +13,6 @@ import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 import tech.bison.trainee2021.userInterface.command.MissingAuthentification;
 
 public class UserInterface {
-  private static final String COMMAND_ARGUMENT_DELIMITER = " ";
   public static final String EXIT = "/exit";
   private static User currentUser = new GuestUser();
   private boolean isRunning;
@@ -48,20 +46,9 @@ public class UserInterface {
     if (input.equals(EXIT)) {
       return exit();
     }
-    String[] doubleQuotesSplit = input.split("\"");
-    List<String> splitInput = new ArrayList<>();
-    for (int i = 0; i < doubleQuotesSplit.length; i++) {
-      if (i % 2 == 0) {
-        splitInput.addAll(Arrays.asList(doubleQuotesSplit[i].split(COMMAND_ARGUMENT_DELIMITER)));
-      } else {
-        splitInput.add(doubleQuotesSplit[i]);
-      }
-    }
-    String command = splitInput.get(0);
-    List<String> commandArguments = new ArrayList<>();
-    if (splitInput.size() > 1) {
-      commandArguments.addAll(splitInput.subList(1, splitInput.size()));
-    }
+    String[] splitInput = CommandLine.translateCommandline(input);
+    String command = splitInput[0];
+    List<String> commandArguments = Arrays.asList(Arrays.copyOfRange(splitInput, 1, splitInput.length));
     Command commandExecutor = CommandFactory.create(command);
     if (commandExecutor.loginIsRequired() && !getCurrentUser().isLoggedIn()) {
       return new MissingAuthentification(command).execute(commandArguments);
