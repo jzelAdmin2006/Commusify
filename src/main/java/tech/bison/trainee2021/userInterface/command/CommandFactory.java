@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.userInterface.command;
 
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
+import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
 import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;
@@ -13,6 +14,7 @@ public class CommandFactory {
     CREATE_GENRE,
     WELCOME,
     SEARCH,
+    REGISTER,
     SHOW_ALL_COMMANDS,
     NO_ENTRY,
     NOT_FOUND;
@@ -22,6 +24,7 @@ public class CommandFactory {
     private static final String CREATE_GENRE_SPELLING = "/createGenre";
     private static final String WELCOME_SPELLING = "/welcome";
     private static final String SHOW_ALL_COMMANDS_SPELLING = "/showAllCommands";
+    private static final String REGISTER_SPELLING = "/register";
     private static final String NO_ENTRY_SPELLING = "";
 
     public String spelling() {
@@ -38,6 +41,8 @@ public class CommandFactory {
           return NOT_FOUND_SPELLING_MESSAGE;
         case SHOW_ALL_COMMANDS:
           return SHOW_ALL_COMMANDS_SPELLING;
+        case REGISTER:
+          return REGISTER_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -70,6 +75,8 @@ public class CommandFactory {
         return new Search();
       case SHOW_ALL_COMMANDS:
         return new ShowAllCommands();
+      case REGISTER:
+        return new Register();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", command));

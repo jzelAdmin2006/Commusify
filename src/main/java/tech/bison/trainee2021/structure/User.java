@@ -17,6 +17,7 @@ public class User {
   private String firstName;
   private String lastName;
   private String email;
+  private boolean isLoggedIn;
 
   public User(String userName, String password, String firstName, String lastName, String email) {
     passwordHash = password.hashCode();
@@ -111,5 +112,18 @@ public class User {
 
   public int getId() {
     return id;
+  }
+
+  public boolean login(String password) {
+    if (password.hashCode() == passwordHash) {
+      isLoggedIn = true;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean isLoggedIn() {
+    return isLoggedIn;
   }
 }

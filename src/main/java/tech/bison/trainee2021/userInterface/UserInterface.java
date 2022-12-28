@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import tech.bison.trainee2021.structure.GuestUser;
+import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
@@ -13,6 +15,7 @@ import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 public class UserInterface {
   private static final String COMMAND_ARGUMENT_DELIMITER = " ";
   public static final String EXIT = "/exit";
+  private static User currentUser = new GuestUser();
   private boolean isRunning;
 
   public UserInterface() {
@@ -65,5 +68,13 @@ public class UserInterface {
   public String exit() {
     isRunning = false;
     return "Terminating...";
+  }
+
+  public static User getCurrentUser() {
+    return currentUser;
+  }
+
+  public static void setCurrentUser(User currentUser) {
+    UserInterface.currentUser = currentUser;
   }
 }
