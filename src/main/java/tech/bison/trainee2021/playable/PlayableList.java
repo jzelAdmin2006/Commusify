@@ -12,6 +12,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
 public class PlayableList implements Playable {
 
@@ -210,5 +212,24 @@ public class PlayableList implements Playable {
   @Override
   public boolean isTrack() {
     return false;
+  }
+
+  @Override
+  public String result() {
+    return String
+        .format("PlayableList: ID = %s, title = \"%s\", number of playables = %s", id, title, playables.size());
+  }
+
+  public static class PlayableListSearcher extends Searcher {
+
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_PLAYABLE_LIST";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new PlayableList(id);
+    }
   }
 }

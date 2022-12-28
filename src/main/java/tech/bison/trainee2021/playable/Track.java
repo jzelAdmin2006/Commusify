@@ -19,6 +19,8 @@ import java.util.Objects;
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
 public class Track implements Playable {
   private static final String MP3_EXTENTION = "mp3";
@@ -249,5 +251,22 @@ public class Track implements Playable {
   @Override
   public boolean isTrack() {
     return true;
+  }
+
+  @Override
+  public String result() {
+    return String.format("Track: ID = %s, Title = \"%s\", Genre = \"%s\"", id, title, genre.getDesignation());
+  }
+
+  public static class TrackSearcher extends Searcher {
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_TRACK";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new Track(id);
+    }
   }
 }

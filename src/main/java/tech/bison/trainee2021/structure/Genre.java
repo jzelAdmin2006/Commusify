@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
@@ -84,26 +82,19 @@ public class Genre implements Searchable {
 
   @Override
   public String result() {
-    return String.format("ID: %s, Designation: %s", id, designation);
+    return String.format("Genre: ID = %s, Designation = \"%s\"", id, designation);
   }
 
-  public static class GenreSearcher implements Searcher {
-    @Override
-    public List<Searchable> search(String search) {
-      List<Searchable> results = new ArrayList<>();
-      try {
-        Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-        CallableStatement callableStatement = connection.prepareCall("{call SP_SEARCH_GENRE(?)}");
-        callableStatement.setString("Search", search);
-        ResultSet result = callableStatement.executeQuery();
+  public static class GenreSearcher extends Searcher {
 
-        while (result.next()) {
-          results.add(new Genre(result.getInt("ID")));
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      return results;
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_GENRE";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new Genre(id);
     }
   }
 }

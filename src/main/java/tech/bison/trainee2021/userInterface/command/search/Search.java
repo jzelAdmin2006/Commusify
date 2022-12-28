@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command.search;
 import java.util.Collections;
 import java.util.List;
 
+import tech.bison.trainee2021.playable.Playable.PlayableSearcher;
 import tech.bison.trainee2021.structure.Genre.GenreSearcher;
 import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
 
@@ -15,6 +16,7 @@ public class Search extends ArgumentExpectation {
   }
 
   public enum KnownSearchable {
+    PLAYABLE,
     GENRE,
     NOT_FOUND;
 
@@ -28,12 +30,15 @@ public class Search extends ArgumentExpectation {
     }
 
     private static final String GENRE_SPELLING = "Genre";
+    private static final String PLAYABLE_SPELLING = "Playable";
     private static final String NOT_FOUND_SPELLING_MESSAGE = "If your searchable spelling is invalid, the message will tell you.";
 
     public String spelling() {
       switch (this) {
         case GENRE:
           return GENRE_SPELLING;
+        case PLAYABLE:
+          return PLAYABLE_SPELLING;
         case NOT_FOUND:
           return NOT_FOUND_SPELLING_MESSAGE;
       }
@@ -49,6 +54,8 @@ public class Search extends ArgumentExpectation {
         return new GenreSearcher();
       case NOT_FOUND:
         return new NotFoundSearcher();
+      case PLAYABLE:
+        return new PlayableSearcher();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The searchable %s isn't implemented.", searchable));
@@ -66,11 +73,23 @@ public class Search extends ArgumentExpectation {
     return message;
   }
 
-  public static class NotFoundSearcher implements Searcher {
+  public static class NotFoundSearcher extends Searcher {
 
     @Override
     public List<Searchable> search(String search) {
       return Collections.singletonList(new NotFoundSearchable());
+    }
+
+    @Deprecated
+    @Override
+    public String getSearchCallSP() {
+      throw new UnsupportedOperationException("There is no stored procedure for this searcher.");
+    }
+
+    @Deprecated
+    @Override
+    public Searchable of(int id) {
+      throw new UnsupportedOperationException("There is no type available for this searcher.");
     }
   }
 
