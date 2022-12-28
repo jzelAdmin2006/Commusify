@@ -11,9 +11,4 @@ public class NoEntry extends SingleMessage {
   public String getArgumentDescription() {
     return "";
   }
-
-  @Override
-  public boolean loginIsRequired() {
-    return false;
-  }
 }

@@ -16,4 +16,9 @@ public abstract class SingleMessage implements Command {
   public String execute(List<String> arguments) {
     return message;
   }
+
+  @Override
+  public boolean loginIsRequired() {
+    return false;
+  }
 }
