@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.structure.Genre.GenreSearcher;
+import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
 
 public class Search extends ArgumentExpectation {
   private static final int VALID_NUMBER_OF_ARGUMENTS = 2;

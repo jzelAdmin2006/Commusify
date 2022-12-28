@@ -1,8 +1,6 @@
-package tech.bison.trainee2021.userInterface.command.search;
+package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
-
-import tech.bison.trainee2021.userInterface.command.Command;
 
 public abstract class ArgumentExpectation implements Command {
 

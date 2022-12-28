@@ -3,7 +3,6 @@ package tech.bison.trainee2021.userInterface.command;
 import java.util.List;
 
 import tech.bison.trainee2021.structure.Genre;
-import tech.bison.trainee2021.userInterface.command.search.ArgumentExpectation;
 
 public class CreateGenre extends ArgumentExpectation {
 
