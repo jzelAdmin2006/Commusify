@@ -16,6 +16,7 @@ public class CommandFactory {
     SEARCH,
     REGISTER,
     LOGIN,
+    SIGN_ARTIST,
     SHOW_ALL_COMMANDS,
     NO_ENTRY,
     NOT_FOUND;
@@ -27,6 +28,7 @@ public class CommandFactory {
     private static final String SHOW_ALL_COMMANDS_SPELLING = "/showAllCommands";
     private static final String REGISTER_SPELLING = "/register";
     private static final String LOGIN_SPELLING = "/login";
+    private static final String SIGN_ARTIST_SPELLING = "/signArtist";
     private static final String NO_ENTRY_SPELLING = "";
 
     public String spelling() {
@@ -47,6 +49,8 @@ public class CommandFactory {
           return REGISTER_SPELLING;
         case LOGIN:
           return LOGIN_SPELLING;
+        case SIGN_ARTIST:
+          return SIGN_ARTIST_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -83,6 +87,8 @@ public class CommandFactory {
         return new Register();
       case LOGIN:
         return new Login();
+      case SIGN_ARTIST:
+        return new SignArtist();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", command));
