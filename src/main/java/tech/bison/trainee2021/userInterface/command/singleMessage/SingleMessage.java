@@ -1,6 +1,8 @@
-package tech.bison.trainee2021.userInterface.command;
+package tech.bison.trainee2021.userInterface.command.singleMessage;
 
 import java.util.List;
+
+import tech.bison.trainee2021.userInterface.command.Command;
 
 public abstract class SingleMessage implements Command {
 

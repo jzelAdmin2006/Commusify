@@ -1,5 +1,9 @@
 package tech.bison.trainee2021.userInterface.command;
 
+import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
+import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;
+import tech.bison.trainee2021.userInterface.command.singleMessage.Welcome;
+
 public class CommandFactory {
 
   public enum KnownCommand {

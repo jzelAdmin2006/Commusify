@@ -1,6 +1,7 @@
-package tech.bison.trainee2021.userInterface.command;
+package tech.bison.trainee2021.userInterface.command.singleMessage;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
+import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 
 public class ShowAllCommands extends SingleMessage {
