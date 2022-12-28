@@ -1,5 +1,7 @@
 package tech.bison.trainee2021.userInterface.command;
 
+import java.util.List;
+
 public class Welcome extends SingleMessage {
 
   public Welcome() {
@@ -13,7 +15,7 @@ public class Welcome extends SingleMessage {
   }
 
   @Override
-  public String execute(String[] arguments) {
+  public String execute(List<String> arguments) {
     return super.execute(arguments) + "\n" + new ShowAllCommands().execute(arguments);
   }
 }
