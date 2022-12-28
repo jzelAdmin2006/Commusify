@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class Genre {
+public class Genre implements Searchable {
   @Override
   public int hashCode() {
     return Objects.hash(designation, id);
@@ -81,11 +82,28 @@ public class Genre {
     return id;
   }
 
+  @Override
+  public String result() {
+    return String.format("ID: %s, Designation: %s", id, designation);
+  }
+
   public static class GenreSearcher implements Searcher {
     @Override
     public List<Searchable> search(String search) {
-      // TODO Auto-generated method stub
-      return null;
+      List<Searchable> results = new ArrayList<>();
+      try {
+        Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+        CallableStatement callableStatement = connection.prepareCall("{call SP_SEARCH_GENRE(?)}");
+        callableStatement.setString("Search", search);
+        ResultSet result = callableStatement.executeQuery();
+
+        while (result.next()) {
+          results.add(new Genre(result.getInt("ID")));
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      return results;
     }
   }
 }
