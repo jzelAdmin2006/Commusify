@@ -1,9 +1,8 @@
-package tech.bison.trainee2021.userInterface.command.create;
+package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
 import tech.bison.trainee2021.structure.User;
-import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
 
 public class Login extends ArgumentExpectation {
 

@@ -1,7 +1,6 @@
 package tech.bison.trainee2021.userInterface.command;
 
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
-import tech.bison.trainee2021.userInterface.command.create.Login;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
