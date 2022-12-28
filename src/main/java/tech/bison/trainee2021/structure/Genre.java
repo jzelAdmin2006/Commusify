@@ -5,9 +5,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
 public class Genre {
   @Override
@@ -76,5 +79,13 @@ public class Genre {
 
   public int getId() {
     return id;
+  }
+
+  public static class GenreSearcher implements Searcher {
+    @Override
+    public List<Searchable> search(String search) {
+      // TODO Auto-generated method stub
+      return null;
+    }
   }
 }

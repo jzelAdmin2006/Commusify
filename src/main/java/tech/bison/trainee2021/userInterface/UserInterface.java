@@ -20,17 +20,21 @@ public class UserInterface {
   }
 
   public void run() {
-    String input = KnownCommand.WELCOME.spelling();
+    boolean isFirstTime = true;
     try (Scanner scanner = new Scanner(System.in)) {
       while (isRunning) {
         try {
+          String input = KnownCommand.WELCOME.spelling();
+          if (isFirstTime) {
+            isFirstTime = false;
+          } else {
+            input = scanner.nextLine();
+          }
           System.out.println(generateOutput(input));
-          input = scanner.nextLine();
         } catch (Exception e) {
           Exception unexpectedException = new UnexpectedException("An unexpected exception occured.");
           unexpectedException.printStackTrace();
           e.printStackTrace();
-          input = KnownCommand.NO_ENTRY.spelling();
         }
       }
     }

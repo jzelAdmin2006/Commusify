@@ -1,5 +1,6 @@
 package tech.bison.trainee2021.userInterface.command;
 
+import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
 import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;
 import tech.bison.trainee2021.userInterface.command.singleMessage.Welcome;
@@ -9,10 +10,12 @@ public class CommandFactory {
   public enum KnownCommand {
     CREATE_GENRE,
     WELCOME,
+    SEARCH,
     NO_ENTRY,
     NOT_FOUND;
 
     private static final String NOT_FOUND_SPELLING_MESSAGE = "If your command is invalid, the message will tell you.";
+    private static final String SEARCH_SPELLING = "/search";
     private static final String CREATE_GENRE_SPELLING = "/createGenre";
     private static final String WELCOME_SPELLING = "/welcome";
     private static final String NO_ENTRY_SPELLING = "";
@@ -23,6 +26,8 @@ public class CommandFactory {
           return CREATE_GENRE_SPELLING;
         case WELCOME:
           return WELCOME_SPELLING;
+        case SEARCH:
+          return SEARCH_SPELLING;
         case NO_ENTRY:
           return NO_ENTRY_SPELLING;
         case NOT_FOUND:
@@ -55,6 +60,8 @@ public class CommandFactory {
         return new NoEntry();
       case WELCOME:
         return new Welcome();
+      case SEARCH:
+        return new Search();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", command));
