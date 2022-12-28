@@ -1,8 +1,9 @@
-package tech.bison.trainee2021.userInterface.command;
+package tech.bison.trainee2021.userInterface.command.create;
 
 import java.util.List;
 
 import tech.bison.trainee2021.structure.Genre;
+import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
 
 public class CreateGenre extends ArgumentExpectation {
 
