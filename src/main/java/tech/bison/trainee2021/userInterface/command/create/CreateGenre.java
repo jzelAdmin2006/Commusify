@@ -19,4 +19,9 @@ public class CreateGenre extends ArgumentExpectation {
     Genre genre = new Genre(arguments.get(0));
     return String.format("The genre was created and received the id %s.", genre.getId());
   }
+
+  @Override
+  public String getArgumentDescription() {
+    return "";
+  }
 }

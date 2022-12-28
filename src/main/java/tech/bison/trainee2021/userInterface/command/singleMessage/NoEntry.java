@@ -6,4 +6,9 @@ public class NoEntry extends SingleMessage {
   public NoEntry() {
     super(NO_ENTRY_REACTION);
   }
+
+  @Override
+  public String getArgumentDescription() {
+    return "";
+  }
 }

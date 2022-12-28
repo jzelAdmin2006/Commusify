@@ -100,4 +100,21 @@ public class Search extends ArgumentExpectation {
       return String.format("The spelling for this searchable couldn't be recognized.");
     }
   }
+
+  @Override
+  public String getArgumentDescription() {
+    String typeSpellings = "";
+    boolean isFirstTime = true;
+    for (KnownSearchable knownSearchable : KnownSearchable.values()) {
+      if (knownSearchable != KnownSearchable.NOT_FOUND) {
+        if (isFirstTime) {
+          isFirstTime = false;
+        } else {
+          typeSpellings += " / ";
+        }
+        typeSpellings += knownSearchable.spelling();
+      }
+    }
+    return String.format("[searchable type: (%s)] [search expression]", typeSpellings);
+  }
 }
