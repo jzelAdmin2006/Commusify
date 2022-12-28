@@ -4,7 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.structure.User;
 
-public class Login extends ArgumentExpectation {
+public class Login extends ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {

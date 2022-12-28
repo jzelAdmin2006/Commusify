@@ -5,9 +5,9 @@ import java.util.List;
 
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher;
 import tech.bison.trainee2021.structure.Genre.GenreSearcher;
-import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
+import tech.bison.trainee2021.userInterface.command.ExactArgumentAmountExpectation;
 
-public class Search extends ArgumentExpectation {
+public class Search extends ExactArgumentAmountExpectation {
   private static final int VALID_NUMBER_OF_ARGUMENTS = 2;
 
   @Override

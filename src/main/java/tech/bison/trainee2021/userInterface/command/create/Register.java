@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.ArgumentExpectation;
+import tech.bison.trainee2021.userInterface.command.ExactArgumentAmountExpectation;
 
-public class Register extends ArgumentExpectation {
+public class Register extends ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {

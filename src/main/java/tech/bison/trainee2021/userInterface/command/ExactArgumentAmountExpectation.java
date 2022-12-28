@@ -2,7 +2,7 @@ package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
-public abstract class ArgumentExpectation implements Command {
+public abstract class ExactArgumentAmountExpectation implements Command {
 
   @Override
   public String execute(List<String> arguments) {
