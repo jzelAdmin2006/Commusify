@@ -117,9 +117,4 @@ public class Search extends ExactArgumentAmountExpectation {
     }
     return String.format("[searchable type: (%s)] [search expression]", typeSpellings);
   }
-
-  @Override
-  public boolean loginIsRequired() {
-    return true;
-  }
 }
