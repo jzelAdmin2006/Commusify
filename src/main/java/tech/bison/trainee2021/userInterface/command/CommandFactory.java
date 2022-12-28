@@ -4,6 +4,7 @@ import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
+import tech.bison.trainee2021.userInterface.command.playable.Play;
 import tech.bison.trainee2021.userInterface.command.search.Search;
 import tech.bison.trainee2021.userInterface.command.singleMessage.CommandNotFound;
 import tech.bison.trainee2021.userInterface.command.singleMessage.NoEntry;
@@ -16,6 +17,7 @@ public class CommandFactory {
     SHOW_ALL_COMMANDS,
     REGISTER,
     LOGIN,
+    PLAY,
     SEARCH,
     CREATE_TRACK,
     CREATE_GENRE,
@@ -32,6 +34,7 @@ public class CommandFactory {
     private static final String LOGIN_SPELLING = "/login";
     private static final String CREATE_TRACK_SPELLING = "/createTrack";
     private static final String SIGN_ARTIST_SPELLING = "/signArtist";
+    private static final String PLAY_SPELLING = "/play";
     private static final String NO_ENTRY_SPELLING = "";
 
     public String spelling() {
@@ -56,6 +59,8 @@ public class CommandFactory {
           return SIGN_ARTIST_SPELLING;
         case CREATE_TRACK:
           return CREATE_TRACK_SPELLING;
+        case PLAY:
+          return PLAY_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -95,6 +100,8 @@ public class CommandFactory {
         return new SignArtist();
       case CREATE_TRACK:
         return new CreateTrack();
+      case PLAY:
+        return new Play();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));
