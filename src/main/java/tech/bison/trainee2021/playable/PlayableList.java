@@ -242,4 +242,8 @@ public class PlayableList extends AvailablePlayable {
       return new PlayableList(id);
     }
   }
+
+  static boolean idExists(int id) {
+    return false;
+  }
 }

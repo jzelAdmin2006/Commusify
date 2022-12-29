@@ -268,4 +268,8 @@ public class Track extends AvailablePlayable {
       return new Track(id);
     }
   }
+
+  static boolean idExists(int id) {
+    return false;
+  }
 }

@@ -43,8 +43,12 @@ public class Download implements ExactArgumentAmountExpectation {
       default:
         String id = arguments.get(1);
         Playable playable = Playable.of(Integer.parseInt(id), knownPlayable);
-        UserInterface.setCurrentPlayable(playable);
-        return processPlayable(playable);
+        if (playable.isAvailable()) {
+          UserInterface.setCurrentPlayable(playable);
+          return processPlayable(playable);
+        } else {
+          return String.format("There's no playable with the id %s.", id);
+        }
     }
   }
 

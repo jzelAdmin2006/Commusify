@@ -29,16 +29,34 @@ public interface Playable extends Searchable {
   public boolean isAvailable();
 
   public static Playable of(int id, KnownPlayable knownPlayable) throws UnsupportedOperationException {
+    if (idExists(id, knownPlayable)) {
+      switch (knownPlayable) {
+        case NOT_FOUND:
+          break;
+        case PLAYABLE_LIST:
+          return new PlayableList(id);
+        case TRACK:
+          return new Track(id);
+      }
+      throw new UnsupportedOperationException(
+          String.format("The known playable automatic type selection %s isn't implemented.", knownPlayable));
+    } else {
+      return new UnavailablePlayable();
+    }
+  }
+
+  private static boolean idExists(int id, KnownPlayable knownPlayable) {
     switch (knownPlayable) {
       case NOT_FOUND:
-        break;
+        return false;
       case PLAYABLE_LIST:
-        return new PlayableList(id);
+        return PlayableList.idExists(id);
       case TRACK:
-        return new Track(id);
+        return Track.idExists(id);
     }
+    // should never happen
     throw new UnsupportedOperationException(
-        String.format("The known playable automatic type selection %s isn't implemented.", knownPlayable));
+        String.format("The check if an id exists isn't implemented for the known playable type %s.", knownPlayable));
   }
 
   public static class PlayableSearcher extends Searcher {
