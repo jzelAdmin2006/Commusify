@@ -270,7 +270,7 @@ public class Track extends AvailablePlayable {
     }
   }
 
-  static class TrackIdChecker extends IdChecker {
+  public static class TrackIdChecker extends IdChecker {
     @Override
     protected String getIdExistsCallSP() {
       return "SP_TRACK_ID_EXISTS";
