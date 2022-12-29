@@ -52,7 +52,9 @@ public class CreateRecordAlbum implements MinimumArgumentAmountExpectation {
     if (new ArtistIdChecker().exists(interpreterId)) {
       Artist artistUserClaimsToBe = new Artist(interpreterId);
       if (UserInterface.getCurrentUser().isArtistMember(artistUserClaimsToBe)) {
-        return createRecord(arguments, track, artistUserClaimsToBe);
+        return createAlbum(arguments,
+            Collections.singletonList(track),
+            Collections.singletonList(artistUserClaimsToBe));
       } else {
         return String.format("You aren't a member of the artist with the id \"%s\"", artistUserClaimsToBe.getId());
       }
@@ -61,21 +63,21 @@ public class CreateRecordAlbum implements MinimumArgumentAmountExpectation {
     }
   }
 
-  private String createRecord(List<String> arguments, Track track, Artist artist) {
+  protected String createAlbum(List<String> arguments, List<Track> track, List<Artist> artist) {
     String recordType = arguments.get(1);
     Playable album = new UnavailablePlayable();
+    String title = arguments.get(0);
     switch (KnownRecordType.translate(recordType)) {
       case NOT_FOUND:
         return String.format("The record type \"%s\" wasn't found.", recordType);
       case DOUBLE_LONG_PLAY:
-        album = new DoubleLongPlay(arguments.get(0), Collections.singletonList(track),
-            Collections.singletonList(artist));
+        album = new DoubleLongPlay(title, track, artist);
       case EXTENDED_PLAY:
-        album = new ExtendedPlay(arguments.get(0), Collections.singletonList(track), Collections.singletonList(artist));
+        album = new ExtendedPlay(title, track, artist);
       case LONG_PLAY:
-        album = new LongPlay(arguments.get(0), Collections.singletonList(track), Collections.singletonList(artist));
+        album = new LongPlay(title, track, artist);
       case SINGLE:
-        album = new Single(arguments.get(0), Collections.singletonList(track), Collections.singletonList(artist));
+        album = new Single(title, track, artist);
       default:
         return String.format("Record was created with id %s.", album.getId());
     }
