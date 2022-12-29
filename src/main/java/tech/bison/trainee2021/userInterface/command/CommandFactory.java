@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command;
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreatePlayableList;
 import tech.bison.trainee2021.userInterface.command.create.CreatePlaylist;
+import tech.bison.trainee2021.userInterface.command.create.CreateSubGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
@@ -33,6 +34,7 @@ public class CommandFactory {
     SEARCH,
     CREATE_TRACK,
     CREATE_GENRE,
+    CREATE_SUB_GENRE,
     CREATE_PLAYABLE_LIST,
     CREATE_PLAYLIST,
     ADD_PLAYABLE_TO_PLAYABLE_LIST,
@@ -43,6 +45,7 @@ public class CommandFactory {
     private static final String NOT_FOUND_SPELLING_MESSAGE = "If your command is invalid, the message will tell you.";
     private static final String SEARCH_SPELLING = "/search";
     private static final String CREATE_GENRE_SPELLING = "/createGenre";
+    private static final String CREATE_SUB_GENRE_SPELLING = "/createSubGenre";
     private static final String WELCOME_SPELLING = "/welcome";
     private static final String SHOW_ALL_COMMANDS_SPELLING = "/showAllCommands";
     private static final String REGISTER_SPELLING = "/register";
@@ -100,6 +103,8 @@ public class CommandFactory {
           return ADD_PLAYABLE_TO_PLAYABLE_LIST_SPELLING;
         case CREATE_PLAYLIST:
           return CREATE_PLAYLIST_SPELLING;
+        case CREATE_SUB_GENRE:
+          return CREATE_SUB_GENRE_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -157,6 +162,8 @@ public class CommandFactory {
         return new AddPlayableToPlayableList();
       case CREATE_PLAYLIST:
         return new CreatePlaylist();
+      case CREATE_SUB_GENRE:
+        return new CreateSubGenre();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));
