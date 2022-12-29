@@ -7,11 +7,9 @@ import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArg
 
 public class CreateGenre implements ExactArgumentAmountExpectation {
 
-  private static final int VALID_NUMBER_OF_ARGUMENTS = 1;
-
   @Override
   public int getValidNumberOfArguments() {
-    return VALID_NUMBER_OF_ARGUMENTS;
+    return 1;
   }
 
   @Override
