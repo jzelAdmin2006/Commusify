@@ -22,6 +22,6 @@ public class CreateGenre extends ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
-    return "";
+    return "[designation]";
   }
 }
