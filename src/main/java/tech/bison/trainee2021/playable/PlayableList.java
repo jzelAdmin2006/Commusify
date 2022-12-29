@@ -15,7 +15,7 @@ import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class PlayableList implements Playable {
+public class PlayableList extends AvailablePlayable {
 
   private String title;
   private final List<Playable> playables = new ArrayList<>();

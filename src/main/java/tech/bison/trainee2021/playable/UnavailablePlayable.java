@@ -49,4 +49,9 @@ public class UnavailablePlayable implements Playable {
   public boolean isTrack() {
     throw PLAYABLE_IS_NOT_AVAILABLE;
   }
+
+  @Override
+  public boolean isAvailable() {
+    return false;
+  }
 }

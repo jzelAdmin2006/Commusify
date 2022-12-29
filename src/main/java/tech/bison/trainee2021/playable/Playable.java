@@ -26,6 +26,8 @@ public interface Playable extends Searchable {
 
   public boolean isTrack();
 
+  public boolean isAvailable();
+
   public static Playable of(int id, KnownPlayable knownPlayable) throws UnsupportedOperationException {
     switch (knownPlayable) {
       case NOT_FOUND:

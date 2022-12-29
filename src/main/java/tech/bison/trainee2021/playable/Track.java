@@ -22,7 +22,7 @@ import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class Track implements Playable {
+public class Track extends AvailablePlayable {
   private static final String MP3_EXTENTION = "mp3";
   private static final String AIFF_EXTENTION = "aiff";
   private static final String AIFF_FIRST_FOUR_BYTES = "70798277";
