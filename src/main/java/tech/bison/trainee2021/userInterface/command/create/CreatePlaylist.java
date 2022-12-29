@@ -13,8 +13,7 @@ public class CreatePlaylist extends CreatePlayableList {
     if (playable.isTrack()) {
       return super.addPlayable(playable);
     } else {
-      return String.format("The playable with the id %s isn't a track. Playlists can only contain tracks.",
-          playable.getId());
+      return "The playable you specified isn't a track.";
     }
   }
 
