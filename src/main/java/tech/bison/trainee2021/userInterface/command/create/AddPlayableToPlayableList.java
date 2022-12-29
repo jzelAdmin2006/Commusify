@@ -66,7 +66,7 @@ public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation
 
   private String addPlayable(PlayableList playableList, Playable playable) {
     playableList.addPlayable(playable);
-    return "";
+    return "Playable added to playable list";
   }
 
   @Override
