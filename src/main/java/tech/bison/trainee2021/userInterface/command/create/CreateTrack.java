@@ -11,6 +11,7 @@ import java.util.List;
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
+import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 
@@ -41,7 +42,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     String genreId = arguments.get(2);
     if (isNumeric(genreId)) {
       int genreIdValue = Integer.parseInt(genreId);
-      if (Genre.idExists(genreIdValue)) {
+      if (new GenreIdChecker().exists(genreIdValue)) {
         return processNextArgument(arguments, file, new Genre(genreIdValue));
       } else {
         return String.format("The genre ID \"%s\" doesn't exist.", genreId);

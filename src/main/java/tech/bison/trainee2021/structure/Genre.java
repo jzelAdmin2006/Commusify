@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
@@ -98,18 +99,10 @@ public class Genre implements Searchable {
     }
   }
 
-  public static boolean idExists(int id) {
-    try {
-      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_GENRE_ID_EXISTS(?)}");
-      callableStatement.setInt("ID", id);
-      ResultSet result = callableStatement.executeQuery();
-
-      result.next();
-      return result.getBoolean("ID_EXISTS");
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
+  public static class GenreIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_GENRE_ID_EXISTS";
     }
   }
 }
