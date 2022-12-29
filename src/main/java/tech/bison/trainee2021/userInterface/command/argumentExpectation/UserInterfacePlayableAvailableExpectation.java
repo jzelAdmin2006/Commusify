@@ -1,0 +1,32 @@
+package tech.bison.trainee2021.userInterface.command.argumentExpectation;
+
+import java.util.List;
+
+import tech.bison.trainee2021.userInterface.UserInterface;
+
+public interface UserInterfacePlayableAvailableExpectation extends Expectation {
+
+  @Override
+  public default String execute(List<String> arguments) {
+    if (conditionIsMet(arguments)) {
+      return proceed(arguments);
+    } else {
+      return getFailedMessage();
+    }
+  }
+
+  @Override
+  public default String getFailedMessage() {
+    return "There's nothing playing right now.";
+  }
+
+  @Override
+  public default boolean conditionIsMet(List<String> arguments) {
+    return UserInterface.getCurrentPlayable().isAvailable();
+  }
+
+  @Override
+  public default String getArgumentDescription() {
+    return NoExpectation.NO_ARGUMENT_DESCRIPTION;
+  }
+}
