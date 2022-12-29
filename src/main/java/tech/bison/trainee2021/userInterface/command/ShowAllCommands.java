@@ -4,13 +4,20 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
 
-public class ShowAllCommands implements Command {
+public class ShowAllCommands extends NoArgumentExpectation {
 
   private static final String SPELLING_ARGUMENTDESC_DELIMITER = " ";
   private static final String COMMAND_DELIMITER = "\n\t";
 
-  private String getCommandSpellings() {
+  @Override
+  public boolean loginIsRequired() {
+    return false;
+  }
+
+  @Override
+  protected String proceed(List<String> arguments) {
     String message = String.format(
         "These are all commands in Commusify (expressions in box brackets represent the arguments):%s%s%s",
         COMMAND_DELIMITER,
@@ -25,20 +32,5 @@ public class ShowAllCommands implements Command {
       }
     }
     return message;
-  }
-
-  @Override
-  public String getArgumentDescription() {
-    return "";
-  }
-
-  @Override
-  public String execute(List<String> arguments) {
-    return getCommandSpellings();
-  }
-
-  @Override
-  public boolean loginIsRequired() {
-    return false;
   }
 }

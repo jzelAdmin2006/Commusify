@@ -2,7 +2,9 @@ package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
-public class MissingAuthentification implements Command {
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
+
+public class MissingAuthentification extends NoArgumentExpectation {
 
   private final String commandSpelling;
 
@@ -11,17 +13,12 @@ public class MissingAuthentification implements Command {
   }
 
   @Override
-  public String execute(List<String> arguments) {
-    return String.format("You need to be logged in for the command %s.", commandSpelling);
-  }
-
-  @Override
-  public String getArgumentDescription() {
-    return "";
-  }
-
-  @Override
   public boolean loginIsRequired() {
     return false;
+  }
+
+  @Override
+  protected String proceed(List<String> arguments) {
+    return String.format("You need to be logged in for the command %s.", commandSpelling);
   }
 }
