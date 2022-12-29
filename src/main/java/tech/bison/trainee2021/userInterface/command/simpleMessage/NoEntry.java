@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.userInterface.command.singleMessage;
+package tech.bison.trainee2021.userInterface.command.simpleMessage;
 
 public class NoEntry extends SimpleMessage {
   private static final String NO_ENTRY_REACTION = "";
