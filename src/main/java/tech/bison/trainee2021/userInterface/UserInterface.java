@@ -12,6 +12,7 @@ import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
+import tech.bison.trainee2021.userInterface.util.CommandLine;
 import tech.bison.trainee2021.userInterface.command.MissingAuthentification;
 
 public class UserInterface {

@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.userInterface;
+package tech.bison.trainee2021.userInterface.util;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;

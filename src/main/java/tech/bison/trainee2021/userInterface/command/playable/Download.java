@@ -1,5 +1,7 @@
 package tech.bison.trainee2021.userInterface.command.playable;
 
+import static tech.bison.trainee2021.userInterface.util.NumericChecker.isNumeric;
+
 import java.util.List;
 
 import tech.bison.trainee2021.playable.Playable;
@@ -42,12 +44,17 @@ public class Download implements ExactArgumentAmountExpectation {
         return String.format("The playable type \"%s\" couldn't be found.", playableSpelling);
       default:
         String id = arguments.get(1);
-        Playable playable = Playable.of(Integer.parseInt(id), knownPlayable);
-        if (playable.isAvailable()) {
-          UserInterface.setCurrentPlayable(playable);
-          return processPlayable(playable);
+        if (isNumeric(id)) {
+          Playable playable = Playable.of(Integer.parseInt(id), knownPlayable);
+          if (playable.isAvailable()) {
+            UserInterface.setCurrentPlayable(playable);
+            return processPlayable(playable);
+          } else {
+            return String.format("There's no playable with the id %s.", id);
+          }
         } else {
-          return String.format("There's no playable with the id %s.", id);
+          return String
+              .format("\"%s\" is not a %s ID (a %s ID should be a number).", id, playableSpelling, playableSpelling);
         }
     }
   }

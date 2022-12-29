@@ -1,11 +1,12 @@
 package tech.bison.trainee2021.userInterface.command.create;
 
+import static tech.bison.trainee2021.userInterface.util.NumericChecker.isNumeric;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
@@ -34,13 +35,6 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     } else {
       return String.format("There's no file at the path \"%s\".", path);
     }
-  }
-
-  private boolean isNumeric(String string) {
-    if (string == null) {
-      return false;
-    }
-    return Pattern.compile("-?\\d+(\\.\\d+)?").matcher(string).matches();
   }
 
   public String processNextArgument(List<String> arguments, File file) {
