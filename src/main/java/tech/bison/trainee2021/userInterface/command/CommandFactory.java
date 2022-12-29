@@ -3,6 +3,7 @@ package tech.bison.trainee2021.userInterface.command;
 import tech.bison.trainee2021.userInterface.command.create.AddPlayableToPlayableList;
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreatePlayableList;
+import tech.bison.trainee2021.userInterface.command.create.CreatePlaylist;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
@@ -34,6 +35,7 @@ public class CommandFactory {
     CREATE_TRACK,
     CREATE_GENRE,
     CREATE_PLAYABLE_LIST,
+    CREATE_PLAYLIST,
     ADD_PLAYABLE_TO_PLAYABLE_LIST,
     SIGN_ARTIST,
     NO_ENTRY,
@@ -48,6 +50,7 @@ public class CommandFactory {
     private static final String LOGIN_SPELLING = "/login";
     private static final String CREATE_TRACK_SPELLING = "/createTrack";
     private static final String CREATE_PLAYABLE_LIST_SPELLING = "/createPlayableList";
+    private static final String CREATE_PLAYLIST_SPELLING = "/createPlaylist";
     private static final String ADD_PLAYABLE_TO_PLAYABLE_LIST_SPELLING = "/addPlayableToPlayableList";
     private static final String SIGN_ARTIST_SPELLING = "/signArtist";
     private static final String DOWNLOAD_SPELLING = "/download";
@@ -96,6 +99,8 @@ public class CommandFactory {
           return CREATE_PLAYABLE_LIST_SPELLING;
         case ADD_PLAYABLE_TO_PLAYABLE_LIST:
           return ADD_PLAYABLE_TO_PLAYABLE_LIST_SPELLING;
+        case CREATE_PLAYLIST:
+          return CREATE_PLAYLIST_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -151,6 +156,8 @@ public class CommandFactory {
         return new CreatePlayableList();
       case ADD_PLAYABLE_TO_PLAYABLE_LIST:
         return new AddPlayableToPlayableList();
+      case CREATE_PLAYLIST:
+        return new CreatePlaylist();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));

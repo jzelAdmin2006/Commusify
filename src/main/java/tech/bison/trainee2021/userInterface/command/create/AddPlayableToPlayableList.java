@@ -74,9 +74,12 @@ public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation
 
   @Override
   public String getArgumentDescription() {
-    return String.format("[%s] [Playable ID] [Playable type (%s)]",
-        getDescriptionOfFirstArgument(),
-        KnownPlayable.getSpellings());
+    return String
+        .format("[%s] [Playable ID] [Playable type (%s)]", getDescriptionOfFirstArgument(), getPlayableSpellings());
+  }
+
+  protected String getPlayableSpellings() {
+    return KnownPlayable.getSpellings();
   }
 
   protected String getDescriptionOfFirstArgument() {

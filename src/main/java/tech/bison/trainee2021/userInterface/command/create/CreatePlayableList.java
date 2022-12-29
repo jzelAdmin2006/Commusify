@@ -10,7 +10,7 @@ import tech.bison.trainee2021.playable.PlayableList;
 
 public class CreatePlayableList extends AddPlayableToPlayableList {
 
-  private List<String> arguments;
+  protected List<String> arguments;
 
   @Override
   public String proceed(List<String> arguments) {
