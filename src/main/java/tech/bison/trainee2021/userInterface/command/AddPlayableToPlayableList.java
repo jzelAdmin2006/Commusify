@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.userInterface.command.create;
+package tech.bison.trainee2021.userInterface.command;
 
 import static tech.bison.trainee2021.userInterface.util.NumericChecker.isNumeric;
 
