@@ -16,6 +16,12 @@ import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 
+// TODO Currently only one interpreter can be added. The remaining arguments are simply ignored. For
+// reasons of time, I'm leaving it that way for this project at the moment, but this it could be
+// added
+// at any time.
+
+@Deprecated
 public class CreateTrack implements MinimumArgumentAmountExpectation {
 
   @Override
