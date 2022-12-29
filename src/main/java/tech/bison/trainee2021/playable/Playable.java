@@ -14,11 +14,11 @@ public interface Playable extends Searchable {
 
   public void play();
 
-  public void playNext();
+  public String playNext();
 
   public void playPrevious();
 
-  public void shuffle(boolean shuffleIsOn);
+  public String shuffle(boolean shuffleIsOn);
 
   public void loop(boolean loopIsOn);
 

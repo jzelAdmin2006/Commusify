@@ -149,7 +149,7 @@ public class PlayableList implements Playable {
   }
 
   @Override
-  public void playNext() {
+  public String playNext() {
     List<Track> tracks = getTracks();
     if (currentPlayableIndexHistoryIndex < playableIndexHistory.size() - 1) {
       currentPlayableIndexHistoryIndex++;
@@ -166,9 +166,10 @@ public class PlayableList implements Playable {
       currentPlayableIndexHistoryIndex++;
       playableIndexHistory.add(currentPlayableIndex);
     } else {
-      throw new UnsupportedOperationException("This playable list has no next track and it's not looping.");
+      return "This playable list has no next track and it's not looping.";
     }
     tracks.get(currentPlayableIndex).play();
+    return "Playing next track now...";
   }
 
   @Override
@@ -186,15 +187,24 @@ public class PlayableList implements Playable {
     } else if (loopIsOn) {
       currentPlayableIndex = tracks.size() - 1;
       playableIndexHistory.add(0, currentPlayableIndex);
-    } else {
-      throw new UnsupportedOperationException("This playable list has no previous track and it's not looping.");
     }
     tracks.get(currentPlayableIndex).play();
   }
 
   @Override
-  public void shuffle(boolean shuffleIsOn) {
+  public String shuffle(boolean shuffleIsOn) {
+    String message;
+    if (shuffleIsOn && !this.shuffleIsOn) {
+      message = "Shuffle is on now.";
+    } else if (!shuffleIsOn && this.shuffleIsOn) {
+      message = "Shuffle is off now.";
+    } else if (shuffleIsOn && this.shuffleIsOn) {
+      message = "Shuffle is already on.";
+    } else {
+      message = "Shuffle is already off.";
+    }
     this.shuffleIsOn = shuffleIsOn;
+    return message;
   }
 
   @Override

@@ -212,11 +212,12 @@ public class Track implements Playable {
   }
 
   @Override
-  public void playNext() {
+  public String playNext() {
     if (repeatIsOn) {
       play();
+      return "Loop is on, so the current track is playing again.";
     } else {
-      throw new UnsupportedOperationException("You can't play the next track on a single track that's not looping.");
+      return "You can't play the next track on a single track that's not looping.";
     }
   }
 
@@ -226,10 +227,8 @@ public class Track implements Playable {
   }
 
   @Override
-  public void shuffle(boolean shuffleIsOn) {
-    if (shuffleIsOn) {
-      throw new UnsupportedOperationException("You can't shuffle a single track.");
-    }
+  public String shuffle(boolean shuffleIsOn) {
+    return "You can't shuffle a single track.";
   }
 
   @Override
