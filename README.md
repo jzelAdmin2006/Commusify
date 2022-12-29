@@ -1,7 +1,10 @@
 # Commusify
 Commusify - A music service truly connected to it's community.
 ## About
-This was a school project at BBZW Sursee. The task was to show that one can master object-oriented programming. I hope I was able to do that with this project as I personally love programming :). Commusify (= Community + Music) is a console application where users can log in and listen to music. But you can also pretend to be an artist and listen to tracks yourself. I have mapped some logic from reality.
+This was a school project at BBZW Sursee. The task was to show that one can master object-oriented programming. I hope I was able to do that with this project as I personally love programming :). Commusify (= Community + Music) is a console application where users can log in and listen to music. But you can also pretend to be an artist and listen to tracks yourself. I have also taken over quite some logic from reality regarding this topic:
+- TBD
+- TBD
+- TBD
 ## Database
 Commusify was built using Transact SQL (Microsoft SQL Server).
 ### Entity Relationship Diagram
