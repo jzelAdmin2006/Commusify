@@ -24,6 +24,6 @@ public interface NoArgumentExpectation extends ArgumentExpectation {
 
   @Override
   public default boolean loginIsRequired() {
-    return true;
+    return false;
   }
 }
