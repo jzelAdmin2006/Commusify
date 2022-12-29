@@ -4,11 +4,11 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.command.Command;
 
-public abstract class SingleMessage implements Command {
+public abstract class SimpleMessage implements Command {
 
   private final String message;
 
-  public SingleMessage(String message) {
+  public SimpleMessage(String message) {
     this.message = message;
   }
 

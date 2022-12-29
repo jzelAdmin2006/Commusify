@@ -4,7 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.command.ShowAllCommands;
 
-public class Welcome extends SingleMessage {
+public class Welcome extends SimpleMessage {
 
   public Welcome() {
     super("Welcome to ...\n\n   ____   U  ___ u  __  __    __  __     _   _   ____                  _____  __   __ \r\n"
