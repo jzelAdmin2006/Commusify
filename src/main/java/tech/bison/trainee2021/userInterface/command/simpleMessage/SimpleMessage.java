@@ -2,9 +2,9 @@ package tech.bison.trainee2021.userInterface.command.simpleMessage;
 
 import java.util.List;
 
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoExpectation;
 
-public class SimpleMessage implements NoArgumentExpectation {
+public class SimpleMessage implements NoExpectation {
   private final String message;
 
   public SimpleMessage(String message) {

@@ -2,9 +2,9 @@ package tech.bison.trainee2021.userInterface.command;
 
 import java.util.List;
 
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoExpectation;
 
-public class MissingAuthentification implements NoArgumentExpectation {
+public class MissingAuthentification implements NoExpectation {
 
   private final String commandSpelling;
 

@@ -4,9 +4,9 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoExpectation;
 
-public class ShowAllCommands implements NoArgumentExpectation {
+public class ShowAllCommands implements NoExpectation {
 
   private static final String SPELLING_ARGUMENTDESC_DELIMITER = " ";
   private static final String COMMAND_DELIMITER = "\n\t";

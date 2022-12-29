@@ -2,7 +2,7 @@ package tech.bison.trainee2021.userInterface.command.argumentExpectation;
 
 import java.util.List;
 
-public interface NoArgumentExpectation extends Expectation {
+public interface NoExpectation extends Expectation {
 
   static final String NO_ARGUMENT_DESCRIPTION = "";
 
