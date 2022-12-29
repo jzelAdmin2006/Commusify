@@ -257,7 +257,7 @@ public class Track extends AvailablePlayable {
     return String.format("Track: ID = %s, Title = \"%s\", Genre = \"%s\"", id, title, genre.getDesignation());
   }
 
-  public static class TrackSearcher extends Searcher {
+  static class TrackSearcher extends Searcher {
     @Override
     public String getSearchCallSP() {
       return "SP_SEARCH_TRACK";

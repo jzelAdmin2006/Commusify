@@ -230,7 +230,7 @@ public class PlayableList extends AvailablePlayable {
         .format("PlayableList: ID = %s, title = \"%s\", number of playables = %s", id, title, playables.size());
   }
 
-  public static class PlayableListSearcher extends Searcher {
+  static class PlayableListSearcher extends Searcher {
 
     @Override
     public String getSearchCallSP() {
