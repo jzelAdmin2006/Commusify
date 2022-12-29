@@ -26,7 +26,9 @@ public interface Playable extends Searchable {
 
   public void download();
 
-  public boolean isTrack();
+  public default boolean isTrack() {
+    return false;
+  }
 
   public boolean isAvailable();
 

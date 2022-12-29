@@ -221,11 +221,6 @@ public class PlayableList extends AvailablePlayable {
   }
 
   @Override
-  public boolean isTrack() {
-    return false;
-  }
-
-  @Override
   public String result() {
     return String
         .format("PlayableList: ID = %s, title = \"%s\", number of playables = %s", id, title, playables.size());
