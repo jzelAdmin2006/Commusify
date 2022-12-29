@@ -37,7 +37,7 @@ public class Shuffle implements UserInterfacePlayableAvailableExpectation, Exact
 
   @Override
   public String getFailedMessage() {
-    return String.format("At least one of these expectations was not met:\n\t%s\n\t%s",
+    return String.format("Can't shuffle because at least one of these expectations was not met:\n\t%s\n\t%s",
         ExactArgumentAmountExpectation.super.getFailedMessage(),
         UserInterfacePlayableAvailableExpectation.super.getFailedMessage());
   }
