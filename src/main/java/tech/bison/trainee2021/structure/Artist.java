@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
 
 public class Artist {
 
@@ -110,18 +111,10 @@ public class Artist {
     return id;
   }
 
-  public static boolean idExists(int id) {
-    try {
-      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_ARTIST_ID_EXISTS(?)}");
-      callableStatement.setInt("ID", id);
-      ResultSet result = callableStatement.executeQuery();
-
-      result.next();
-      return result.getBoolean("ID_EXISTS");
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
+  public static class ArtistIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_ARTIST_ID_EXISTS";
     }
   }
 }

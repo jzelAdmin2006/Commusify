@@ -10,6 +10,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
+import tech.bison.trainee2021.structure.Artist.ArtistIdChecker;
 import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
@@ -57,7 +58,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     for (String artistId : arguments.subList(3, arguments.size())) {
       if (isNumeric(artistId)) {
         int artistIdValue = Integer.parseInt(artistId);
-        if (Artist.idExists(artistIdValue)) {
+        if (new ArtistIdChecker().exists(artistIdValue)) {
           interpreters.add(new Artist(artistIdValue));
         } else {
           return String.format("The artist ID \"%s\" doesn't exist.", artistIdValue);
