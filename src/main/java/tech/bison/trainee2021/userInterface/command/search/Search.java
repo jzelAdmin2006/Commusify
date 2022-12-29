@@ -68,7 +68,7 @@ public class Search implements ExactArgumentAmountExpectation {
     List<Searchable> searchResult = searcher.search(arguments.get(1));
     String message = "These are your search results:\n";
     for (Searchable searchable : searchResult) {
-      message += searchable.result();
+      message += searchable.result() + "\n";
     }
     return message;
   }
