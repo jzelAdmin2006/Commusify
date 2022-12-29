@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class Genre {
+public class Genre implements Searchable {
   @Override
   public int hashCode() {
     return Objects.hash(designation, id);
@@ -76,5 +78,38 @@ public class Genre {
 
   public int getId() {
     return id;
+  }
+
+  @Override
+  public String result() {
+    return String.format("Genre: ID = %s, Designation = \"%s\"", id, designation);
+  }
+
+  public static class GenreSearcher extends Searcher {
+
+    @Override
+    protected String getSearchCallSP() {
+      return "SP_SEARCH_GENRE";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new Genre(id);
+    }
+  }
+
+  public static boolean idExists(int id) {
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_GENRE_ID_EXISTS(?)}");
+      callableStatement.setInt("ID", id);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      return result.getBoolean("ID_EXISTS");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 }

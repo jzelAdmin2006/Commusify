@@ -16,4 +16,18 @@ public class Playlist extends PlayableList {
   public Playlist(int id) {
     super(id);
   }
+
+  @Deprecated
+  @Override
+  public void addPlayable(Playable playable) {
+    if (playable.isTrack()) {
+      addTrack((Track) playable);
+    } else {
+      throw new UnsupportedOperationException("A playlist can only contain tracks.");
+    }
+  }
+
+  public void addTrack(Track track) {
+    super.addPlayable(track);
+  }
 }

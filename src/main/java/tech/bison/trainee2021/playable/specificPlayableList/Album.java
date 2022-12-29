@@ -11,6 +11,11 @@ import java.util.List;
 
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Track;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.MixTape;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.DoubleLongPlay;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.ExtendedPlay;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.LongPlay;
+import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.Single;
 import tech.bison.trainee2021.structure.Artist;
 
 public abstract class Album extends Playlist {
@@ -43,6 +48,26 @@ public abstract class Album extends Playlist {
       }
       // should never happen
       throw new UnsupportedOperationException(String.format("Type %s isn't implemented.", type));
+    }
+
+    public static Album translate(int id, int typeCode) {
+      for (AlbumType albumType : AlbumType.values()) {
+        if (typeCode == AlbumType.code(albumType)) {
+          switch (albumType) {
+            case DOUBLE_LONG_PLAY:
+              return new DoubleLongPlay(id);
+            case EXTENDED_PLAY:
+              return new ExtendedPlay(id);
+            case LONG_PLAY:
+              return new LongPlay(id);
+            case MIX_TAPE:
+              return new MixTape(id);
+            case SINGLE:
+              return new Single(id);
+          }
+        }
+      }
+      throw new IllegalArgumentException(String.format("The type for the album with the id %s couldn't be found.", id));
     }
   }
 
@@ -109,5 +134,22 @@ public abstract class Album extends Playlist {
 
   public List<Artist> getInterpreters() {
     return Collections.unmodifiableList(interpreters);
+  }
+
+  public static Album of(int id) {
+    int typeCode = 0;
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall("{call SP_FIND_ALBUM_TYPE(?)}");
+      callableStatement.setInt("ID", id);
+      ResultSet result = callableStatement.executeQuery();
+
+      if (result.next()) {
+        typeCode = result.getInt("Type");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return AlbumType.translate(id, typeCode);
   }
 }

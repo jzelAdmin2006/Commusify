@@ -9,14 +9,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class PlayableList implements Playable {
+public class PlayableList extends AvailablePlayable {
 
   private String title;
   private final List<Playable> playables = new ArrayList<>();
   private final int id;
+  private int currentPlayableIndex;
+  private boolean loopIsOn;
+  private boolean shuffleIsOn;
+  private List<Integer> playableIndexHistory;
+  private int currentPlayableIndexHistoryIndex;
+  private Random random = new Random();
 
   @Override
   public int hashCode() {
@@ -61,6 +71,10 @@ public class PlayableList implements Playable {
     for (Playable playable : playables) {
       addPlayable(id, playable);
     }
+  }
+
+  public void addPlayable(Playable playable) {
+    addPlayable(id, playable);
   }
 
   private void addPlayable(int id, Playable playable) {
@@ -115,6 +129,19 @@ public class PlayableList implements Playable {
     return Collections.unmodifiableList(playables);
   }
 
+  private List<Track> getTracks() {
+    List<Track> tracks = new ArrayList<>();
+    for (Playable playable : playables) {
+      if (playable.getClass().isAssignableFrom(getClass())) {
+        PlayableList playableList = (PlayableList) playable;
+        tracks.addAll(playableList.getTracks());
+      } else {
+        tracks.add((Track) playable);
+      }
+    }
+    return tracks;
+  }
+
   @Override
   public int getId() {
     return id;
@@ -122,42 +149,104 @@ public class PlayableList implements Playable {
 
   @Override
   public void play() {
-    // TODO Auto-generated method stub
-
+    currentPlayableIndex = 0;
+    getTracks().get(currentPlayableIndex).play();
   }
 
   @Override
-  public void playNext() {
-    // TODO Auto-generated method stub
-
+  public String playNext() {
+    List<Track> tracks = getTracks();
+    if (currentPlayableIndexHistoryIndex < playableIndexHistory.size() - 1) {
+      currentPlayableIndexHistoryIndex++;
+      currentPlayableIndex = playableIndexHistory.get(currentPlayableIndexHistoryIndex);
+    } else if (shuffleIsOn) {
+      currentPlayableIndex = random.nextInt(tracks.size());
+      playableIndexHistory.add(currentPlayableIndex);
+    } else if (currentPlayableIndex < tracks.size() - 1) {
+      currentPlayableIndex++;
+      currentPlayableIndexHistoryIndex++;
+      playableIndexHistory.add(currentPlayableIndex);
+    } else if (loopIsOn) {
+      currentPlayableIndex = 0;
+      currentPlayableIndexHistoryIndex++;
+      playableIndexHistory.add(currentPlayableIndex);
+    } else {
+      return "This playable list has no next track and it's not looping.";
+    }
+    tracks.get(currentPlayableIndex).play();
+    return "Playing next track now...";
   }
 
   @Override
   public void playPrevious() {
-    // TODO Auto-generated method stub
-
+    List<Track> tracks = getTracks();
+    if (currentPlayableIndexHistoryIndex > 0) {
+      currentPlayableIndexHistoryIndex--;
+      currentPlayableIndex = playableIndexHistory.get(currentPlayableIndexHistoryIndex);
+    } else if (shuffleIsOn) {
+      currentPlayableIndex = random.nextInt(tracks.size());
+      playableIndexHistory.add(0, currentPlayableIndex);
+    } else if (currentPlayableIndex > 0) {
+      currentPlayableIndex--;
+      playableIndexHistory.add(0, currentPlayableIndex);
+    } else if (loopIsOn) {
+      currentPlayableIndex = tracks.size() - 1;
+      playableIndexHistory.add(0, currentPlayableIndex);
+    }
+    tracks.get(currentPlayableIndex).play();
   }
 
   @Override
-  public void shuffle(boolean shuffleIsOn) {
-    // TODO Auto-generated method stub
-
+  public String shuffle(boolean shuffleIsOn) {
+    String message;
+    if (shuffleIsOn && !this.shuffleIsOn) {
+      message = "Shuffle is on now.";
+    } else if (!shuffleIsOn && this.shuffleIsOn) {
+      message = "Shuffle is off now.";
+    } else if (shuffleIsOn && this.shuffleIsOn) {
+      message = "Shuffle is already on.";
+    } else {
+      message = "Shuffle is already off.";
+    }
+    this.shuffleIsOn = shuffleIsOn;
+    return message;
   }
 
   @Override
-  public void repeat(boolean repeatIsOn) {
-    // TODO Auto-generated method stub
-
+  public void loop(boolean loopIsOn) {
+    this.loopIsOn = loopIsOn;
   }
 
   @Override
   public void download() {
-    // TODO Auto-generated method stub
-
+    for (Playable playable : playables) {
+      playable.download();
+    }
   }
 
   @Override
-  public boolean isTrack() {
-    return false;
+  public String result() {
+    return String
+        .format("PlayableList: ID = %s, title = \"%s\", number of playables = %s", id, title, playables.size());
+  }
+
+  static class PlayableListSearcher extends Searcher {
+
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_PLAYABLE_LIST";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new PlayableList(id);
+    }
+  }
+
+  static class PlayableListIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_PLAYABLE_LIST_ID_EXISTS";
+    }
   }
 }

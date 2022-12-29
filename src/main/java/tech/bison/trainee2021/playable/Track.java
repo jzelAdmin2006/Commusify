@@ -19,8 +19,11 @@ import java.util.Objects;
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class Track implements Playable {
+public class Track extends AvailablePlayable {
   private static final String MP3_EXTENTION = "mp3";
   private static final String AIFF_EXTENTION = "aiff";
   private static final String AIFF_FIRST_FOUR_BYTES = "70798277";
@@ -210,11 +213,12 @@ public class Track implements Playable {
   }
 
   @Override
-  public void playNext() {
+  public String playNext() {
     if (repeatIsOn) {
       play();
+      return "Loop is on, so the current track is playing again.";
     } else {
-      throw new UnsupportedOperationException("You can't play the next track on a single track that's not repeating.");
+      return "You can't play the next track on a single track that's not looping.";
     }
   }
 
@@ -224,13 +228,13 @@ public class Track implements Playable {
   }
 
   @Override
-  public void shuffle(boolean shuffleIsOn) {
-    throw new UnsupportedOperationException("You can't shuffle a single track.");
+  public String shuffle(boolean shuffleIsOn) {
+    return "You can't shuffle a single track.";
   }
 
   @Override
-  public void repeat(boolean repeatIsOn) {
-    this.repeatIsOn = repeatIsOn;
+  public void loop(boolean loopIsOn) {
+    this.repeatIsOn = loopIsOn;
   }
 
   @Override
@@ -247,5 +251,29 @@ public class Track implements Playable {
   @Override
   public boolean isTrack() {
     return true;
+  }
+
+  @Override
+  public String result() {
+    return String.format("Track: ID = %s, Title = \"%s\", Genre = \"%s\"", id, title, genre.getDesignation());
+  }
+
+  static class TrackSearcher extends Searcher {
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_TRACK";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new Track(id);
+    }
+  }
+
+  static class TrackIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_TRACK_ID_EXISTS";
+    }
   }
 }
