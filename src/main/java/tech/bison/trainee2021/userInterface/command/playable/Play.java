@@ -4,6 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
+import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Play implements ExactArgumentAmountExpectation {
@@ -42,7 +43,9 @@ public class Play implements ExactArgumentAmountExpectation {
       case PLAYABLE_LIST:
       case TRACK:
         String id = arguments.get(1);
-        Playable.of(Integer.parseInt(id), knownPlayable).play();
+        Playable playable = Playable.of(Integer.parseInt(id), knownPlayable);
+        UserInterface.setCurrentPlayable(playable);
+        playable.play();
         return String.format("Track with id %s is now playing.", id);
     }
     // should never happen

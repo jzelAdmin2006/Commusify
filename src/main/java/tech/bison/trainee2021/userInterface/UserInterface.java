@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import tech.bison.trainee2021.playable.Playable;
+import tech.bison.trainee2021.playable.UnavailablePlayable;
 import tech.bison.trainee2021.structure.GuestUser;
 import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.command.Command;
@@ -15,6 +17,7 @@ import tech.bison.trainee2021.userInterface.command.MissingAuthentification;
 public class UserInterface {
   public static final String EXIT = "/exit";
   private static User currentUser = new GuestUser();
+  private static Playable currentPlayable = new UnavailablePlayable();
   private boolean isRunning;
 
   public UserInterface() {
@@ -68,5 +71,13 @@ public class UserInterface {
 
   public static void setCurrentUser(User currentUser) {
     UserInterface.currentUser = currentUser;
+  }
+
+  public static Playable getCurrentPlayable() {
+    return currentPlayable;
+  }
+
+  public static void setCurrentPlayable(Playable currentPlayable) {
+    UserInterface.currentPlayable = currentPlayable;
   }
 }
