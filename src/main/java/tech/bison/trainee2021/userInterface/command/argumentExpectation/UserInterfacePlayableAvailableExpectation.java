@@ -17,7 +17,7 @@ public interface UserInterfacePlayableAvailableExpectation extends Expectation {
 
   @Override
   public default String getFailedMessage() {
-    return "There's nothing playing right now.";
+    return "Something has to be playing for this command.";
   }
 
   @Override
