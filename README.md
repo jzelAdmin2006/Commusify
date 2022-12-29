@@ -8,7 +8,7 @@ This was a school project at BBZW Sursee. The task was to show that one can mast
 - An artist can have different members in Commusify, but still count as one artist. I was thinking of artists like "Swedish House Mafia" who are like exactly like that.
 - A track always has a genre, which can also contain subgenres resp. maybe a super genre, if it's a subgenre itself.
 ## Database
-Commusify was built using Transact SQL (Microsoft SQL Server).
+I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a school project and nothing productive, I used mywindowshosting.com Microsoft SQL Server 60-day free trial as the online database. That's enough for me, because I hand in the project before anyway and it's also evaluated before the expiration. Unfortunately, there's only one GB of storage space, but as I said, the whole thing is not productive, you would of course have to invest money there.
 ### Entity Relationship Diagram
 #### SSMS Version (original)
 ![SSMS ERD](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/SQL/Commusify_SSMSERD.png)
