@@ -19,6 +19,7 @@ import java.util.Objects;
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.structure.Artist;
 import tech.bison.trainee2021.structure.Genre;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
@@ -269,7 +270,10 @@ public class Track extends AvailablePlayable {
     }
   }
 
-  static boolean idExists(int id) {
-    return false;
+  static class TrackIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_TRACK_ID_EXISTS";
+    }
   }
 }

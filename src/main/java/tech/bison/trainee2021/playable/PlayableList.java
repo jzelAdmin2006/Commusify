@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
@@ -243,7 +244,10 @@ public class PlayableList extends AvailablePlayable {
     }
   }
 
-  static boolean idExists(int id) {
-    return false;
+  static class PlayableListIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_PLAYABLE_LIST_ID_EXISTS";
+    }
   }
 }

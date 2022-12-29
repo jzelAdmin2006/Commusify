@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
+import tech.bison.trainee2021.playable.PlayableList.PlayableListIdChecker;
 import tech.bison.trainee2021.playable.PlayableList.PlayableListSearcher;
+import tech.bison.trainee2021.playable.Track.TrackIdChecker;
 import tech.bison.trainee2021.playable.Track.TrackSearcher;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
@@ -50,9 +52,9 @@ public interface Playable extends Searchable {
       case NOT_FOUND:
         return false;
       case PLAYABLE_LIST:
-        return PlayableList.idExists(id);
+        return new PlayableListIdChecker().exists(id);
       case TRACK:
-        return Track.idExists(id);
+        return new TrackIdChecker().exists(id);
     }
     // should never happen
     throw new UnsupportedOperationException(
