@@ -4,7 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher;
+import tech.bison.trainee2021.playable.Track.TrackSearcher;
+import tech.bison.trainee2021.structure.Artist.ArtistSearcher;
 import tech.bison.trainee2021.structure.Genre.GenreSearcher;
+import tech.bison.trainee2021.structure.User.UserSearcher;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Search implements ExactArgumentAmountExpectation {
@@ -18,6 +21,9 @@ public class Search implements ExactArgumentAmountExpectation {
   public enum KnownSearchable {
     PLAYABLE,
     GENRE,
+    ARTIST,
+    USER,
+    TRACK,
     NOT_FOUND;
 
     public static KnownSearchable translate(String searchable) {
@@ -31,6 +37,9 @@ public class Search implements ExactArgumentAmountExpectation {
 
     private static final String GENRE_SPELLING = "Genre";
     private static final String PLAYABLE_SPELLING = "Playable";
+    private static final String ARTIST_SPELLING = "Artist";
+    private static final String USER_SPELLING = "User";
+    private static final String TRACK_SPELLING = "Track";
     private static final String NOT_FOUND_SPELLING_MESSAGE = "If your searchable spelling is invalid, the message will tell you.";
 
     public String spelling() {
@@ -41,6 +50,12 @@ public class Search implements ExactArgumentAmountExpectation {
           return PLAYABLE_SPELLING;
         case NOT_FOUND:
           return NOT_FOUND_SPELLING_MESSAGE;
+        case ARTIST:
+          return ARTIST_SPELLING;
+        case USER:
+          return USER_SPELLING;
+        case TRACK:
+          return TRACK_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -56,6 +71,12 @@ public class Search implements ExactArgumentAmountExpectation {
         return new NotFoundSearcher();
       case PLAYABLE:
         return new PlayableSearcher();
+      case ARTIST:
+        return new ArtistSearcher();
+      case USER:
+        return new UserSearcher();
+      case TRACK:
+        return new TrackSearcher();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The searchable %s isn't implemented.", searchable));
