@@ -13,7 +13,7 @@ import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 
-public class CreateTrack extends MinimumArgumentAmountExpectation {
+public class CreateTrack implements MinimumArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
@@ -26,7 +26,7 @@ public class CreateTrack extends MinimumArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     String path = arguments.get(1);
     File file = new File(path);
     if (file.exists()) {

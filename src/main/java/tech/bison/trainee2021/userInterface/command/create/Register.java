@@ -7,7 +7,7 @@ import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
-public class Register extends ExactArgumentAmountExpectation {
+public class Register implements ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
@@ -20,7 +20,7 @@ public class Register extends ExactArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     String email = arguments.get(4);
     if (emailIsValid(email)) {
       String password = arguments.get(1);

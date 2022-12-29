@@ -6,7 +6,7 @@ import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
-public class Play extends ExactArgumentAmountExpectation {
+public class Play implements ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
@@ -33,7 +33,7 @@ public class Play extends ExactArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     String playableSpelling = arguments.get(0);
     KnownPlayable knownPlayable = KnownPlayable.translate(playableSpelling);
     switch (knownPlayable) {

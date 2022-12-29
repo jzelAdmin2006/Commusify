@@ -6,7 +6,7 @@ import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
-public class Login extends ExactArgumentAmountExpectation {
+public class Login implements ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
@@ -19,7 +19,7 @@ public class Login extends ExactArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     String userName = arguments.get(0);
     if (User.userNameExists(userName)) {
       User user = new User(userName);

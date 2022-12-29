@@ -6,7 +6,7 @@ import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
 
-public class ShowAllCommands extends NoArgumentExpectation {
+public class ShowAllCommands implements NoArgumentExpectation {
 
   private static final String SPELLING_ARGUMENTDESC_DELIMITER = " ";
   private static final String COMMAND_DELIMITER = "\n\t";
@@ -17,7 +17,7 @@ public class ShowAllCommands extends NoArgumentExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     String message = String.format(
         "These are all commands in Commusify (expressions in box brackets represent the arguments):%s%s%s",
         COMMAND_DELIMITER,

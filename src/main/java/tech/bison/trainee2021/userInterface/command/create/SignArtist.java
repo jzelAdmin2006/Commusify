@@ -8,7 +8,7 @@ import tech.bison.trainee2021.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 
-public class SignArtist extends MinimumArgumentAmountExpectation {
+public class SignArtist implements MinimumArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
@@ -21,7 +21,7 @@ public class SignArtist extends MinimumArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     List<User> members = new ArrayList<>();
     List<String> invalidUserNames = new ArrayList<>();
     members.add(UserInterface.getCurrentUser());

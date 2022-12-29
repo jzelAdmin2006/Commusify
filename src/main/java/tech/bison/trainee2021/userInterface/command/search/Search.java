@@ -7,7 +7,7 @@ import tech.bison.trainee2021.playable.Playable.PlayableSearcher;
 import tech.bison.trainee2021.structure.Genre.GenreSearcher;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
-public class Search extends ExactArgumentAmountExpectation {
+public class Search implements ExactArgumentAmountExpectation {
   private static final int VALID_NUMBER_OF_ARGUMENTS = 2;
 
   @Override
@@ -62,7 +62,7 @@ public class Search extends ExactArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     KnownSearchable knownSearchable = KnownSearchable.translate(arguments.get(0));
     Searcher searcher = create(knownSearchable);
     List<Searchable> searchResult = searcher.search(arguments.get(1));

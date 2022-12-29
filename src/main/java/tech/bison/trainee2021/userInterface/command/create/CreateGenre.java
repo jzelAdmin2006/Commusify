@@ -5,7 +5,7 @@ import java.util.List;
 import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
-public class CreateGenre extends ExactArgumentAmountExpectation {
+public class CreateGenre implements ExactArgumentAmountExpectation {
 
   private static final int VALID_NUMBER_OF_ARGUMENTS = 1;
 
@@ -15,7 +15,7 @@ public class CreateGenre extends ExactArgumentAmountExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     Genre genre = new Genre(arguments.get(0));
     return String.format("The genre was created and received the id %s.", genre.getId());
   }

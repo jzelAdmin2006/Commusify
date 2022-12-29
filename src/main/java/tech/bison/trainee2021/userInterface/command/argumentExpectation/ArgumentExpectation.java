@@ -4,10 +4,10 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.command.Command;
 
-public abstract class ArgumentExpectation implements Command {
+public interface ArgumentExpectation extends Command {
 
   @Override
-  public String execute(List<String> arguments) {
+  public default String execute(List<String> arguments) {
     if (isValid(arguments)) {
       return proceed(arguments);
     } else {
@@ -15,14 +15,14 @@ public abstract class ArgumentExpectation implements Command {
     }
   }
 
-  protected abstract String getInvalidArgumentsMessage();
+  public String getInvalidArgumentsMessage();
 
-  protected abstract boolean isValid(List<String> arguments);
+  public boolean isValid(List<String> arguments);
 
-  protected abstract String proceed(List<String> arguments);
+  public String proceed(List<String> arguments);
 
   @Override
-  public boolean loginIsRequired() {
+  public default boolean loginIsRequired() {
     return true;
   }
 }

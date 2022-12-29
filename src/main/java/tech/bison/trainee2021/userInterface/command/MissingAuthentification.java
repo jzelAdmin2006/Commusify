@@ -4,7 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
 
-public class MissingAuthentification extends NoArgumentExpectation {
+public class MissingAuthentification implements NoArgumentExpectation {
 
   private final String commandSpelling;
 
@@ -18,7 +18,7 @@ public class MissingAuthentification extends NoArgumentExpectation {
   }
 
   @Override
-  protected String proceed(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     return String.format("You need to be logged in for the command %s.", commandSpelling);
   }
 }
