@@ -23,10 +23,6 @@ public class CreateRecordAlbum implements MinimumArgumentAmountExpectation {
 
   @Override
   public String proceed(List<String> arguments) {
-    return processNextArgument(arguments);
-  }
-
-  public String processNextArgument(List<String> arguments) {
     String trackId = arguments.get(2);
     if (isNumeric(trackId)) {
       return processNextArgument(arguments, Integer.parseInt(trackId));
