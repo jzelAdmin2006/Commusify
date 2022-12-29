@@ -11,6 +11,8 @@ import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArg
 
 public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation {
 
+  private PlayableList playableList;
+
   @Override
   public String proceed(List<String> arguments) {
     String playableListId = arguments.get(0);
@@ -22,7 +24,7 @@ public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation
     }
   }
 
-  private String processNextArgument(List<String> arguments, int playableListId) {
+  protected String processNextArgument(List<String> arguments, int playableListId) {
     String playableId = arguments.get(1);
     if (isNumeric(playableId)) {
       return checkNextArgument(arguments, playableListId, Integer.parseInt(playableId));
@@ -46,32 +48,39 @@ public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation
         String.format("This action is unimplemented for the playable type %s.", knownPlayable));
   }
 
-  private String addPlayableWhenArgumentsChecked(int playableListId, int playableId, KnownPlayable type) {
+  protected String addPlayableWhenArgumentsChecked(int playableListId, int playableId, KnownPlayable type) {
     Playable playableList = Playable.of(playableListId, KnownPlayable.PLAYABLE_LIST);
     if (playableList.isAvailable()) {
-      return checkNextArgument((PlayableList) playableList, playableId, type);
+      this.playableList = (PlayableList) playableList;
+      return checkNextArgument(playableId, type);
     } else {
       return String.format("The playable list ID %s doesn't exist.", playableListId);
     }
   }
 
-  private String checkNextArgument(PlayableList playableList, int playableId, KnownPlayable type) {
+  protected String checkNextArgument(int playableId, KnownPlayable type) {
     Playable playable = Playable.of(playableId, type);
     if (playable.isAvailable()) {
-      return addPlayable(playableList, playable);
+      return addPlayable(playable);
     } else {
       return String.format("The playable ID %s doesn't exist.", playableId);
     }
   }
 
-  private String addPlayable(PlayableList playableList, Playable playable) {
+  protected String addPlayable(Playable playable) {
     playableList.addPlayable(playable);
     return "Playable added to playable list";
   }
 
   @Override
   public String getArgumentDescription() {
-    return String.format("[Playable list ID] [Playable ID] [Playable type (%s)]", KnownPlayable.getSpellings());
+    return String.format("[%s] [Playable ID] [Playable type (%s)]",
+        getDescriptionOfFirstArgument(),
+        KnownPlayable.getSpellings());
+  }
+
+  protected String getDescriptionOfFirstArgument() {
+    return "Playable list ID";
   }
 
   @Override
