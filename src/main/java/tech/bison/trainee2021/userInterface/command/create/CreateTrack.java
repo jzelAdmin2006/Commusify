@@ -38,7 +38,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String processNextArgument(List<String> arguments, File file) {
+  private String processNextArgument(List<String> arguments, File file) {
     String genreId = arguments.get(2);
     if (isNumeric(genreId)) {
       int genreIdValue = Integer.parseInt(genreId);
@@ -52,7 +52,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String processNextArgument(List<String> arguments, File file, Genre genre) {
+  private String processNextArgument(List<String> arguments, File file, Genre genre) {
     List<Artist> interpreters = new ArrayList<>();
     for (String artistId : arguments.subList(3, arguments.size())) {
       if (isNumeric(artistId)) {
@@ -69,7 +69,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     return createTrackWhenAuthorized(arguments, file, genre, interpreters);
   }
 
-  public String createTrackWhenAuthorized(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
+  private String createTrackWhenAuthorized(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
     Artist artistTheUserClaimsToBe = interpreters.get(0);
     if (UserInterface.getCurrentUser().isArtistMember(artistTheUserClaimsToBe)) {
       return createTrack(arguments, file, genre, interpreters);
@@ -78,7 +78,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String createTrack(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
+  private String createTrack(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
     try {
       Track track = new Track(arguments.get(0), Files.readAllBytes(file.toPath()), genre, interpreters);
       return String.format("Created new track with ID %s.", track.getId());
