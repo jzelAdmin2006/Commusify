@@ -4,6 +4,7 @@ import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
+import tech.bison.trainee2021.userInterface.command.playable.Loop;
 import tech.bison.trainee2021.userInterface.command.playable.Play;
 import tech.bison.trainee2021.userInterface.command.playable.PlayNext;
 import tech.bison.trainee2021.userInterface.command.playable.PlayPrevious;
@@ -24,6 +25,7 @@ public class CommandFactory {
     PLAY_NEXT,
     PLAY_PREVIOUS,
     SHUFFLE,
+    LOOP,
     SEARCH,
     CREATE_TRACK,
     CREATE_GENRE,
@@ -44,6 +46,7 @@ public class CommandFactory {
     private static final String PLAY_NEXT_SPELLING = "/playNext";
     private static final String PLAY_PREVIOUS_SPELLING = "/playPrevious";
     private static final String SHUFFLE_SPELLING = "/shuffle";
+    private static final String LOOP_SPELLING = "/loop";
     private static final String NO_ENTRY_SPELLING = "";
 
     public String spelling() {
@@ -76,6 +79,8 @@ public class CommandFactory {
           return PLAY_PREVIOUS_SPELLING;
         case SHUFFLE:
           return SHUFFLE_SPELLING;
+        case LOOP:
+          return LOOP_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -123,6 +128,8 @@ public class CommandFactory {
         return new PlayPrevious();
       case SHUFFLE:
         return new Shuffle();
+      case LOOP:
+        return new Loop();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));
