@@ -2,10 +2,9 @@ package tech.bison.trainee2021.userInterface.command.simpleMessage;
 
 import java.util.List;
 
-import tech.bison.trainee2021.userInterface.command.Command;
+import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoArgumentExpectation;
 
-public abstract class SimpleMessage implements Command {
-
+public class SimpleMessage implements NoArgumentExpectation {
   private final String message;
 
   public SimpleMessage(String message) {
@@ -13,12 +12,7 @@ public abstract class SimpleMessage implements Command {
   }
 
   @Override
-  public String execute(List<String> arguments) {
+  public String proceed(List<String> arguments) {
     return message;
-  }
-
-  @Override
-  public boolean loginIsRequired() {
-    return false;
   }
 }

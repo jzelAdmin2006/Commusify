@@ -20,9 +20,4 @@ public class Welcome extends SimpleMessage {
   public String execute(List<String> arguments) {
     return super.execute(arguments) + "\n" + new ShowAllCommands().execute(arguments);
   }
-
-  @Override
-  public String getArgumentDescription() {
-    return "";
-  }
 }
