@@ -109,6 +109,20 @@ public interface Playable extends Searchable {
         }
         return NOT_FOUND;
       }
+
+      public static String getSpellings() {
+        boolean isFirstSpelling = true;
+        String spellings = "";
+        for (KnownPlayable knownPlayable : KnownPlayable.values()) {
+          if (isFirstSpelling) {
+            isFirstSpelling = false;
+          } else {
+            spellings += " / ";
+          }
+          spellings += knownPlayable.spelling();
+        }
+        return spellings;
+      }
     }
 
     @Override

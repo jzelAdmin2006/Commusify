@@ -1,26 +1,27 @@
 package tech.bison.trainee2021.userInterface.command;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import tech.bison.trainee2021.Commusify;
+
 public abstract class IdChecker {
   public boolean exists(int id) {
-    return false;
-    // List<Searchable> results = new ArrayList<>();
-    // try {
-    // Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-    // CallableStatement callableStatement = connection.prepareCall(String.format("{call %s(?)}",
-    // getSearchCallSP()));
-    // callableStatement.setString("Search", search);
-    // ResultSet result = callableStatement.executeQuery();
-    //
-    // while (result.next()) {
-    // int id = result.getInt("ID");
-    // if (id != Commusify.INVALID_ID) {
-    // results.add(of(id));
-    // }
-    // }
-    // } catch (SQLException e) {
-    // e.printStackTrace();
-    // }
-    // return results;
+    try {
+      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
+      CallableStatement callableStatement = connection.prepareCall(String.format("{call %s(?)}", getIdExistsCallSP()));
+      callableStatement.setInt("ID", id);
+      ResultSet result = callableStatement.executeQuery();
+
+      result.next();
+      return result.getBoolean("ID_EXISTS");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   protected abstract String getIdExistsCallSP();

@@ -13,21 +13,7 @@ public class Download implements ExactArgumentAmountExpectation {
 
   @Override
   public String getArgumentDescription() {
-    return String.format("[Playable Type (%s)] [Playable ID]", getKnownPlayableTypeSpellings());
-  }
-
-  private String getKnownPlayableTypeSpellings() {
-    boolean isFirstSpelling = true;
-    String spellings = "";
-    for (KnownPlayable knownPlayable : KnownPlayable.values()) {
-      if (isFirstSpelling) {
-        isFirstSpelling = false;
-      } else {
-        spellings += " / ";
-      }
-      spellings += knownPlayable.spelling();
-    }
-    return spellings;
+    return String.format("[Playable Type (%s)] [Playable ID]", KnownPlayable.getSpellings());
   }
 
   @Override

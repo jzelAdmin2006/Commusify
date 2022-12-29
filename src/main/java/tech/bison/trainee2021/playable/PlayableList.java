@@ -73,6 +73,10 @@ public class PlayableList extends AvailablePlayable {
     }
   }
 
+  public void addPlayable(Playable playable) {
+    addPlayable(id, playable);
+  }
+
   private void addPlayable(int id, Playable playable) {
     playables.add(playable);
     try {
