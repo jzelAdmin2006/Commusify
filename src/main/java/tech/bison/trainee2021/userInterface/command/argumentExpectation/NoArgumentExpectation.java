@@ -2,7 +2,7 @@ package tech.bison.trainee2021.userInterface.command.argumentExpectation;
 
 import java.util.List;
 
-public interface NoArgumentExpectation extends ArgumentExpectation {
+public interface NoArgumentExpectation extends Expectation {
 
   static final String NO_ARGUMENT_DESCRIPTION = "";
 
@@ -12,13 +12,13 @@ public interface NoArgumentExpectation extends ArgumentExpectation {
   }
 
   @Override
-  public default String getInvalidArgumentsMessage() {
+  public default String getFailedMessage() {
     throw new UnsupportedOperationException(
         "If there's no expectation regarding the argument, there can't be a message regarding the invalidity.");
   }
 
   @Override
-  public default boolean isValid(List<String> arguments) {
+  public default boolean conditionIsMet(List<String> arguments) {
     return true;
   }
 

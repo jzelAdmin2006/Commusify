@@ -4,20 +4,20 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.command.Command;
 
-public interface ArgumentExpectation extends Command {
+public interface Expectation extends Command {
 
   @Override
   public default String execute(List<String> arguments) {
-    if (isValid(arguments)) {
+    if (conditionIsMet(arguments)) {
       return proceed(arguments);
     } else {
-      return getInvalidArgumentsMessage();
+      return getFailedMessage();
     }
   }
 
-  public String getInvalidArgumentsMessage();
+  public String getFailedMessage();
 
-  public boolean isValid(List<String> arguments);
+  public boolean conditionIsMet(List<String> arguments);
 
   public String proceed(List<String> arguments);
 
