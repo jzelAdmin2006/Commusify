@@ -34,13 +34,13 @@ public class CreateRecordAlbum implements MinimumArgumentAmountExpectation {
   private String processNextArgument(List<String> arguments, int trackId) {
     String interpreterId = arguments.get(3);
     if (isNumeric(interpreterId)) {
-      return createTrackWhenArgumentsChecked(arguments, trackId, Integer.parseInt(interpreterId));
+      return createAlbumWhenArgumentsChecked(arguments, trackId, Integer.parseInt(interpreterId));
     } else {
       return String.format("\"%s\" is not an artist ID (an artist ID should be a number).", interpreterId);
     }
   }
 
-  private String createTrackWhenArgumentsChecked(List<String> arguments, int trackId, int interpreterId) {
+  private String createAlbumWhenArgumentsChecked(List<String> arguments, int trackId, int interpreterId) {
     if (new TrackIdChecker().exists(trackId)) {
       return checkNextArgument(arguments, new Track(trackId), interpreterId);
     } else {
