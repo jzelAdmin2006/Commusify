@@ -88,7 +88,7 @@ public class Genre implements Searchable {
   public static class GenreSearcher extends Searcher {
 
     @Override
-    public String getSearchCallSP() {
+    protected String getSearchCallSP() {
       return "SP_SEARCH_GENRE";
     }
 

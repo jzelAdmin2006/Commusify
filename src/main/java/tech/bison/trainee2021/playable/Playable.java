@@ -76,7 +76,7 @@ public interface Playable extends Searchable {
           case TRACK:
             return new TrackSearcher().search(search);
           case NOT_FOUND:
-            break;
+            return new ArrayList<>();
         }
         // should never happen
         throw new UnsupportedOperationException(
@@ -118,7 +118,7 @@ public interface Playable extends Searchable {
 
     @Deprecated
     @Override
-    public String getSearchCallSP() {
+    protected String getSearchCallSP() {
       throw new UnsupportedOperationException("There is no stored procedure for a playable itself.");
     }
 

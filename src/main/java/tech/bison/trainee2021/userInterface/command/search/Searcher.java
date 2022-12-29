@@ -31,7 +31,7 @@ public abstract class Searcher {
     return results;
   }
 
-  public abstract String getSearchCallSP();
+  protected abstract String getSearchCallSP();
 
   public abstract Searchable of(int id);
 }
