@@ -1,6 +1,7 @@
 package tech.bison.trainee2021.userInterface.command;
 
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
+import tech.bison.trainee2021.userInterface.command.create.CreatePlayableList;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
 import tech.bison.trainee2021.userInterface.command.create.SignArtist;
@@ -31,6 +32,7 @@ public class CommandFactory {
     SEARCH,
     CREATE_TRACK,
     CREATE_GENRE,
+    CREATE_PLAYABLE_LIST,
     SIGN_ARTIST,
     NO_ENTRY,
     NOT_FOUND;
@@ -43,6 +45,7 @@ public class CommandFactory {
     private static final String REGISTER_SPELLING = "/register";
     private static final String LOGIN_SPELLING = "/login";
     private static final String CREATE_TRACK_SPELLING = "/createTrack";
+    private static final String CREATE_PLAYABLE_LIST_SPELLING = "/createPlayableList";
     private static final String SIGN_ARTIST_SPELLING = "/signArtist";
     private static final String DOWNLOAD_SPELLING = "/download";
     private static final String PLAY_SPELLING = "/play";
@@ -86,6 +89,8 @@ public class CommandFactory {
           return LOOP_SPELLING;
         case DOWNLOAD:
           return DOWNLOAD_SPELLING;
+        case CREATE_PLAYABLE_LIST:
+          return CREATE_PLAYABLE_LIST_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -137,6 +142,8 @@ public class CommandFactory {
         return new Loop();
       case DOWNLOAD:
         return new Download();
+      case CREATE_PLAYABLE_LIST:
+        return new CreatePlayableList();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));
