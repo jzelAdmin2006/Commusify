@@ -16,4 +16,4 @@ I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a s
 I converted the database to a MySQL database so I also have phpMyAdmin's ERD, which has the advantage that you can see exactly which table columns are referenced.
 ![phpMyAdmin ERD](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/SQL/Commusify_phpmyadminERD.png)
 ## 
-https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg
+![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
