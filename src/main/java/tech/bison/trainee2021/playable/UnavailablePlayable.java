@@ -9,7 +9,7 @@ public class UnavailablePlayable implements Playable {
       "The playable isn't available.");
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -18,7 +18,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -27,7 +27,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -36,7 +36,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -45,7 +45,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -54,7 +54,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -63,7 +63,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override
@@ -72,7 +72,7 @@ public class UnavailablePlayable implements Playable {
   }
 
   /**
-   * @deprecated: This should be a sign not to use this method in general.
+   * @deprecated This should be a sign not to use this method in general.
    */
   @Deprecated
   @Override

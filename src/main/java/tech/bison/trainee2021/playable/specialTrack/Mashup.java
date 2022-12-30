@@ -18,11 +18,32 @@ public class Mashup extends Track {
 
   private final List<Track> originalTracks = new ArrayList<>();
 
+  /**
+   * This constructor creates a new mashup and writes it into the Commusify database
+   * 
+   * @param title
+   *          The title of the new mashup
+   * @param audio
+   *          The audio data of the new mashup
+   * @param genre
+   *          The genre of the new mashup
+   * @param interpreters
+   *          All interpreters of the new mashup
+   * @param originalTracks
+   *          All original tracks of the new mashup
+   */
   public Mashup(String title, byte[] audio, Genre genre, List<Artist> interpreters, List<Track> originalTracks) {
     super(title, audio, genre, interpreters);
     addOriginalTracks(originalTracks, super.getId());
   }
 
+  /**
+   * This constructor reads the existing mashup with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing mashup
+   */
   public Mashup(int id) {
     super(id);
     find(id);
@@ -62,6 +83,9 @@ public class Mashup extends Track {
     }
   }
 
+  /**
+   * @return All original tracks of the mashup
+   */
   public List<Track> getOriginalTracks() {
     return Collections.unmodifiableList(originalTracks);
   }

@@ -45,6 +45,14 @@ public class PlayableList extends AvailablePlayable {
     return id == other.id && Objects.equals(title, other.title) && Objects.equals(playables, other.playables);
   }
 
+  /**
+   * This constructor creates a new playable list and writes it into the Commusify database
+   * 
+   * @param title
+   *          The title of the playable list
+   * @param playables
+   *          All the playables the playable list should contain
+   */
   public PlayableList(String title, List<Playable> playables) {
     this.id = create(title, playables);
     this.title = title;
@@ -67,12 +75,22 @@ public class PlayableList extends AvailablePlayable {
     return id;
   }
 
+  /**
+   * @param id
+   *          The ID of the playable list you want to add the playables to
+   * @param playables
+   *          The playables you want to add to the playable list
+   */
   protected void addPlayables(int id, List<Playable> playables) {
     for (Playable playable : playables) {
       addPlayable(id, playable);
     }
   }
 
+  /**
+   * @param playable
+   *          The playable you want to add to the playable list
+   */
   public void addPlayable(Playable playable) {
     addPlayable(id, playable);
   }
@@ -91,6 +109,13 @@ public class PlayableList extends AvailablePlayable {
     }
   }
 
+  /**
+   * This constructor reads the existing playable list with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing playable list
+   */
   public PlayableList(int id) {
     this.id = id;
     find(id);
@@ -121,10 +146,16 @@ public class PlayableList extends AvailablePlayable {
     }
   }
 
+  /**
+   * @return The title of the playable list
+   */
   public String getTitle() {
     return title;
   }
 
+  /**
+   * @return All playables the playable list contains
+   */
   public List<Playable> getPlayables() {
     return Collections.unmodifiableList(playables);
   }

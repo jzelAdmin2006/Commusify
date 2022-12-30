@@ -207,6 +207,9 @@ public interface Playable extends Searchable {
         return NOT_FOUND;
       }
 
+      /**
+       * @return All the playable type spellings formatted sensibly
+       */
       public static String getSpellings() {
         return Arrays.asList(KnownPlayable.values())
             .stream()
@@ -227,12 +230,18 @@ public interface Playable extends Searchable {
       return searchables;
     }
 
+    /**
+     * @deprecated This should be a sign not to use this method in general.
+     */
     @Deprecated
     @Override
     protected String getSearchCallSP() {
       throw new UnsupportedOperationException("There is no stored procedure for a playable itself.");
     }
 
+    /**
+     * @deprecated This should be a sign not to use this method in general.
+     */
     @Deprecated
     @Override
     public Searchable of(int id) {

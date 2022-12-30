@@ -44,11 +44,30 @@ public class Track extends AvailablePlayable {
   private final List<Artist> interpreters = new ArrayList<>();
   private boolean repeatIsOn;
 
+  /**
+   * This constructor reads the existing track with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing track
+   */
   public Track(int id) {
     this.id = id;
     find(id);
   }
 
+  /**
+   * This constructor creates a new track and writes it into the Commusify database
+   * 
+   * @param title
+   *          The title of the new track
+   * @param audio
+   *          The audio data of the new track
+   * @param genre
+   *          The genre of the new track
+   * @param interpreters
+   *          All interpreters of the new track
+   */
   public Track(String title, byte[] audio, Genre genre, List<Artist> interpreters) {
     this.id = create(title, audio, genre, interpreters);
     this.title = title;
@@ -141,6 +160,9 @@ public class Track extends AvailablePlayable {
     return id;
   }
 
+  /**
+   * @return The title of the track
+   */
   public String getTitle() {
     return title;
   }
@@ -152,10 +174,16 @@ public class Track extends AvailablePlayable {
     return Arrays.copyOf(audio, audio.length);
   }
 
+  /**
+   * @return The genre of the track
+   */
   public Genre getGenre() {
     return genre;
   }
 
+  /**
+   * @return The interpreters of the track
+   */
   public List<Artist> getInterpreters() {
     return Collections.unmodifiableList(interpreters);
   }
@@ -178,6 +206,14 @@ public class Track extends AvailablePlayable {
     return String.format("/%s%s.%s", getClass().getSimpleName(), id, detectFormat(audio));
   }
 
+  /**
+   * @param filePath
+   *          Path of the file that should be written
+   * @throws FileNotFoundException
+   *           There could be an invalid filepath
+   * @throws IOException
+   *           There could be a problem while writing
+   */
   public void saveTo(String filePath) throws FileNotFoundException, IOException {
     FileOutputStream fileOutputStream;
     fileOutputStream = new FileOutputStream(filePath);
