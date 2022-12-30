@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import tech.bison.trainee2021.playable.Playable;
-import tech.bison.trainee2021.playable.UnavailablePlayable;
-import tech.bison.trainee2021.structure.GuestUser;
-import tech.bison.trainee2021.structure.User;
+import tech.bison.trainee2021.framework.playable.Playable;
+import tech.bison.trainee2021.framework.playable.UnavailablePlayable;
+import tech.bison.trainee2021.framework.structure.GuestUser;
+import tech.bison.trainee2021.framework.structure.User;
 import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;

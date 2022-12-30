@@ -2,9 +2,9 @@ package tech.bison.trainee2021.userInterface.command.create;
 
 import java.util.List;
 
-import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.MixTape;
-import tech.bison.trainee2021.structure.Artist;
+import tech.bison.trainee2021.framework.playable.Track;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.MixTape;
+import tech.bison.trainee2021.framework.structure.Artist;
 
 public class CreateMixTapeAlbum extends CreateRecordAlbum {
 

@@ -1,6 +1,6 @@
 package tech.bison.trainee2021.userInterface.command.playable;
 
-import tech.bison.trainee2021.playable.Playable;
+import tech.bison.trainee2021.framework.playable.Playable;
 
 public class Play extends Download {
   @Override
