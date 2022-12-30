@@ -1,6 +1,8 @@
 package tech.bison.trainee2021.playable.specificPlayableList.albumType;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Track;
@@ -8,12 +10,34 @@ import tech.bison.trainee2021.playable.specificPlayableList.Album;
 import tech.bison.trainee2021.structure.Artist;
 
 public abstract class Record extends Album {
+  /**
+   * A record album can't contain unlimited tracks, so there's a limit
+   * 
+   * @return Max number of tracks the record album can contain
+   */
   protected abstract int limit();
 
+  /**
+   * This constructor creates a new record album and writes it into the Commusify database
+   * 
+   * @param title
+   *          The title of the new record
+   * @param tracks
+   *          The tracks of the new record
+   * @param interpreters
+   *          The interpreters of the new record
+   */
   public Record(String title, List<Track> tracks, List<Artist> interpreters) {
     super(title, tracks, interpreters);
   }
 
+  /**
+   * This constructor reads the existing record with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing record
+   */
   public Record(int id) {
     super(id);
   }
@@ -41,20 +65,24 @@ public abstract class Record extends Album {
     private static final String SINGLE_SPELLING = "Single";
     private static final String NOT_FOUND_MESSAGE_SPELLING = "If your record type %s is invalid, the message will tell you.";
 
+    /**
+     * @return All the record type spellings formatted sensibly
+     */
     public static String getSpellings() {
-      boolean isFirstSpelling = true;
-      String spellings = "";
-      for (KnownRecordType knownRecordType : KnownRecordType.values()) {
-        if (isFirstSpelling) {
-          isFirstSpelling = false;
-        } else {
-          spellings += " / ";
-        }
-        spellings += knownRecordType.spelling();
-      }
-      return spellings;
+      return Arrays.asList(KnownRecordType.values())
+          .stream()
+          .map(knownRecordType -> knownRecordType.spelling())
+          .collect(Collectors.toList())
+          .stream()
+          .map(String::valueOf)
+          .collect(Collectors.joining(" / "));
     }
 
+    /**
+     * @param Spelling
+     *          Of the record type
+     * @return Known record type with this spelling
+     */
     public static KnownRecordType translate(String spelling) {
       for (KnownRecordType knownRecordType : KnownRecordType.values()) {
         if (knownRecordType != NOT_FOUND && spelling.equals(knownRecordType.spelling())) {

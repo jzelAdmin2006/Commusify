@@ -21,6 +21,22 @@ public class User implements Searchable {
   private String email;
   private boolean isLoggedIn;
 
+  /**
+   * This constructor creates a new user and writes it into the Commusify database
+   * 
+   * @param userName
+   *          Unique username of the new user
+   * @param password
+   *          Password of the new user, this will be stored as a hashcode
+   * @param firstName
+   *          First name of the new user
+   * @param lastName
+   *          Last name of the new user
+   * @param email
+   *          Email of the new user, it doesn't have to be unique since users are identified with
+   *          the username or the ID, it also doesn't have to be online but the formatting has to be
+   *          correct
+   */
   public User(String userName, String password, String firstName, String lastName, String email) {
     passwordHash = password.hashCode();
     id = create(userName, passwordHash, firstName, lastName, email);
@@ -30,11 +46,25 @@ public class User implements Searchable {
     this.email = email;
   }
 
+  /**
+   * This constructor reads the existing user with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing user
+   */
   public User(int id) {
     this.id = id;
     find(id);
   }
 
+  /**
+   * This constructor reads the existing user with the given username from the Commusify
+   * database
+   * 
+   * @param id
+   *          The username of the existing user
+   */
   public User(String userName) {
     this.userName = userName;
     id = find(userName);
@@ -98,14 +128,23 @@ public class User implements Searchable {
     return id;
   }
 
+  /**
+   * @return Username of the user
+   */
   public String getUserName() {
     return userName;
   }
 
+  /**
+   * @return Passwordhashcode of the user
+   */
   public int getPasswordHash() {
     return passwordHash;
   }
 
+  /**
+   * @return First name of the user
+   */
   public String getFirstName() {
     return firstName;
   }
@@ -129,18 +168,35 @@ public class User implements Searchable {
         && Objects.equals(userName, other.userName);
   }
 
+  /**
+   * @return Last name of the user
+   */
   public String getLastName() {
     return lastName;
   }
 
+  /**
+   * @return Email of the user
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * @return ID of the user
+   */
   public int getId() {
     return id;
   }
 
+  /**
+   * This can be used to login with a user
+   * 
+   * @param password
+   *          The password that was entered
+   * @return True = the login was successful resp. the password was correct
+   *         False = the login wasn't successful resp. the password was wrong
+   */
   public boolean login(String password) {
     if (password.hashCode() == passwordHash) {
       isLoggedIn = true;
@@ -150,10 +206,20 @@ public class User implements Searchable {
     }
   }
 
+  /**
+   * @return True = the user is logged in
+   *         False = the user isn't logged in
+   */
   public boolean isLoggedIn() {
     return isLoggedIn;
   }
 
+  /**
+   * @param userName
+   *          The username that you want to check if it exists
+   * @return True = the username exists in the Commusify database
+   *         False = the username doesn't exist in the Commusify database
+   */
   public static boolean userNameExists(String userName) {
     boolean exists = false;
     try {
@@ -169,6 +235,12 @@ public class User implements Searchable {
     return exists;
   }
 
+  /**
+   * @param artist
+   *          The artist you want to know if this user is a member from or not
+   * @return True = This user is a member of the artist, he thus should be allowed to do things like
+   *         creating tracks with the artist as an interpreter.
+   */
   public boolean isArtistMember(Artist artist) {
     for (User member : artist.getMembers()) {
       if (this.equals(member)) {

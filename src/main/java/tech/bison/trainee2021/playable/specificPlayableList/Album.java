@@ -35,7 +35,13 @@ public abstract class Album extends Playlist {
     private static final int LONG_PLAY_CODE = 4;
     private static final int DOUBLE_LONG_PLAY_CODE = 5;
 
-    public static int code(AlbumType type) {
+    /**
+     * @param type
+     *          The known album type you want to know the code from
+     * @return The code of the known album type with which the type information is stored in the
+     *         Commusify database
+     */
+    private static int code(AlbumType type) {
       switch (type) {
         case MIX_TAPE:
           return MIX_TAPE_CODE;
@@ -52,7 +58,14 @@ public abstract class Album extends Playlist {
       throw new UnsupportedOperationException(String.format("Type %s isn't implemented.", type));
     }
 
-    public static Album translate(int id, int typeCode) {
+    /**
+     * @param id
+     *          The ID of the album you want
+     * @param typeCode
+     *          The typecode of the known
+     * @return The album with the given ID with the correct type
+     */
+    public static Album of(int id, int typeCode) {
       for (AlbumType albumType : AlbumType.values()) {
         if (typeCode == AlbumType.code(albumType)) {
           switch (albumType) {
@@ -75,9 +88,19 @@ public abstract class Album extends Playlist {
 
   private final List<Artist> interpreters = new ArrayList<>();
 
+  /**
+   * @return The type of the album
+   */
   protected abstract AlbumType type();
 
-  public Album(int id) {
+  /**
+   * This constructor reads the existing album with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing album
+   */
+  protected Album(int id) {
     super(id);
     find(id);
   }
@@ -97,6 +120,16 @@ public abstract class Album extends Playlist {
     }
   }
 
+  /**
+   * This constructor creates a new album and writes it into the Commusify database
+   * 
+   * @param title
+   *          Title of the new album
+   * @param tracks
+   *          All tracks of the new album
+   * @param interpreters
+   *          All interpreters of the new album
+   */
   public Album(String title, List<Track> tracks, List<Artist> interpreters) {
     super(title, tracks);
     create(interpreters);
@@ -134,10 +167,18 @@ public abstract class Album extends Playlist {
     }
   }
 
+  /**
+   * @return Interpreters of the album
+   */
   public List<Artist> getInterpreters() {
     return Collections.unmodifiableList(interpreters);
   }
 
+  /**
+   * @param id
+   *          The ID of the album you want
+   * @return The album with the given ID with the correct type
+   */
   public static Album of(int id) {
     int typeCode = 0;
     try {
@@ -152,7 +193,7 @@ public abstract class Album extends Playlist {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return AlbumType.translate(id, typeCode);
+    return AlbumType.of(id, typeCode);
   }
 
   @Override

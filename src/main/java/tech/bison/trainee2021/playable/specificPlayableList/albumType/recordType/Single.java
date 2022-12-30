@@ -1,5 +1,6 @@
 package tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType;
 
+import java.util.Collections;
 import java.util.List;
 
 import tech.bison.trainee2021.playable.Track;
@@ -8,12 +9,29 @@ import tech.bison.trainee2021.structure.Artist;
 
 public class Single extends Record {
 
-  private static final int SINGLE_TRACK_LIMIT = 1;
+  public static final int SINGLE_TRACK_LIMIT = 1;
 
-  public Single(String title, List<Track> tracks, List<Artist> interpreters) {
-    super(title, tracks, interpreters);
+  /**
+   * This constructor creates a new single album and writes it into the Commusify database
+   * 
+   * @param title
+   *          Title of the new single
+   * @param track
+   *          The track of the single
+   * @param interpreters
+   *          All interpreters of the new single
+   */
+  public Single(String title, Track track, List<Artist> interpreters) {
+    super(title, Collections.singletonList(track), interpreters);
   }
 
+  /**
+   * This constructor reads the existing single with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing single
+   */
   public Single(int id) {
     super(id);
   }

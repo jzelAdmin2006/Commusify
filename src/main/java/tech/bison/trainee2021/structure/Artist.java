@@ -22,6 +22,14 @@ public class Artist implements Searchable {
   private final List<User> members = new ArrayList<>();
   private String name;
 
+  /**
+   * This constructor creates a new artist and writes it into the Commusify database
+   * 
+   * @param members
+   *          Member users of the new artist
+   * @param name
+   *          Name of the new artist
+   */
   public Artist(List<User> members, String name) {
     id = create(name, members);
     this.name = name;
@@ -63,6 +71,13 @@ public class Artist implements Searchable {
     }
   }
 
+  /**
+   * This constructor reads the existing artist with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing artist
+   */
   public Artist(int id) {
     this.id = id;
     find(id);
@@ -102,14 +117,23 @@ public class Artist implements Searchable {
     }
   }
 
+  /**
+   * @return Members of the artist
+   */
   public List<User> getMembers() {
     return Collections.unmodifiableList(members);
   }
 
+  /**
+   * @return Name of the artist
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * @return ID of the artist
+   */
   public int getId() {
     return id;
   }
