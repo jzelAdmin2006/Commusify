@@ -63,7 +63,7 @@ public class Search implements ExactArgumentAmountExpectation {
     }
   }
 
-  public Searcher create(KnownSearchable searchable) {
+  private Searcher create(KnownSearchable searchable) {
     switch (searchable) {
       case GENRE:
         return new GenreSearcher();
