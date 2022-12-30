@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Track;
@@ -156,7 +157,15 @@ public abstract class Album extends Playlist {
 
   @Override
   public String result() {
-    return String.format("Album with type %s (%s)", type(), super.result());
+    return String.format("Album with type %s, albuminterpreter(s): {%s} (%s)",
+        type(),
+        interpreters.stream()
+            .map(interpreter -> interpreter.getId())
+            .collect(Collectors.toList())
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(", ")),
+        super.result());
   }
 
   public static class AlbumSearcher extends PlayableListSearcher {
