@@ -1,7 +1,9 @@
 package tech.bison.trainee2021.playable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
 import tech.bison.trainee2021.playable.PlayableList.PlayableListIdChecker;
@@ -206,17 +208,13 @@ public interface Playable extends Searchable {
       }
 
       public static String getSpellings() {
-        boolean isFirstSpelling = true;
-        String spellings = "";
-        for (KnownPlayable knownPlayable : KnownPlayable.values()) {
-          if (isFirstSpelling) {
-            isFirstSpelling = false;
-          } else {
-            spellings += " / ";
-          }
-          spellings += knownPlayable.spelling();
-        }
-        return spellings;
+        return Arrays.asList(KnownPlayable.values())
+            .stream()
+            .map(knownPlayable -> knownPlayable.spelling())
+            .collect(Collectors.toList())
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(" / "));
       }
     }
 
