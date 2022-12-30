@@ -27,9 +27,9 @@ public class Search implements ExactArgumentAmountExpectation {
     NOT_FOUND;
 
     public static KnownSearchable translate(String searchable) {
-      for (KnownSearchable knownCommand : KnownSearchable.values()) {
-        if (knownCommand != NOT_FOUND && searchable.equals(knownCommand.spelling())) {
-          return knownCommand;
+      for (KnownSearchable knownSearchable : KnownSearchable.values()) {
+        if (knownSearchable != NOT_FOUND && searchable.equals(knownSearchable.spelling())) {
+          return knownSearchable;
         }
       }
       return NOT_FOUND;
