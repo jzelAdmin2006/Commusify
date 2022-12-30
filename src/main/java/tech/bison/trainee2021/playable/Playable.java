@@ -8,6 +8,11 @@ import tech.bison.trainee2021.playable.PlayableList.PlayableListIdChecker;
 import tech.bison.trainee2021.playable.PlayableList.PlayableListSearcher;
 import tech.bison.trainee2021.playable.Track.TrackIdChecker;
 import tech.bison.trainee2021.playable.Track.TrackSearcher;
+import tech.bison.trainee2021.playable.specificPlayableList.Album;
+import tech.bison.trainee2021.playable.specificPlayableList.Album.AlbumIdChecker;
+import tech.bison.trainee2021.playable.specificPlayableList.Album.AlbumSearcher;
+import tech.bison.trainee2021.playable.specificPlayableList.Playlist;
+import tech.bison.trainee2021.playable.specificPlayableList.Playlist.PlaylistSearcher;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
@@ -41,6 +46,10 @@ public interface Playable extends Searchable {
           return new PlayableList(id);
         case TRACK:
           return new Track(id);
+        case ALBUM:
+          return Album.of(id);
+        case PLAYLIST:
+          return new Playlist(id);
       }
       throw new UnsupportedOperationException(
           String.format("The known playable automatic type selection %s isn't implemented.", knownPlayable));
@@ -54,9 +63,12 @@ public interface Playable extends Searchable {
       case NOT_FOUND:
         return false;
       case PLAYABLE_LIST:
+      case PLAYLIST:
         return new PlayableListIdChecker().exists(id);
       case TRACK:
         return new TrackIdChecker().exists(id);
+      case ALBUM:
+        return new AlbumIdChecker().exists(id);
     }
     // should never happen
     throw new UnsupportedOperationException(
@@ -65,12 +77,16 @@ public interface Playable extends Searchable {
 
   public static class PlayableSearcher extends Searcher {
     public enum KnownPlayable {
+      PLAYLIST,
+      ALBUM,
       PLAYABLE_LIST,
       TRACK,
       NOT_FOUND;
 
       private static final String PLAYABLE_LIST_SPELLING = "PlayableList";
       private static final String TRACK_SPELLING = "Track";
+      private static final String ALBUM_SPELLING = "Album";
+      private static final String PLAYLIST_SPELLING = "Playlist";
       private static final String NOT_FOUND_SPELLING_MESSAGE = "If your playable type is invalid, the message will tell you.";
 
       private List<Searchable> search(String search) {
@@ -81,6 +97,10 @@ public interface Playable extends Searchable {
             return new TrackSearcher().search(search);
           case NOT_FOUND:
             return new ArrayList<>();
+          case ALBUM:
+            return new AlbumSearcher().search(search);
+          case PLAYLIST:
+            return new PlaylistSearcher().search(search);
         }
         // should never happen
         throw new UnsupportedOperationException(
@@ -95,6 +115,10 @@ public interface Playable extends Searchable {
             return TRACK_SPELLING;
           case NOT_FOUND:
             return NOT_FOUND_SPELLING_MESSAGE;
+          case ALBUM:
+            return ALBUM_SPELLING;
+          case PLAYLIST:
+            return PLAYLIST_SPELLING;
         }
         // should never happen
         throw new UnsupportedOperationException(

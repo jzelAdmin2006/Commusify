@@ -10,6 +10,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.playable.Track;
 import tech.bison.trainee2021.structure.Artist;
+import tech.bison.trainee2021.structure.Artist.ArtistIdChecker;
 import tech.bison.trainee2021.structure.Genre;
 import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
@@ -38,7 +39,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String processNextArgument(List<String> arguments, File file) {
+  private String processNextArgument(List<String> arguments, File file) {
     String genreId = arguments.get(2);
     if (isNumeric(genreId)) {
       int genreIdValue = Integer.parseInt(genreId);
@@ -52,12 +53,12 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String processNextArgument(List<String> arguments, File file, Genre genre) {
+  private String processNextArgument(List<String> arguments, File file, Genre genre) {
     List<Artist> interpreters = new ArrayList<>();
     for (String artistId : arguments.subList(3, arguments.size())) {
       if (isNumeric(artistId)) {
         int artistIdValue = Integer.parseInt(artistId);
-        if (Artist.idExists(artistIdValue)) {
+        if (new ArtistIdChecker().exists(artistIdValue)) {
           interpreters.add(new Artist(artistIdValue));
         } else {
           return String.format("The artist ID \"%s\" doesn't exist.", artistIdValue);
@@ -69,7 +70,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     return createTrackWhenAuthorized(arguments, file, genre, interpreters);
   }
 
-  public String createTrackWhenAuthorized(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
+  private String createTrackWhenAuthorized(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
     Artist artistTheUserClaimsToBe = interpreters.get(0);
     if (UserInterface.getCurrentUser().isArtistMember(artistTheUserClaimsToBe)) {
       return createTrack(arguments, file, genre, interpreters);
@@ -78,7 +79,7 @@ public class CreateTrack implements MinimumArgumentAmountExpectation {
     }
   }
 
-  public String createTrack(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
+  private String createTrack(List<String> arguments, File file, Genre genre, List<Artist> interpreters) {
     try {
       Track track = new Track(arguments.get(0), Files.readAllBytes(file.toPath()), genre, interpreters);
       return String.format("Created new track with ID %s.", track.getId());

@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class User {
+public class User implements Searchable {
 
   private final int id;
   private String userName;
@@ -174,5 +176,28 @@ public class User {
       }
     }
     return false;
+  }
+
+  public static class UserSearcher extends Searcher {
+
+    @Override
+    protected String getSearchCallSP() {
+      return "SP_SEARCH_USER";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new User(id);
+    }
+  }
+
+  @Override
+  public String result() {
+    return String.format("ID = %s, Username = \"%s\", first name = \"%s\", last name = \"%s\", E-Mail = \"%s\"",
+        id,
+        userName,
+        firstName,
+        lastName,
+        email);
   }
 }

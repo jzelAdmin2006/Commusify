@@ -6,8 +6,8 @@ import java.util.List;
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
-import tech.bison.trainee2021.userInterface.command.AddPlayableToPlayableList;
 import tech.bison.trainee2021.playable.PlayableList;
+import tech.bison.trainee2021.userInterface.command.AddPlayableToPlayableList;
 
 public class CreatePlayableList extends AddPlayableToPlayableList {
 

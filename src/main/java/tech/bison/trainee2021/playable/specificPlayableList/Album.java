@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.playable.Track;
@@ -17,6 +18,7 @@ import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType
 import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.LongPlay;
 import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.Single;
 import tech.bison.trainee2021.structure.Artist;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
 
 public abstract class Album extends Playlist {
 
@@ -151,5 +153,37 @@ public abstract class Album extends Playlist {
       e.printStackTrace();
     }
     return AlbumType.translate(id, typeCode);
+  }
+
+  @Override
+  public String result() {
+    return String.format("Album with type %s, albuminterpreter(s): {%s} (%s)",
+        type(),
+        interpreters.stream()
+            .map(interpreter -> interpreter.getId())
+            .collect(Collectors.toList())
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(", ")),
+        super.result());
+  }
+
+  public static class AlbumSearcher extends PlayableListSearcher {
+    @Override
+    public String getSearchCallSP() {
+      return "SP_SEARCH_ALBUM";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return Album.of(id);
+    }
+  }
+
+  public static class AlbumIdChecker extends PlayableListIdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_ALBUM_ID_EXISTS";
+    }
   }
 }

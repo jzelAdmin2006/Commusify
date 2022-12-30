@@ -1,8 +1,10 @@
 package tech.bison.trainee2021.userInterface.command;
 
 import tech.bison.trainee2021.userInterface.command.create.CreateGenre;
+import tech.bison.trainee2021.userInterface.command.create.CreateMixTapeAlbum;
 import tech.bison.trainee2021.userInterface.command.create.CreatePlayableList;
 import tech.bison.trainee2021.userInterface.command.create.CreatePlaylist;
+import tech.bison.trainee2021.userInterface.command.create.CreateRecordAlbum;
 import tech.bison.trainee2021.userInterface.command.create.CreateSubGenre;
 import tech.bison.trainee2021.userInterface.command.create.CreateTrack;
 import tech.bison.trainee2021.userInterface.command.create.Register;
@@ -37,6 +39,8 @@ public class CommandFactory {
     CREATE_SUB_GENRE,
     CREATE_PLAYABLE_LIST,
     CREATE_PLAYLIST,
+    CREATE_RECORD_ALBUM,
+    CREATE_MIX_TAPE_ALBUM,
     ADD_PLAYABLE_TO_PLAYABLE_LIST,
     SIGN_ARTIST,
     NO_ENTRY,
@@ -53,6 +57,8 @@ public class CommandFactory {
     private static final String CREATE_TRACK_SPELLING = "/createTrack";
     private static final String CREATE_PLAYABLE_LIST_SPELLING = "/createPlayableList";
     private static final String CREATE_PLAYLIST_SPELLING = "/createPlaylist";
+    private static final String CREATE_RECORD_ALBUM_SPELLING = "/createRecordAlbum";
+    private static final String CREATE_MIX_TAPE_ALBUM_SPELLING = "/createMixTapeAlbum";
     private static final String ADD_PLAYABLE_TO_PLAYABLE_LIST_SPELLING = "/addPlayableToPlayableList";
     private static final String SIGN_ARTIST_SPELLING = "/signArtist";
     private static final String DOWNLOAD_SPELLING = "/download";
@@ -105,6 +111,10 @@ public class CommandFactory {
           return CREATE_PLAYLIST_SPELLING;
         case CREATE_SUB_GENRE:
           return CREATE_SUB_GENRE_SPELLING;
+        case CREATE_RECORD_ALBUM:
+          return CREATE_RECORD_ALBUM_SPELLING;
+        case CREATE_MIX_TAPE_ALBUM:
+          return CREATE_MIX_TAPE_ALBUM_SPELLING;
       }
       // should never happen
       throw new UnsupportedOperationException(
@@ -164,6 +174,10 @@ public class CommandFactory {
         return new CreatePlaylist();
       case CREATE_SUB_GENRE:
         return new CreateSubGenre();
+      case CREATE_RECORD_ALBUM:
+        return new CreateRecordAlbum();
+      case CREATE_MIX_TAPE_ALBUM:
+        return new CreateMixTapeAlbum();
     }
     // should never happen
     throw new UnsupportedOperationException(String.format("The command %s isn't implemented.", spelling));

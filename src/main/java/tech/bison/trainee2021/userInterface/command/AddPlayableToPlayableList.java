@@ -39,13 +39,9 @@ public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation
     switch (knownPlayable) {
       case NOT_FOUND:
         return String.format("The playable type \"%s\" is invalid.", playableType);
-      case PLAYABLE_LIST:
-      case TRACK:
+      default:
         return addPlayableWhenArgumentsChecked(playableListId, playableId, knownPlayable);
     }
-    // should never happen
-    throw new UnsupportedOperationException(
-        String.format("This action is unimplemented for the playable type %s.", knownPlayable));
   }
 
   protected String addPlayableWhenArgumentsChecked(int playableListId, int playableId, KnownPlayable type) {

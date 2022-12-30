@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import tech.bison.trainee2021.playable.Playable;
 import tech.bison.trainee2021.playable.PlayableList;
 import tech.bison.trainee2021.playable.Track;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
 
 public class Playlist extends PlayableList {
 
@@ -29,5 +30,17 @@ public class Playlist extends PlayableList {
 
   public void addTrack(Track track) {
     super.addPlayable(track);
+  }
+
+  @Override
+  public String result() {
+    return String.format("Playlist: (%s)", super.result());
+  }
+
+  public static class PlaylistSearcher extends PlayableListSearcher {
+    @Override
+    public Searchable of(int id) {
+      return new Playlist(id);
+    }
   }
 }

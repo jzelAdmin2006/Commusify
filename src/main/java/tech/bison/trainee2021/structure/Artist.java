@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.Commusify;
+import tech.bison.trainee2021.userInterface.command.IdChecker;
+import tech.bison.trainee2021.userInterface.command.search.Searchable;
+import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
-public class Artist {
+public class Artist implements Searchable {
 
   private final int id;
   private final List<User> members = new ArrayList<>();
@@ -110,18 +114,36 @@ public class Artist {
     return id;
   }
 
-  public static boolean idExists(int id) {
-    try {
-      Connection connection = DriverManager.getConnection(Commusify.DATABASE);
-      CallableStatement callableStatement = connection.prepareCall("{call SP_ARTIST_ID_EXISTS(?)}");
-      callableStatement.setInt("ID", id);
-      ResultSet result = callableStatement.executeQuery();
-
-      result.next();
-      return result.getBoolean("ID_EXISTS");
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
+  public static class ArtistIdChecker extends IdChecker {
+    @Override
+    protected String getIdExistsCallSP() {
+      return "SP_ARTIST_ID_EXISTS";
     }
+  }
+
+  public static class ArtistSearcher extends Searcher {
+
+    @Override
+    protected String getSearchCallSP() {
+      return "SP_SEARCH_ARTIST";
+    }
+
+    @Override
+    public Searchable of(int id) {
+      return new Artist(id);
+    }
+  }
+
+  @Override
+  public String result() {
+    return String.format("ID: %s, Name: %s, Members: {%s}",
+        id,
+        name,
+        members.stream()
+            .map(member -> member.getId())
+            .collect(Collectors.toList())
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(", ")));
   }
 }

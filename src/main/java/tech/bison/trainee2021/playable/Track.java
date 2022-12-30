@@ -258,7 +258,7 @@ public class Track extends AvailablePlayable {
     return String.format("Track: ID = %s, Title = \"%s\", Genre = \"%s\"", id, title, genre.getDesignation());
   }
 
-  static class TrackSearcher extends Searcher {
+  public static class TrackSearcher extends Searcher {
     @Override
     public String getSearchCallSP() {
       return "SP_SEARCH_TRACK";
@@ -270,7 +270,7 @@ public class Track extends AvailablePlayable {
     }
   }
 
-  static class TrackIdChecker extends IdChecker {
+  public static class TrackIdChecker extends IdChecker {
     @Override
     protected String getIdExistsCallSP() {
       return "SP_TRACK_ID_EXISTS";
