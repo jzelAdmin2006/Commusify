@@ -11,6 +11,13 @@ import tech.bison.trainee2021.Commusify;
 public class SubGenre extends Genre {
   private Genre superGenre;
 
+  /**
+   * This constructor reads the existing subgenre with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing subgenre
+   */
   public SubGenre(int id) {
     super(id);
     find();
@@ -30,6 +37,14 @@ public class SubGenre extends Genre {
     }
   }
 
+  /**
+   * This constructor creates a new single album and writes it into the Commusify database
+   * 
+   * @param designation
+   *          Designation of the new subgnre
+   * @param superGenre
+   *          Genre of which this new genre should be a subgenre
+   */
   public SubGenre(String designation, Genre superGenre) {
     super(designation);
     this.superGenre = superGenre;
@@ -48,6 +63,9 @@ public class SubGenre extends Genre {
     }
   }
 
+  /**
+   * @return The genre of which this is a subgenre
+   */
   public Genre getSuperGenre() {
     return superGenre;
   }

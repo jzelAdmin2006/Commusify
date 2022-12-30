@@ -37,6 +37,18 @@ public class MixTape extends Album {
 
   private String description;
 
+  /**
+   * This constructor creates a new mixtape and writes it into the Commusify database
+   * 
+   * @param title
+   *          Title of the new mixtape
+   * @param tracks
+   *          All tracks of the new mixtape
+   * @param interpreters
+   *          All interpreters of the new mixtape
+   * @param description
+   *          The description of the mixtape
+   */
   public MixTape(String title, List<Track> tracks, List<Artist> interpreters, String description) {
     super(title, tracks, interpreters);
     this.description = description;
@@ -55,6 +67,13 @@ public class MixTape extends Album {
     }
   }
 
+  /**
+   * This constructor reads the existing mixtape with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing mixtape
+   */
   public MixTape(int id) {
     super(id);
     find(id);
@@ -79,6 +98,9 @@ public class MixTape extends Album {
     return AlbumType.MIX_TAPE;
   }
 
+  /**
+   * @return The description of the mixtape
+   */
   public String getDescription() {
     return description;
   }

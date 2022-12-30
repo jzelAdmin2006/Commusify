@@ -82,7 +82,7 @@ public class CreateRecordAlbum implements MinimumArgumentAmountExpectation {
       case LONG_PLAY:
         album = new LongPlay(title, track, artist);
       case SINGLE:
-        album = new Single(title, track, artist);
+        album = new Single(title, track.get(0), artist);
       default:
         return String.format("Record was created with id %s.", album.getId());
     }

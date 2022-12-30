@@ -28,8 +28,7 @@ public class RemixTest {
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     Track originalTrack = new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter);
-    Remix remix = new Remix("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter,
-        originalTrack);
+    Remix remix = new Remix(TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter, originalTrack);
 
     List<Track> result = remix.getOriginalTracks();
 
@@ -43,8 +42,7 @@ public class RemixTest {
     List<Artist> interpreter = new ArrayList<>();
     interpreter.add(new Artist(members, "ArtistNameXYZ"));
     Track originalTrack = new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter);
-    Remix remix = new Remix("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter,
-        originalTrack);
+    Remix remix = new Remix(TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter, originalTrack);
 
     List<Track> result = remix.getOriginalTracks();
 

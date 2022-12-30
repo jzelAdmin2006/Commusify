@@ -10,10 +10,25 @@ import tech.bison.trainee2021.userInterface.command.search.Searchable;
 
 public class Playlist extends PlayableList {
 
-  public Playlist(String string, List<Track> tracks) {
-    super(string, tracks.stream().map(track -> (Playable) track).collect(Collectors.toList()));
+  /**
+   * This constructor creates a new playlist and writes it into the Commusify database
+   * 
+   * @param title
+   *          Title of the new playlist
+   * @param tracks
+   *          All tracks of the new playlist
+   */
+  public Playlist(String title, List<Track> tracks) {
+    super(title, tracks.stream().map(track -> (Playable) track).collect(Collectors.toList()));
   }
 
+  /**
+   * This constructor reads the existing playlist with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing playlist
+   */
   public Playlist(int id) {
     super(id);
   }
@@ -28,6 +43,10 @@ public class Playlist extends PlayableList {
     }
   }
 
+  /**
+   * @param track
+   *          The track you want to add to the playlist
+   */
   public void addTrack(Track track) {
     super.addPlayable(track);
   }

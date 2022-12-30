@@ -33,11 +33,24 @@ public class Genre implements Searchable {
   private final int id;
   private String designation;
 
+  /**
+   * This constructor reads the existing genre with the given ID from the Commusify
+   * database
+   * 
+   * @param id
+   *          The ID of the existing genre
+   */
   public Genre(int id) {
     this.id = id;
     find(id);
   }
 
+  /**
+   * This constructor creates a new genre and writes it into the Commusify database
+   * 
+   * @param designation
+   *          The designation of the new genre
+   */
   public Genre(String designation) {
     this.designation = designation;
     id = create(designation);
@@ -73,10 +86,16 @@ public class Genre implements Searchable {
     }
   }
 
+  /**
+   * @return Designation of the genre
+   */
   public String getDesignation() {
     return designation;
   }
 
+  /**
+   * @return ID of the genre
+   */
   public int getId() {
     return id;
   }

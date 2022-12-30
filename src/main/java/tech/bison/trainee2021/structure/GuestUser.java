@@ -7,6 +7,9 @@ public class GuestUser extends User {
   private static final String NO_USERNAME = "";
   private static String userName = NO_USERNAME;
 
+  /**
+   * Creates a new user for Commusify sessions without a login
+   */
   public GuestUser() {
     super(generateUserName(), UUID.randomUUID().toString(), generateUserName(), generateUserName(),
         generateUserName() + "@commusify.com");

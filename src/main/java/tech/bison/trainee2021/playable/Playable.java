@@ -1,7 +1,9 @@
 package tech.bison.trainee2021.playable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
 import tech.bison.trainee2021.playable.PlayableList.PlayableListIdChecker;
@@ -17,31 +19,73 @@ import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
 
 public interface Playable extends Searchable {
+  /**
+   * @return Unique ID of the playable
+   */
   public int getId();
 
+  /**
+   * Opens the default music player of the host operating system and plays the playable with it.
+   */
   public void play();
 
+  /**
+   * Tries to play the next sub playable
+   * 
+   * @return message if the operation was successful
+   */
   public String playNext();
 
+  /**
+   * Tries to play the previous sub playable. If that's not possible it'll replay the current
+   * playable.
+   */
   public void playPrevious();
 
+  /**
+   * @param shuffleIsOn
+   *          True = Shuffle should be turned on
+   *          False = Shuffle should be turned off
+   * @return message if the operation was successful
+   */
   public String shuffle(boolean shuffleIsOn);
 
+  /**
+   * @param loopIsOn
+   *          True = Looping should be turned on
+   *          False = Looping should be turned off
+   */
   public void loop(boolean loopIsOn);
 
+  /**
+   * Downloads the playable to the downloads-folder in the user's home directory
+   */
   public void download();
 
+  /**
+   * @return True = This playable is a simple single track, it can also be an edit type
+   *         False = This is a track collection, like for example a playable list or an album
+   */
   public default boolean isTrack() {
     return false;
   }
 
+  /**
+   * @return True = This playable is available in the Commusify database
+   *         False = This playable isn't available in the Commusify database
+   */
   public boolean isAvailable();
 
-  public static Playable of(int id, KnownPlayable knownPlayable) throws UnsupportedOperationException {
+  /**
+   * @param id
+   *          The ID of the playable that you want to get from the Commusify database
+   * @param knownPlayable
+   *          The known playable type of the playable you want
+   * @return The playable of the Commusify Playable you entered the ID and known playable type of
+   */
+  public static Playable of(int id, KnownPlayable knownPlayable) {
     if (idExists(id, knownPlayable)) {
       switch (knownPlayable) {
-        case NOT_FOUND:
-          break;
         case PLAYABLE_LIST:
           return new PlayableList(id);
         case TRACK:
@@ -50,7 +94,11 @@ public interface Playable extends Searchable {
           return Album.of(id);
         case PLAYLIST:
           return new Playlist(id);
+        case NOT_FOUND:
+          // this can't happen because of the check if the ID exists
+          break;
       }
+      // should never happen
       throw new UnsupportedOperationException(
           String.format("The known playable automatic type selection %s isn't implemented.", knownPlayable));
     } else {
@@ -58,6 +106,15 @@ public interface Playable extends Searchable {
     }
   }
 
+  /**
+   * @param id
+   *          the ID of the playable you want to check if the ID exists
+   * @param knownPlayable
+   *          the known playable type of the playable you want to check if the ID exists
+   * @return True = the ID of the entered playable exists in the Commusify database
+   *         False = the ID of the entered playable doesn't exist in the Commusify database, if a
+   *         playable object is created with this ID, exceptions might occur
+   */
   private static boolean idExists(int id, KnownPlayable knownPlayable) {
     switch (knownPlayable) {
       case NOT_FOUND:
@@ -76,6 +133,9 @@ public interface Playable extends Searchable {
   }
 
   public static class PlayableSearcher extends Searcher {
+    /**
+     * Contains the supported known playable types
+     */
     public enum KnownPlayable {
       PLAYLIST,
       ALBUM,
@@ -89,6 +149,11 @@ public interface Playable extends Searchable {
       private static final String PLAYLIST_SPELLING = "Playlist";
       private static final String NOT_FOUND_SPELLING_MESSAGE = "If your playable type is invalid, the message will tell you.";
 
+      /**
+       * @param search
+       *          What you want to search for
+       * @return A list of playables that were found as a search result
+       */
       private List<Searchable> search(String search) {
         switch (this) {
           case PLAYABLE_LIST:
@@ -107,6 +172,9 @@ public interface Playable extends Searchable {
             String.format("The searching for the known playable %s isn't implemented", this));
       }
 
+      /**
+       * @return Spelling of the known playable type
+       */
       public String spelling() {
         switch (this) {
           case PLAYABLE_LIST:
@@ -125,6 +193,11 @@ public interface Playable extends Searchable {
             String.format("The spelling for the known playable %s isn't implemented.", this));
       }
 
+      /**
+       * @param spelling
+       *          Spelling of the playable type
+       * @return Known playable type
+       */
       public static KnownPlayable translate(String spelling) {
         for (KnownPlayable knownPlayable : KnownPlayable.values()) {
           if (knownPlayable != NOT_FOUND && spelling.equals(knownPlayable.spelling())) {
@@ -134,18 +207,17 @@ public interface Playable extends Searchable {
         return NOT_FOUND;
       }
 
+      /**
+       * @return All the playable type spellings formatted sensibly
+       */
       public static String getSpellings() {
-        boolean isFirstSpelling = true;
-        String spellings = "";
-        for (KnownPlayable knownPlayable : KnownPlayable.values()) {
-          if (isFirstSpelling) {
-            isFirstSpelling = false;
-          } else {
-            spellings += " / ";
-          }
-          spellings += knownPlayable.spelling();
-        }
-        return spellings;
+        return Arrays.asList(KnownPlayable.values())
+            .stream()
+            .map(knownPlayable -> knownPlayable.spelling())
+            .collect(Collectors.toList())
+            .stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(" / "));
       }
     }
 
@@ -158,12 +230,18 @@ public interface Playable extends Searchable {
       return searchables;
     }
 
+    /**
+     * @deprecated This should be a sign not to use this method in general.
+     */
     @Deprecated
     @Override
     protected String getSearchCallSP() {
       throw new UnsupportedOperationException("There is no stored procedure for a playable itself.");
     }
 
+    /**
+     * @deprecated This should be a sign not to use this method in general.
+     */
     @Deprecated
     @Override
     public Searchable of(int id) {
