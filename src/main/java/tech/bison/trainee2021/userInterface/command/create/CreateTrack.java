@@ -8,11 +8,11 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.structure.Artist;
-import tech.bison.trainee2021.structure.Artist.ArtistIdChecker;
-import tech.bison.trainee2021.structure.Genre;
-import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
+import tech.bison.trainee2021.framework.playable.Track;
+import tech.bison.trainee2021.framework.structure.Artist;
+import tech.bison.trainee2021.framework.structure.Genre;
+import tech.bison.trainee2021.framework.structure.Artist.ArtistIdChecker;
+import tech.bison.trainee2021.framework.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 

@@ -3,9 +3,9 @@ package tech.bison.trainee2021.userInterface.command.create;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import tech.bison.trainee2021.playable.Playable;
-import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.playable.specificPlayableList.Playlist;
+import tech.bison.trainee2021.framework.playable.Playable;
+import tech.bison.trainee2021.framework.playable.Track;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.Playlist;
 
 public class CreatePlaylist extends CreatePlayableList {
   @Override

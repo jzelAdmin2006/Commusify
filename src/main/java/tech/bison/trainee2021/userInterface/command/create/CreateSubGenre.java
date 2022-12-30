@@ -4,9 +4,9 @@ import static tech.bison.trainee2021.userInterface.util.NumericChecker.isNumeric
 
 import java.util.List;
 
-import tech.bison.trainee2021.structure.Genre;
-import tech.bison.trainee2021.structure.Genre.GenreIdChecker;
-import tech.bison.trainee2021.structure.SubGenre;
+import tech.bison.trainee2021.framework.structure.Genre;
+import tech.bison.trainee2021.framework.structure.SubGenre;
+import tech.bison.trainee2021.framework.structure.Genre.GenreIdChecker;
 
 public class CreateSubGenre extends CreateGenre {
 

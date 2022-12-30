@@ -4,9 +4,9 @@ import static tech.bison.trainee2021.userInterface.util.NumericChecker.isNumeric
 
 import java.util.List;
 
-import tech.bison.trainee2021.playable.Playable;
-import tech.bison.trainee2021.playable.Playable.PlayableSearcher.KnownPlayable;
-import tech.bison.trainee2021.playable.PlayableList;
+import tech.bison.trainee2021.framework.playable.Playable;
+import tech.bison.trainee2021.framework.playable.PlayableList;
+import tech.bison.trainee2021.framework.playable.Playable.PlayableSearcher.KnownPlayable;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class AddPlayableToPlayableList implements ExactArgumentAmountExpectation {

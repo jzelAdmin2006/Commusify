@@ -6,17 +6,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import tech.bison.trainee2021.playable.Playable;
-import tech.bison.trainee2021.playable.Track;
-import tech.bison.trainee2021.playable.Track.TrackIdChecker;
-import tech.bison.trainee2021.playable.UnavailablePlayable;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.Record.KnownRecordType;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.DoubleLongPlay;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.ExtendedPlay;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.LongPlay;
-import tech.bison.trainee2021.playable.specificPlayableList.albumType.recordType.Single;
-import tech.bison.trainee2021.structure.Artist;
-import tech.bison.trainee2021.structure.Artist.ArtistIdChecker;
+import tech.bison.trainee2021.framework.playable.Playable;
+import tech.bison.trainee2021.framework.playable.Track;
+import tech.bison.trainee2021.framework.playable.UnavailablePlayable;
+import tech.bison.trainee2021.framework.playable.Track.TrackIdChecker;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.Record.KnownRecordType;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.recordType.DoubleLongPlay;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.recordType.ExtendedPlay;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.recordType.LongPlay;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.albumType.recordType.Single;
+import tech.bison.trainee2021.framework.structure.Artist;
+import tech.bison.trainee2021.framework.structure.Artist.ArtistIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
 

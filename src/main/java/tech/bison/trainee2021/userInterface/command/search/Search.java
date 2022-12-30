@@ -3,11 +3,11 @@ package tech.bison.trainee2021.userInterface.command.search;
 import java.util.Collections;
 import java.util.List;
 
-import tech.bison.trainee2021.playable.Playable.PlayableSearcher;
-import tech.bison.trainee2021.playable.Track.TrackSearcher;
-import tech.bison.trainee2021.structure.Artist.ArtistSearcher;
-import tech.bison.trainee2021.structure.Genre.GenreSearcher;
-import tech.bison.trainee2021.structure.User.UserSearcher;
+import tech.bison.trainee2021.framework.playable.Playable.PlayableSearcher;
+import tech.bison.trainee2021.framework.playable.Track.TrackSearcher;
+import tech.bison.trainee2021.framework.structure.Artist.ArtistSearcher;
+import tech.bison.trainee2021.framework.structure.Genre.GenreSearcher;
+import tech.bison.trainee2021.framework.structure.User.UserSearcher;
 import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
 
 public class Search implements ExactArgumentAmountExpectation {
