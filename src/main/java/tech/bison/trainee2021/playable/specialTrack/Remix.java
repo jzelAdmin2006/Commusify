@@ -9,8 +9,8 @@ import tech.bison.trainee2021.structure.Genre;
 
 public class Remix extends Mashup {
 
-  public Remix(String title, byte[] audio, Genre genre, List<Artist> remixers, Track originalTrack) {
-    super(title, audio, genre, remixers, Collections.singletonList(originalTrack));
+  public Remix(byte[] audio, Genre genre, List<Artist> remixers, Track originalTrack) {
+    super(originalTrack.getTitle(), audio, genre, remixers, Collections.singletonList(originalTrack));
   }
 
   public Remix(int id) {
