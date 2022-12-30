@@ -7,6 +7,9 @@ import java.sql.Statement;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
 
+/**
+ * @author johannes.zeller: I built the music service Commusify as a school project.
+ */
 public class Commusify {
   /**
    * This is the JDBC URL for the Commusify database. This is an online database on the main branch,
