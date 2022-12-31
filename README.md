@@ -68,15 +68,15 @@ These are actually multiple diagrams, but they are all very small. Namely, I pac
 I had to be a lot more specific here than with the class diagrams. One difference with sequence diagrams is that they are also about time and not just about structure. Of course, there are many ways in which my software can run in a span of time, it all depends on user input. The way I did it wasn't entirely correct, but since I couldn't really represent the entire application behaviour in this way, I had to pretend that the user was always instantiating the first object. After all, there are often several possibilities from where the objects can be instantiated. So I've always assumed that the user does it. Here I had the same problem everywhere with copying the diagrams as images as with the package separation. So I also used the newer Enterprise Architect trial version for this.
 #### Existing track instantiation
 This sequence diagram shows how a normal track already existing in the database is instantiated with the ID.
-
+![Sequence diagram of existing track instantiation](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/ExistingTrackInstatiation.png)
 #### New double long play creation
 This sequence diagram shows how a new double long play album is instantiated, which does not yet exist in the database and is therefore written there.
-
+![Sequence diagram of new double long play creation](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/DoubleLongPlayCreation.png)
 #### Subgenre creation via command execution
-This diagram shows what happens when the CreateSubGenre Command is executed, obviously creating a new subgenre and writing it to the database.
-
+This diagram shows what happens when the CreateSubGenre Command is executed, obviously creating a new subgenre and writing it to the database (so not only simply as previously instantiating an object of the type SubGenre, but executing the CreateSubGenre command).
+![Sequence diagram of subgenre creation via command execution](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/CreateSubGenreCommandExecution.png)
 #### Searching for artists via command execution
 This shows what happens when the user searches for artists using the search command. Theoretically, there would be also the enum 'KnownSearchable' in the create(searchable):Searcher method of the search command here, but unfortunately Enterprise Architect could not recognize this enum for some reason. However, only two relevant methods would be executed there, so that's not too tragic.
-
+![Sequence diagram of searching for artists via command execution](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/SearchArtistCommandExecution.png)
 ## 
 ![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
