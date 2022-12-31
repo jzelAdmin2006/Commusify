@@ -1,4 +1,4 @@
-package tech.bison.trainee2021.userInterface.command.argumentExpectation;
+package tech.bison.trainee2021.userInterface.command.expectation;
 
 import java.util.List;
 
