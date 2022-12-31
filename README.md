@@ -1,7 +1,11 @@
 # Commusify
 Commusify - A music service truly connected to it's community.
 ## About
-This was a school project at BBZW Sursee. The task was to show that one can master object-oriented programming. I hope I was able to do that with this project as I personally love programming :). Commusify (= Community + Music) is a console application where users can log in and listen to music. But you can also pretend to be an artist and listen to tracks yourself. I have also taken over quite some logic from reality regarding this topic:
+This was a school project at BBZW Sursee.
+
+<img src="https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Important.png" width="200"> https://bit.ly/3Q6AAzC
+
+The task was to show that one can master object-oriented programming. I hope I was able to do that with this project as I personally love programming :). Commusify (= Community + Music) is a console application where users can log in and listen to music. But you can also pretend to be an artist and listen to tracks yourself. I have also taken over quite some logic from reality regarding this topic:
 - Of course there are also edits in addition to tracks, I have implemented remixes and mashups for this. The difference is that a remix is an edit of a single track, and a mashup can include any number of edited tracks.
 - I also have playlists, although there is something special about my implementation that there are also so-called playable lists. This is more or less an invention of mine. Playable lists can not only contain tracks, but also other playable lists. There are also normal playlists, but these can only contain individual tracks. This way, funnily enough, the normal album is a special case of the playable list, although it seems much more exotic.
 - In addition to playlists, there are also albums. These are a special case of normal playlists, as they can only contain tracks. There are different album types: According to the site https://blog.landr.com/album-formats/ there are Singles (= 1 track), Extended Plays (a few tracks), Long Plays (some tracks) and Double Long Plays ( twice as many as in long play), all of which are limited album types as historically they were based on record discs. Only the mixtape is an album type with no limit in Commusify, but it has a description for it, otherwise it can be unclear what it is intended for, as it could literally contain like, for example, 10 but also 1000 tracks.
