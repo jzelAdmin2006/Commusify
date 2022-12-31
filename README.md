@@ -22,5 +22,35 @@ I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a s
 #### phpMyAdmin Version (MySQL)
 I converted the database to a MySQL database so I also have phpMyAdmin's ERD, which has the advantage that you can see exactly which table columns are referenced.
 ![phpMyAdmin ERD](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/SQL/Commusify_phpmyadminERD.png)
+## Design (UML)
+In addition to programming, I also had the task of representing the whole thing graphically with UML. We got to know two kinds of diagrams: the class and sequence diagrams. We were able to create these with the tool Enterprise Architect from Sparx Systems. Normally, with a piece of software, you create several such diagrams in order to get different views of it. I decided to create four diagrams per type for my Commusify project. The Enterprise Architect projects I created can all be found in https://github.com/jzelAdmin2006/Commusify/tree/main/UML.
+### Class diagram
+This is where I decided to really get the most out of Enterprise Architect. I even had to use a new version as a trial to generate the diagrams of my project because our version of Enterprise Architect somehow couldn't read my project as it didn't understand some syntax. However, I was still able to edit the diagrams with our version. I was always able to polish the whole thing and add some things, such as the correct multiplicities, important instantiations or other relationships.
+#### Main overview
+This diagram contains all classes of the main package, so all classes except for the tests.
+
+#### Framework overview
+This diagram contains all classes of the framework. This includes all classes that are responsible for the basic structure of Commusify and often interact with the database.
+
+#### Console app overview
+This diagram contains all classes of the user interface. This primarily includes all Commusify commands.
+
+#### Package seperation
+These are actually multiple diagrams, but they are all very small. Namely, I packed the classes of each of the main subpackages in a class diagram, so again everything except the tests. Some packages are more interesting than others. Here are the most important packages, you can of course look at the rest in the Enterprise Architect project file. Here I somehow had the problem that I couldn't copy the diagrams correctly as images from the old Enterprise Architect. So I used the trial version of the new one for that. It looks a little different, but of course it's exactly the same.
+
+### Sequence diagram
+I had to be a lot more specific here than with the class diagrams. One difference with sequence diagrams is that they are also about time and not just about structure. Of course, there are many ways in which my software can run in a span of time, it all depends on user input. The way I did it wasn't entirely correct, but since I couldn't really represent the entire application behaviour in this way, I had to pretend that the user was always instantiating the first object. After all, there are often several possibilities from where the objects can be instantiated. So I've always assumed that the user does it. Here I had the same problem everywhere with copying the diagrams as images as with the package separation. So I also used the newer Enterprise Architect trial version for this.
+#### Existing track instantiation
+This sequence diagram shows how a normal track already existing in the database is instantiated with the ID.
+
+#### New double long play creation
+This sequence diagram shows how a new double long play album is instantiated, which does not yet exist in the database and is therefore written there.
+
+#### Subgenre creation via command execution
+This diagram shows what happens when the CreateSubGenre Command is executed, obviously creating a new subgenre and writing it to the database.
+
+#### Searching for artists via command execution
+This shows what happens when the user searches for artists using the search command. Theoretically, there would be also the enum 'KnownSearchable' in the create(searchable):Searcher method of the search command here, but unfortunately Enterprise Architect could not recognize this enum for some reason. However, only two relevant methods would be executed there, so that's not too tragic.
+
 ## 
 ![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
