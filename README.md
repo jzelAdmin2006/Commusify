@@ -29,28 +29,58 @@ This is where I decided to really get the most out of Enterprise Architect. I ev
 #### Main overview
 This diagram contains all classes of the main package, so all classes except for the tests.
 
+![Main overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/MainOverview.png)
 #### Framework overview
 This diagram contains all classes of the framework. This includes all classes that are responsible for the basic structure of Commusify and often interact with the database.
 
+![Framework overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/FrameworkOverview.png)
 #### Console app overview
 This diagram contains all classes of the user interface. This primarily includes all Commusify commands.
 
+![Console app overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/ConsoleAppOverview.png)
 #### Package seperation
 These are actually multiple diagrams, but they are all very small. Namely, I packed the classes of each of the main subpackages in a class diagram, so again everything except the tests. Some packages are more interesting than others. Here are the most important packages, you can of course look at the rest in the Enterprise Architect project file. Here I somehow had the problem that I couldn't copy the diagrams correctly as images from the old Enterprise Architect. So I used the trial version of the new one for that. It looks a little different, but of course it's exactly the same.
-
+##### AlbumType (framework)
+![Class diagram of package albumType](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/AlbumTypePackageOverview.png)
+##### Command (userInterface)
+![Class diagram of package command](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/CommandPackageOverview.png)
+##### Create (command)
+![Class diagram of package create](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/CreatePackageOverview.png)
+##### Expectation (command)
+![Class diagram of package expectation](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/ExpectationPackageOverview.png)
+##### Playable (command)
+![Class diagram of package playable (command)](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/PlayableCommandPackageOverview.png)
+##### Playable (framework)
+![Class diagram of package playable (framework)](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/PlayablePackageOverview.png)
+##### RecordType (albumType)
+![Class diagram of package albumType](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/RecordTypePackageOverview.png)
+##### Search (command)
+![Class diagram of package search](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/SearchPackageOverview.png)
+##### SimpleMessage (command)
+![Class diagram of package simpleMessage](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/SimpleMessagePackageOverview.png)
+##### SpecialTrack (playable)
+![Class diagram of package specialTrack](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/SpecialTrackPackageOverview.png)
+##### SpecificPlayableList (playable)
+![Class diagram of package specificPlayableList](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/SpecificPlayableListPackageOverview.png)
+##### Structure (framework)
+![Class diagram of package structure](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/PackageSeperation/StructurePackageOverview.png)
 ### Sequence diagram
 I had to be a lot more specific here than with the class diagrams. One difference with sequence diagrams is that they are also about time and not just about structure. Of course, there are many ways in which my software can run in a span of time, it all depends on user input. The way I did it wasn't entirely correct, but since I couldn't really represent the entire application behaviour in this way, I had to pretend that the user was always instantiating the first object. After all, there are often several possibilities from where the objects can be instantiated. So I've always assumed that the user does it. Here I had the same problem everywhere with copying the diagrams as images as with the package separation. So I also used the newer Enterprise Architect trial version for this.
 #### Existing track instantiation
 This sequence diagram shows how a normal track already existing in the database is instantiated with the ID.
 
+![Sequence diagram of existing track instantiation](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/ExistingTrackInstatiation.png)
 #### New double long play creation
 This sequence diagram shows how a new double long play album is instantiated, which does not yet exist in the database and is therefore written there.
 
+![Sequence diagram of new double long play creation](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/DoubleLongPlayCreation.png)
 #### Subgenre creation via command execution
-This diagram shows what happens when the CreateSubGenre Command is executed, obviously creating a new subgenre and writing it to the database.
+This diagram shows what happens when the CreateSubGenre Command is executed, obviously creating a new subgenre and writing it to the database (so not only simply as previously instantiating an object of the type SubGenre, but executing the CreateSubGenre command).
 
+![Sequence diagram of subgenre creation via command execution](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/CreateSubGenreCommandExecution.png)
 #### Searching for artists via command execution
 This shows what happens when the user searches for artists using the search command. Theoretically, there would be also the enum 'KnownSearchable' in the create(searchable):Searcher method of the search command here, but unfortunately Enterprise Architect could not recognize this enum for some reason. However, only two relevant methods would be executed there, so that's not too tragic.
 
+![Sequence diagram of searching for artists via command execution](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/SearchArtistCommandExecution.png)
 ## 
 ![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
