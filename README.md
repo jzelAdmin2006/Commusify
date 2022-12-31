@@ -33,11 +33,14 @@ This diagram contains all classes of the main package, so all classes except for
 #### Framework overview
 This diagram contains all classes of the framework. This includes all classes that are responsible for the basic structure of Commusify and often interact with the database.
 
+![Framework overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/FrameworkOverview.png)
 #### Console app overview
 This diagram contains all classes of the user interface. This primarily includes all Commusify commands.
 
+![Console app overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/ConsoleAppOverview.png)
 #### Package seperation
 These are actually multiple diagrams, but they are all very small. Namely, I packed the classes of each of the main subpackages in a class diagram, so again everything except the tests. Some packages are more interesting than others. Here are the most important packages, you can of course look at the rest in the Enterprise Architect project file. Here I somehow had the problem that I couldn't copy the diagrams correctly as images from the old Enterprise Architect. So I used the trial version of the new one for that. It looks a little different, but of course it's exactly the same.
+
 
 ### Sequence diagram
 I had to be a lot more specific here than with the class diagrams. One difference with sequence diagrams is that they are also about time and not just about structure. Of course, there are many ways in which my software can run in a span of time, it all depends on user input. The way I did it wasn't entirely correct, but since I couldn't really represent the entire application behaviour in this way, I had to pretend that the user was always instantiating the first object. After all, there are often several possibilities from where the objects can be instantiated. So I've always assumed that the user does it. Here I had the same problem everywhere with copying the diagrams as images as with the package separation. So I also used the newer Enterprise Architect trial version for this.
