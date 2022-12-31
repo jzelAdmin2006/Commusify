@@ -22,5 +22,11 @@ I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a s
 #### phpMyAdmin Version (MySQL)
 I converted the database to a MySQL database so I also have phpMyAdmin's ERD, which has the advantage that you can see exactly which table columns are referenced.
 ![phpMyAdmin ERD](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/SQL/Commusify_phpmyadminERD.png)
+## Design (UML)
+In addition to programming, I also had the task of representing the whole thing graphically with UML. We got to know two kinds of diagrams: the class and sequence diagrams. We were able to create these with the tool Enterprise Architect from Sparx Systems. Normally, with a piece of software, you create several such diagrams in order to get different views of it. I decided to create four diagrams per type for my Commusify project. The Enterprise Architect projects I created can all be found in https://github.com/jzelAdmin2006/Commusify/tree/main/UML.
+### Class diagram
+
+### Sequence diagram
+
 ## 
 ![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
