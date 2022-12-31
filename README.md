@@ -25,8 +25,24 @@ I converted the database to a MySQL database so I also have phpMyAdmin's ERD, wh
 ## Design (UML)
 In addition to programming, I also had the task of representing the whole thing graphically with UML. We got to know two kinds of diagrams: the class and sequence diagrams. We were able to create these with the tool Enterprise Architect from Sparx Systems. Normally, with a piece of software, you create several such diagrams in order to get different views of it. I decided to create four diagrams per type for my Commusify project. The Enterprise Architect projects I created can all be found in https://github.com/jzelAdmin2006/Commusify/tree/main/UML.
 ### Class diagram
+This is where I decided to really get the most out of Enterprise Architect. I even had to use a new version as a trial to generate the diagrams of my project because our version of Enterprise Architect somehow couldn't read my project as it didn't understand some syntax. However, I was still able to edit the diagrams with our version. I was always able to polish the whole thing and add some things, such as the correct multiplicities, important instantiations or other relationships.
+#### Main overview
+
+#### Framework overview
+
+#### Console app overview
+
+#### Package seperation
 
 ### Sequence diagram
+I had to be a lot more specific here than with the class diagrams. One difference with sequence diagrams is that they are also about time and not just about structure. Of course, there are many ways in which my software can run in a span of time, it all depends on user input. The way I did it wasn't entirely correct, but since I couldn't really represent the entire application behaviour in this way, I had to pretend that the user was always instantiating the first object. After all, there are often several possibilities from where the objects can be instantiated. So I've always assumed that the user does it.
+#### Existing track instantiation
+
+#### New double long play creation
+
+#### Subgenre creation via command execution
+
+#### Searching after artists via command execution
 
 ## 
 ![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
