@@ -3,8 +3,8 @@ package tech.bison.trainee2021.userInterface.command.playable;
 import java.util.List;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.UserInterfacePlayableAvailableExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.UserInterfacePlayableAvailableExpectation;
 
 public class Shuffle implements UserInterfacePlayableAvailableExpectation, ExactArgumentAmountExpectation {
 

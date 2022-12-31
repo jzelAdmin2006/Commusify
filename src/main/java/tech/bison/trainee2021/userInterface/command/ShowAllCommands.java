@@ -4,7 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.userInterface.UserInterface;
 import tech.bison.trainee2021.userInterface.command.CommandFactory.KnownCommand;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.NoExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.NoExpectation;
 
 public class ShowAllCommands implements NoExpectation {
 

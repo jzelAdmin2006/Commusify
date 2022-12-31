@@ -14,7 +14,7 @@ import tech.bison.trainee2021.framework.structure.Genre;
 import tech.bison.trainee2021.framework.structure.Artist.ArtistIdChecker;
 import tech.bison.trainee2021.framework.structure.Genre.GenreIdChecker;
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.MinimumArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.MinimumArgumentAmountExpectation;
 
 public class CreateTrack implements MinimumArgumentAmountExpectation {
 

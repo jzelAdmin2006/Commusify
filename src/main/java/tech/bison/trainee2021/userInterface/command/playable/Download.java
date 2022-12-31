@@ -7,7 +7,7 @@ import java.util.List;
 import tech.bison.trainee2021.framework.playable.Playable;
 import tech.bison.trainee2021.framework.playable.Playable.PlayableSearcher.KnownPlayable;
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.ExactArgumentAmountExpectation;
 
 public class Download implements ExactArgumentAmountExpectation {
 

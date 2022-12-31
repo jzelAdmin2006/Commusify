@@ -4,7 +4,7 @@ import java.util.List;
 
 import tech.bison.trainee2021.framework.structure.User;
 import tech.bison.trainee2021.userInterface.UserInterface;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.ExactArgumentAmountExpectation;
 
 public class Login implements ExactArgumentAmountExpectation {
 

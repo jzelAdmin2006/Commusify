@@ -8,7 +8,7 @@ import tech.bison.trainee2021.framework.playable.Track.TrackSearcher;
 import tech.bison.trainee2021.framework.structure.Artist.ArtistSearcher;
 import tech.bison.trainee2021.framework.structure.Genre.GenreSearcher;
 import tech.bison.trainee2021.framework.structure.User.UserSearcher;
-import tech.bison.trainee2021.userInterface.command.argumentExpectation.ExactArgumentAmountExpectation;
+import tech.bison.trainee2021.userInterface.command.expectation.ExactArgumentAmountExpectation;
 
 public class Search implements ExactArgumentAmountExpectation {
   private static final int VALID_NUMBER_OF_ARGUMENTS = 2;
