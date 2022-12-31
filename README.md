@@ -28,6 +28,7 @@ In addition to programming, I also had the task of representing the whole thing 
 This is where I decided to really get the most out of Enterprise Architect. I even had to use a new version as a trial to generate the diagrams of my project because our version of Enterprise Architect somehow couldn't read my project as it didn't understand some syntax. However, I was still able to edit the diagrams with our version. I was always able to polish the whole thing and add some things, such as the correct multiplicities, important instantiations or other relationships.
 #### Main overview
 This diagram contains all classes of the main package, so all classes except for the tests.
+
 ![Main overview class diagram](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/ClassDiagram/img/MainOverview.png)
 #### Framework overview
 This diagram contains all classes of the framework. This includes all classes that are responsible for the basic structure of Commusify and often interact with the database.
