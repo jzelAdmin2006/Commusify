@@ -21,6 +21,8 @@ Commusify can be downloaded and run:
 - If you are a developer, you can obviously download the source code and run it in your IDE. You just need to add the Microsoft SQL Server JDBC driver jar to your classpath. Commusify is an Eclipse project with a Gradle builder, so it can also be used in other IDEs like IntelliJ.
 
 In any case though, you'll need Java installed. Commusify was created with the JRE version 17.0.2, so I'll recommend to use this or a newer version. The Windows executable actually won't accept a Java version below 17.0.2.
+
+Note that with jar and exe it may be that the console you are using (for example the Windows cmd) may not be able to handle some special characters correctly. Logically, Commusify cannot influence that.
 ## Database
 I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a school project and nothing productive, I used mywindowshosting.com Microsoft SQL Server 60-day free trial as the online database. That's enough for me, because I hand in the project before anyway and it's also evaluated before the expiration. Unfortunately, there's only one GB of storage space, but as I said, the whole thing is not productive, you would of course have to invest money there.
 ### Entity Relationship Diagram
