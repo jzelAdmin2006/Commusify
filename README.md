@@ -14,6 +14,13 @@ The task was to show that one can master object-oriented programming. I hope I w
 - You can play the generally spoken "playables" with a player in the console, which then calls up the standard audio player of the operating system. Of course, it can't interact with every possible player out there, so it just pretends to. This means that if, for example, the track in the operating system player is over, my program will not notice it. You have to tell him yourself that the next track has to be played. It takes a little getting used to, I'll admit :).
 
 I hope it is understandable that the console application in particular still leaves a lot to be desired (such as deleting individual elements). I only had time for a few double lessons at school. So also things like JUnit tests or Javadocs are unfortunately quite incomplete, which is honestly also not according to my taste. If I would've had more time I would certainly have paid attention to, for example, a significantly higher test coverage there. As mentioned, the project is only about showing that you can do it. Hopefully you can see that in the things I have done, such as the JUnit tests that do exist.
+## Download
+Commusify can be downloaded and run:
+- Jar that can be run anywhere (on both Windows and Linux you can use the command "java -jar Commusify.jar"): TBD
+- Executable that can be run on Windows (it's the same thing as the jar but maybe a bit more comfortable): TBD
+- If you are a developer, you can obviously download the source code and run it in your IDE. You just need to add the Microsoft SQL Server JDBC driver jar to your classpath. Commusify is an Eclipse project with a Gradle builder, so it can also be used in other IDEs like IntelliJ.
+
+In any case though, you'll need Java installed. Commusify was created with the JRE version 17.0.2, so I'll recommend to use this or a newer version. The Windows executable actually won't accept a Java version below 17.0.2.
 ## Database
 I built Commusify using Transact SQL (Microsoft SQL Server). As this is just a school project and nothing productive, I used mywindowshosting.com Microsoft SQL Server 60-day free trial as the online database. That's enough for me, because I hand in the project before anyway and it's also evaluated before the expiration. Unfortunately, there's only one GB of storage space, but as I said, the whole thing is not productive, you would of course have to invest money there.
 ### Entity Relationship Diagram
