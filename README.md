@@ -94,4 +94,4 @@ This shows what happens when the user searches for artists using the search comm
 
 ![Sequence diagram of searching for artists via command execution](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/UML/SequenceDiagram/img/SearchArtistCommandExecution.png)
 ## 
-![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Signature.svg)
+![My Signature](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/DEVWithLocalSQLServer/final/Signature.svg)
