@@ -16,8 +16,8 @@ The task was to show that one can master object-oriented programming. I hope I w
 I hope it is understandable that the console application in particular still leaves a lot to be desired (such as deleting individual elements). I only had time for a few double lessons at school. So also things like JUnit tests or Javadocs are unfortunately quite incomplete, which is honestly also not according to my taste. If I would've had more time I would certainly have paid attention to, for example, a significantly higher test coverage there. As mentioned, the project is only about showing that you can do it. Hopefully you can see that in the things I have done, such as the JUnit tests that do exist.
 ## Download
 Commusify can be downloaded and run:
-- Jar that can be run anywhere (on both Windows and Linux you can use the command "java -jar Commusify.jar"): TBD
-- Executable that can be run on Windows (it's the same thing as the jar but maybe a bit more comfortable): TBD
+- Jar that can be run anywhere (on both Windows and Linux you can use the command "java -jar Commusify.jar"): [Commusify.jar](https://github.com/jzelAdmin2006/Commusify/raw/DEVWithLocalSQLServer/final/Commusify.jar)
+- Executable that can be run on Windows (it's the same thing as the jar but maybe a bit more comfortable): [Commusify.exe](https://github.com/jzelAdmin2006/Commusify/raw/DEVWithLocalSQLServer/final/Commusify.exe)
 - If you are a developer, you can obviously download the source code and run it in your IDE. You just need to add the Microsoft SQL Server JDBC driver jar to your classpath. Commusify is an Eclipse project with a Gradle builder, so it can also be used in other IDEs like IntelliJ.
 
 In any case though, you'll need Java installed. Commusify was created with the JRE version 17.0.2, so I'll recommend to use this or a newer version. The Windows executable actually won't accept a Java version below 17.0.2.
