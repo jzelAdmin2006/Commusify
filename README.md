@@ -1,6 +1,7 @@
 # Commusify
-![Commusify logo](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/DEVWithLocalSQLServer/final/LogoWithBackground.png)
 Commusify - A music service truly connected to it's community.
+
+![Commusify logo](https://raw.githubusercontent.com/jzelAdmin2006/Commusify/DEVWithLocalSQLServer/final/LogoWithBackground.png)
 ## About
 This was a school project at BBZW Sursee.
 
