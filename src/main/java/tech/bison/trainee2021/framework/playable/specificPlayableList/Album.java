@@ -201,10 +201,7 @@ public abstract class Album extends Playlist {
     return String.format("Album with type %s, albuminterpreter(s): {%s} (%s)",
         type(),
         interpreters.stream()
-            .map(interpreter -> interpreter.getId())
-            .collect(Collectors.toList())
-            .stream()
-            .map(String::valueOf)
+            .map(interpreter -> Integer.toString(interpreter.getId()))
             .collect(Collectors.joining(", ")),
         super.result());
   }

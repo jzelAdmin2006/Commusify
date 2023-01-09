@@ -163,11 +163,6 @@ public class Artist implements Searchable {
     return String.format("ID: %s, Name: %s, Members: {%s}",
         id,
         name,
-        members.stream()
-            .map(member -> member.getId())
-            .collect(Collectors.toList())
-            .stream()
-            .map(String::valueOf)
-            .collect(Collectors.joining(", ")));
+        members.stream().map(member -> Integer.toString(member.getId())).collect(Collectors.joining(", ")));
   }
 }
