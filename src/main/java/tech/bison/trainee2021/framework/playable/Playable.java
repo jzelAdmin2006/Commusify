@@ -11,9 +11,9 @@ import tech.bison.trainee2021.framework.playable.PlayableList.PlayableListSearch
 import tech.bison.trainee2021.framework.playable.Track.TrackIdChecker;
 import tech.bison.trainee2021.framework.playable.Track.TrackSearcher;
 import tech.bison.trainee2021.framework.playable.specificPlayableList.Album;
-import tech.bison.trainee2021.framework.playable.specificPlayableList.Playlist;
 import tech.bison.trainee2021.framework.playable.specificPlayableList.Album.AlbumIdChecker;
 import tech.bison.trainee2021.framework.playable.specificPlayableList.Album.AlbumSearcher;
+import tech.bison.trainee2021.framework.playable.specificPlayableList.Playlist;
 import tech.bison.trainee2021.framework.playable.specificPlayableList.Playlist.PlaylistSearcher;
 import tech.bison.trainee2021.userInterface.command.search.Searchable;
 import tech.bison.trainee2021.userInterface.command.search.Searcher;
@@ -214,9 +214,6 @@ public interface Playable extends Searchable {
         return Arrays.asList(KnownPlayable.values())
             .stream()
             .map(knownPlayable -> knownPlayable.spelling())
-            .collect(Collectors.toList())
-            .stream()
-            .map(String::valueOf)
             .collect(Collectors.joining(" / "));
       }
     }

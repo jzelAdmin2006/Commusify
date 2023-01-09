@@ -72,9 +72,6 @@ public abstract class Record extends Album {
       return Arrays.asList(KnownRecordType.values())
           .stream()
           .map(knownRecordType -> knownRecordType.spelling())
-          .collect(Collectors.toList())
-          .stream()
-          .map(String::valueOf)
           .collect(Collectors.joining(" / "));
     }
 
