@@ -5,9 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import tech.bison.trainee2021.Commusify;
 import tech.bison.trainee2021.framework.playable.Playable.PlayableSearcher;
@@ -124,5 +130,24 @@ public class PlayableTest {
         .containsSequence(KnownPlayable.NOT_FOUND_SPELLING_MESSAGE)
         .containsSequence(KnownPlayable.PLAYLIST_SPELLING)
         .containsSequence(KnownPlayable.TRACK_SPELLING);
+  }
+
+  @ParameterizedTest
+  @ArgumentsSource(KnownPlayableTypeSpellingProvider.class)
+  void knownPlayableWithType_getSpelling_isCorrect(KnownPlayable knownPlayable, String spelling) {
+    String result = knownPlayable.spelling();
+
+    assertThat(result).isEqualTo(spelling);
+  }
+
+  static class KnownPlayableTypeSpellingProvider implements ArgumentsProvider {
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+      return Stream.of(Arguments.of(KnownPlayable.ALBUM, KnownPlayable.ALBUM_SPELLING),
+          Arguments.of(KnownPlayable.PLAYABLE_LIST, KnownPlayable.PLAYABLE_LIST_SPELLING),
+          Arguments.of(KnownPlayable.NOT_FOUND, KnownPlayable.NOT_FOUND_SPELLING_MESSAGE),
+          Arguments.of(KnownPlayable.PLAYLIST, KnownPlayable.PLAYLIST_SPELLING),
+          Arguments.of(KnownPlayable.TRACK, KnownPlayable.TRACK_SPELLING));
+    }
   }
 }
