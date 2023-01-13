@@ -5,7 +5,7 @@ public class UnavailablePlayable implements Playable {
   /**
    * This exception can be used for unsupported operations of an unavailable playable.
    */
-  private static final UnsupportedOperationException PLAYABLE_IS_NOT_AVAILABLE = new UnsupportedOperationException(
+  public static final UnsupportedOperationException PLAYABLE_IS_NOT_AVAILABLE = new UnsupportedOperationException(
       "The playable isn't available.");
 
   /**

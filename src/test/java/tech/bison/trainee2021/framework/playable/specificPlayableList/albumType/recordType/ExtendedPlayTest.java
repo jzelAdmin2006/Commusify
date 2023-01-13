@@ -36,9 +36,9 @@ public class ExtendedPlayTest {
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
-    ExtendedPlay longPlay = new ExtendedPlay("TitleXYZ2", tracks, interpreters);
+    ExtendedPlay extendedPlay = new ExtendedPlay("TitleXYZ2", tracks, interpreters);
 
-    List<Playable> result = longPlay.getPlayables();
+    List<Playable> result = extendedPlay.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -57,9 +57,9 @@ public class ExtendedPlayTest {
     artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
     List<Artist> interpreters = new ArrayList<>();
     interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
-    ExtendedPlay longPlay = new ExtendedPlay("TitleXYZ2", tracks, interpreters);
+    ExtendedPlay extendedPlay = new ExtendedPlay("TitleXYZ2", tracks, interpreters);
 
-    List<Playable> result = longPlay.getPlayables();
+    List<Playable> result = extendedPlay.getPlayables();
 
     assertThat(result).containsExactlyElementsOf(tracks);
   }
@@ -84,5 +84,25 @@ public class ExtendedPlayTest {
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(String.format("Records of type ExtendedPlay can't contain more than %s track(s).",
             ExtendedPlay.EXTENDED_PLAY_TRACK_LIMIT));
+  }
+
+  @Test
+  void newExtendedPlay_extendedPlayWithSameId_isEqual() {
+    List<Track> tracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ12345", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
+    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2"), interpreter));
+    List<User> artistMembers = new ArrayList<>();
+    artistMembers.add(new User("userNameXYZ", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreters = new ArrayList<>();
+    interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
+    ExtendedPlay extendedPlay = new ExtendedPlay("TitleXYZ2", tracks, interpreters);
+
+    ExtendedPlay result = new ExtendedPlay(extendedPlay.getId());
+
+    assertThat(result).isEqualTo(extendedPlay);
   }
 }

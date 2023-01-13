@@ -87,4 +87,24 @@ public class DoubleLongPlayTest {
         .hasMessage(String.format("Records of type DoubleLongPlay can't contain more than %s track(s).",
             doubleLongPlayTrackLimit));
   }
+
+  @Test
+  void newDoubleLongPlay_doubleLongPlayWithSameId_isEqual() {
+    List<Track> tracks = new ArrayList<>();
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    tracks.add(new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreDesignationXYZ"), interpreter));
+    tracks.add(new Track("TrackTitleXYZ2", TrackTest.sampleAudio2, new Genre("GenreDesignationXYZ2"), interpreter));
+    List<User> artistMembers = new ArrayList<>();
+    artistMembers.add(new User("userNameXYZ2", "PasswordXYZ", "FirstNameXYZ", "LastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreters = new ArrayList<>();
+    interpreters.add(new Artist(artistMembers, "ArtistNameXYZ"));
+    DoubleLongPlay doubleLongPlay = new DoubleLongPlay("TitleXYZ2", tracks, interpreters);
+
+    DoubleLongPlay result = new DoubleLongPlay(doubleLongPlay.getId());
+
+    assertThat(result).isEqualTo(doubleLongPlay);
+  }
 }
