@@ -48,4 +48,18 @@ public class RemixTest {
 
     assertThat(result).containsExactly(originalTrack);
   }
+
+  @Test
+  void newRemix_remixWithSameId_isTheSame() {
+    List<User> members = new ArrayList<>();
+    members.add(new User("UserNameXYZ", "PasswordXYZ", "FirstNameXYZ", "lastNameXYZ", "email@xyz.com"));
+    List<Artist> interpreter = new ArrayList<>();
+    interpreter.add(new Artist(members, "ArtistNameXYZ"));
+    Track originalTrack = new Track("TrackTitleXYZ", TrackTest.sampleAudio1, new Genre("GenreXYZ"), interpreter);
+    Remix remix = new Remix(TrackTest.sampleAudio2, new Genre("GenreXYZ2"), interpreter, originalTrack);
+
+    Remix result = new Remix(remix.getId());
+
+    assertThat(result).isEqualTo(remix);
+  }
 }
