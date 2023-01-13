@@ -143,11 +143,11 @@ public interface Playable extends Searchable {
       TRACK,
       NOT_FOUND;
 
-      private static final String PLAYABLE_LIST_SPELLING = "PlayableList";
-      private static final String TRACK_SPELLING = "Track";
-      private static final String ALBUM_SPELLING = "Album";
-      private static final String PLAYLIST_SPELLING = "Playlist";
-      private static final String NOT_FOUND_SPELLING_MESSAGE = "If your playable type is invalid, the message will tell you.";
+      public static final String PLAYABLE_LIST_SPELLING = "PlayableList";
+      public static final String TRACK_SPELLING = "Track";
+      public static final String ALBUM_SPELLING = "Album";
+      public static final String PLAYLIST_SPELLING = "Playlist";
+      public static final String NOT_FOUND_SPELLING_MESSAGE = "If your playable type is invalid, the message will tell you.";
 
       /**
        * @param search
