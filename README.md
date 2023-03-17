@@ -5,7 +5,7 @@ Commusify - A music service truly connected to it's community.
 
 This logo was created by [Dall E 2](https://openai.com/dall-e-2/) and edited by me.
 ## About
-This was a school project at BBZW Sursee.
+This was a school project at BBZW Sursee. Important: It is nothing productive. The goal was to produce software with object-oriented concepts behind it. Thus, various aspects such as security, among others, are not really thought through.
 
 <img src="https://raw.githubusercontent.com/jzelAdmin2006/Commusify/main/Important.png" width="200"> https://bit.ly/3Q6AAzC
 
